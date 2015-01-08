@@ -204,7 +204,7 @@ class RotorPlaneView: UIView {
         var vec : Vector = Vector(fromAmp: 50.0, fromPhase: 25)
         drawVector(vec)
         
-        vec = Vector(fromAmp: 70, fromPhase: 120)
+        vec = Vector(fromAmp: 75, fromPhase: 120)
         drawVector(vec)
 
         
