@@ -83,7 +83,7 @@ class RotorPlaneView: UIView {
         return (x, y)
     }
     
-    func GetRadians(deg : Int) -> Float
+    func GetRadians(deg : Float) -> Float
     {
         let DegToRadConversion : Float = Float(M_PI) / Float(180)
         var radian : Float = 0.0
@@ -111,7 +111,7 @@ class RotorPlaneView: UIView {
         
         let weightSlot = Float( (self.frame.size.width/2.0) ) - Float(weightSlotSize) - Float(margin)
         
-        var radians = GetRadians(weight.location)
+        var radians = GetRadians( Float(weight.location) )
         x = Int(  weightSlot * cos( radians ))
         y = Int(  weightSlot * sin( radians ))
         
@@ -136,6 +136,47 @@ class RotorPlaneView: UIView {
         CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
     }
+    
+    func GetArrowEnds( vector : Vector ) -> (xA:Float, yA:Float, xB:Float, yB:Float)
+    {
+        let arrowAngle : Int = 150
+        let arrowLength : Float = 12
+        
+        var vectorX : Float = 0.0
+        var vectorY : Float = 0.0
+        
+        var radiansA : Float = 0.0
+        var radiansB : Float = 0.0
+        
+        var degreesA : Float = Float(vector.phase + arrowAngle)
+        var degreesB : Float = Float(vector.phase - arrowAngle)
+        
+        radiansA = GetRadians(degreesA)
+        radiansB = GetRadians(degreesB)
+        
+        var xScaleA : Float = 0.0
+        var yScaleA : Float = 0.0
+        var xScaleB : Float = 0.0
+        var yScaleB : Float = 0.0
+        
+        xScaleA = cos(radiansA)  * arrowLength
+        yScaleA = sin(radiansA)  * arrowLength
+        
+        xScaleB = cos(radiansB)  * arrowLength
+        yScaleB = sin(radiansB)  * arrowLength
+        
+        (vectorX, vectorY) =  ConvertVectorToXY(vector)
+        
+        xScaleA += vectorX
+        yScaleA += vectorY
+        
+        xScaleB += vectorX
+        yScaleB += vectorY
+        
+        return (xScaleA, yScaleA, xScaleB, yScaleB)
+    }
+    
+    
     func DrawRotor()
     {
         var startAngle: Float = Float(2 * M_PI)
@@ -189,6 +230,22 @@ class RotorPlaneView: UIView {
         CGContextMoveToPoint(context, 0, 0)
         CGContextAddLineToPoint(context, CGFloat(x), CGFloat(y))
         CGContextStrokePath(context)
+        
+        
+        var xScaleA : Float = 0.0
+        var yScaleA : Float = 0.0
+        var xScaleB : Float = 0.0
+        var yScaleB : Float = 0.0
+        (xScaleA, yScaleA, xScaleB, yScaleB) = GetArrowEnds(vector)
+        
+        CGContextMoveToPoint(context, CGFloat(x), CGFloat(y))
+        CGContextAddLineToPoint(context, CGFloat(xScaleA), CGFloat(yScaleA))
+        CGContextStrokePath(context)
+        
+        CGContextMoveToPoint(context, CGFloat(x), CGFloat(y))
+        CGContextAddLineToPoint(context, CGFloat(xScaleB), CGFloat(yScaleB))
+        CGContextStrokePath(context)
+        
     }
 
     
@@ -201,12 +258,15 @@ class RotorPlaneView: UIView {
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
     
-        var vec : Vector = Vector(fromAmp: 50.0, fromPhase: 25)
+        
+        var vec = Vector(fromAmp: 80, fromPhase: 300)
         drawVector(vec)
         
-        vec = Vector(fromAmp: 75, fromPhase: 120)
-        drawVector(vec)
-
+        var vec2 = Vector(fromAmp: 50, fromPhase: 50)
+        drawVector(vec2)
+        
+        
+    
         
     }
     
