@@ -13,15 +13,50 @@ class Vector
     var amp : Float
     var phase : Int
     
+    var xOrigin : Float
+    var yOrigin : Float
+    var xEnd : Float
+    var yEnd : Float
+    
+    
     init()
     {
         amp = 0.0
         phase = 0
+        
+        xOrigin = 0.0
+        yOrigin = 0.0
+        
+        xEnd = 0.0
+        yEnd = 0.0
     }
     init(fromAmp _amp : Float, fromPhase _phase : Int)
     {
         amp = _amp
         phase = _phase
+        
+        xOrigin = 0.0
+        yOrigin = 0.0
+        
+        
+        let DegToRadConversion : Float = Float(M_PI) / Float(180)
+        var radians : Float = 0.0
+        radians = DegToRadConversion * Float(phase)
+        
+        xEnd = Float(  amp * cos( radians ))
+        yEnd = Float(  amp * sin( radians ))
+
+    }
+    init(xOrigin _xOrigin:Float, yOrigin _yOrigin:Float, xEnd _xEnd:Float, yEnd _yEnd:Float)
+    {
+        amp = 0.0
+        phase = 0
+        
+        xOrigin = _xOrigin
+        yOrigin = _yOrigin
+        
+        xEnd = _xEnd
+        yEnd = _yEnd
     }
 }
 class BalanceWeight
@@ -215,10 +250,7 @@ class RotorPlaneView: UIView {
     {
         let strokeWidth = 1.0
         // Get the context
-        var x : Float = 0
-        var y : Float = 0
-        
-        (x, y) =  ConvertVectorToXY(vector)
+
         
         let context = UIGraphicsGetCurrentContext()
         
@@ -227,8 +259,8 @@ class RotorPlaneView: UIView {
         // Set the line width
         CGContextSetLineWidth(context, CGFloat(strokeWidth))
 
-        CGContextMoveToPoint(context, 0, 0)
-        CGContextAddLineToPoint(context, CGFloat(x), CGFloat(y))
+        CGContextMoveToPoint(context, CGFloat(vector.xOrigin), CGFloat(vector.yOrigin) )
+        CGContextAddLineToPoint(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd))
         CGContextStrokePath(context)
         
         
@@ -238,11 +270,11 @@ class RotorPlaneView: UIView {
         var yScaleB : Float = 0.0
         (xScaleA, yScaleA, xScaleB, yScaleB) = GetArrowEnds(vector)
         
-        CGContextMoveToPoint(context, CGFloat(x), CGFloat(y))
+        CGContextMoveToPoint(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd))
         CGContextAddLineToPoint(context, CGFloat(xScaleA), CGFloat(yScaleA))
         CGContextStrokePath(context)
         
-        CGContextMoveToPoint(context, CGFloat(x), CGFloat(y))
+        CGContextMoveToPoint(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd))
         CGContextAddLineToPoint(context, CGFloat(xScaleB), CGFloat(yScaleB))
         CGContextStrokePath(context)
         
@@ -262,10 +294,11 @@ class RotorPlaneView: UIView {
         var vec = Vector(fromAmp: 80, fromPhase: 300)
         drawVector(vec)
         
-        var vec2 = Vector(fromAmp: 50, fromPhase: 50)
+        var vec2 = Vector(fromAmp: 50, fromPhase: 85)
         drawVector(vec2)
         
-        
+        var vec3 = Vector(xOrigin: 0, yOrigin: 0, xEnd: 60, yEnd: 0)
+        drawVector(vec3)
     
         
     }
