@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71676AA31A5F75790049BF07 /* CodeHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71676AA21A5F75790049BF07 /* CodeHolder.swift */; };
 		71BE483F1A1BFBFA0067CA2B /* RotorPlaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE483E1A1BFBFA0067CA2B /* RotorPlaneView.swift */; };
 		71BE48411A1C37780067CA2B /* RotorPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE48401A1C37780067CA2B /* RotorPlane.swift */; };
 		71FA859E1A1BCA3500E69D40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FA859D1A1BCA3500E69D40 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		71676AA21A5F75790049BF07 /* CodeHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeHolder.swift; sourceTree = "<group>"; };
 		71BE483E1A1BFBFA0067CA2B /* RotorPlaneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotorPlaneView.swift; sourceTree = "<group>"; };
 		71BE48401A1C37780067CA2B /* RotorPlane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotorPlane.swift; sourceTree = "<group>"; };
 		71FA85981A1BCA3500E69D40 /* BalancePro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BalancePro.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +94,7 @@
 				71FA85A81A1BCA3500E69D40 /* LaunchScreen.xib */,
 				71FA859B1A1BCA3500E69D40 /* Supporting Files */,
 				71BE48401A1C37780067CA2B /* RotorPlane.swift */,
+				71676AA21A5F75790049BF07 /* CodeHolder.swift */,
 			);
 			path = BalancePro;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				71BE483F1A1BFBFA0067CA2B /* RotorPlaneView.swift in Sources */,
 				71FA85A21A1BCA3500E69D40 /* SecondViewController.swift in Sources */,
 				71FA859E1A1BCA3500E69D40 /* AppDelegate.swift in Sources */,
+				71676AA31A5F75790049BF07 /* CodeHolder.swift in Sources */,
 				71FA85A01A1BCA3500E69D40 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
