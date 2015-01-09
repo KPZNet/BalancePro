@@ -11,7 +11,7 @@ import UIKit
 class Vector
 {
     var amp : Float
-    var phase : Int
+    var phase : Float
     
     var xOrigin : Float
     var yOrigin : Float
@@ -30,7 +30,7 @@ class Vector
         xEnd = 0.0
         yEnd = 0.0
     }
-    init(fromAmp _amp : Float, fromPhase _phase : Int)
+    init(fromAmp _amp : Float, fromPhase _phase : Float)
     {
         amp = _amp
         phase = _phase
@@ -57,6 +57,17 @@ class Vector
         
         xEnd = _xEnd
         yEnd = _yEnd
+        
+        var tempX :Float = _xEnd - _xOrigin
+        var tempY :Float = _yEnd - _yOrigin
+        
+        var radians = atan2( tempY , tempX )
+        
+        let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
+        phase = RadToDegreesConversion * Float(radians)
+        
+        amp = sqrt( (tempX * tempX) + (tempY * tempY) )
+        
     }
 }
 class BalanceWeight
@@ -174,11 +185,8 @@ class RotorPlaneView: UIView {
     
     func GetArrowEnds( vector : Vector ) -> (xA:Float, yA:Float, xB:Float, yB:Float)
     {
-        let arrowAngle : Int = 150
+        let arrowAngle : Float = 160
         let arrowLength : Float = 12
-        
-        var vectorX : Float = 0.0
-        var vectorY : Float = 0.0
         
         var radiansA : Float = 0.0
         var radiansB : Float = 0.0
@@ -200,13 +208,12 @@ class RotorPlaneView: UIView {
         xScaleB = cos(radiansB)  * arrowLength
         yScaleB = sin(radiansB)  * arrowLength
         
-        (vectorX, vectorY) =  ConvertVectorToXY(vector)
         
-        xScaleA += vectorX
-        yScaleA += vectorY
+        xScaleA += vector.xEnd
+        yScaleA += vector.yEnd
         
-        xScaleB += vectorX
-        yScaleB += vectorY
+        xScaleB += vector.xEnd
+        yScaleB += vector.yEnd
         
         return (xScaleA, yScaleA, xScaleB, yScaleB)
     }
@@ -291,13 +298,13 @@ class RotorPlaneView: UIView {
         DrawWeight(weight)
     
         
-        var vec = Vector(fromAmp: 80, fromPhase: 300)
-        drawVector(vec)
+//        var vec = Vector(fromAmp: 80, fromPhase: 300)
+//        drawVector(vec)
+//        
+//        var vec2 = Vector(fromAmp: 50, fromPhase: 85)
+//        drawVector(vec2)
         
-        var vec2 = Vector(fromAmp: 50, fromPhase: 85)
-        drawVector(vec2)
-        
-        var vec3 = Vector(xOrigin: 0, yOrigin: 0, xEnd: 60, yEnd: 0)
+        var vec3 = Vector(xOrigin: 30, yOrigin: 25, xEnd: -10, yEnd: 75)
         drawVector(vec3)
     
         
