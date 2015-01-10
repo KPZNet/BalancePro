@@ -291,7 +291,7 @@ class RotorPlaneView: UIView {
     
     func drawVector(vector : Vector)
     {
-        let strokeWidth = 2.5
+        let strokeWidth = 2.55
         // Get the context
 
         
