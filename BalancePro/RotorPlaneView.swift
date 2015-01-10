@@ -319,7 +319,7 @@ class RotorPlaneView: UIView {
         CGContextAddLineToPoint(context, CGFloat(xScaleB), CGFloat(yScaleB))
         CGContextStrokePath(context)
         
-        DrawVectorName(vector)
+        //DrawVectorName(vector)
         
     }
 
