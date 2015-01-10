@@ -8,7 +8,7 @@
 
 import UIKit
 
-import UIFont
+
 
 class Vector
 {
@@ -261,27 +261,28 @@ class RotorPlaneView: UIView {
 
     }
     
-    func drawText(vector : Vector)
-    {
-        // Get the context
-        let context = UIGraphicsGetCurrentContext()
-        
-        let text: NSString = "A"
-        let font = NSFont(name: "Helvetica Bold", size: 14.0)
-        
-        let textRect: NSRect = NSMakeRect(5, 3, 125, 18)
-        let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
-        textStyle.alignment = NSTextAlignment.LeftTextAlignment
-        let textColor = NSColor(calibratedRed: 0.147, green: 0.222, blue: 0.162, alpha: 1.0)
-        
-        let textFontAttributes = [
-            NSFontAttributeName: font,
-            NSForegroundColorAttributeName: textColor,
-            NSParagraphStyleAttributeName: textStyle
-        ]
-        
-        text.drawInRect(NSOffsetRect(textRect, 0, 1), withAttributes: textFontAttributes)
-    }
+//    func drawText(vector : Vector)
+//    {
+//        // Get the context
+//        let context = UIGraphicsGetCurrentContext()
+//        
+//        let text: NSString = "A"
+//        let font = NSFont(name: "Helvetica Bold", size: 14.0)
+//        
+//        let textRect: NSRect = NSMakeRect(5, 3, 125, 18)
+//        let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+//        textStyle.alignment = NSTextAlignment.LeftTextAlignment
+//        let textColor = NSColor(calibratedRed: 0.147, green: 0.222, blue: 0.162, alpha: 1.0)
+//        
+//        let textFontAttributes = [
+//            NSFontAttributeName: font,
+//            NSForegroundColorAttributeName: textColor,
+//            NSParagraphStyleAttributeName: textStyle
+//        ]
+//        
+//        text.drawInRect(NSOffsetRect(textRect, 0, 1), withAttributes: textFontAttributes)
+//    }
+    
     func drawVector(vector : Vector)
     {
         let strokeWidth = 1.0
