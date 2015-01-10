@@ -21,6 +21,7 @@ class Vector
     var yEnd : Float
     
     var name : String
+    var color : UIColor?
     
     
     init()
@@ -107,6 +108,8 @@ class RotorPlaneView: UIView {
     }
     */
     
+    var pTrans : CGAffineTransform?
+    
     func AdjustToCenterCartesian()
     {
         
@@ -121,6 +124,21 @@ class RotorPlaneView: UIView {
         transform = CGAffineTransformScale(transform, CGFloat(xScale), CGFloat(yScale));
         CGContextConcatCTM(context, transform);
     }
+    func SetTransform()
+    {
+        
+        let context = UIGraphicsGetCurrentContext()
+        pTrans = CGAffineTransformIdentity
+        
+        pTrans = CGAffineTransformTranslate(pTrans!, (self.frame.size.width / 2), (self.frame.size.height / 2));
+        
+        let xScale =  1.0
+        let yScale = -1.0
+        
+        pTrans = CGAffineTransformScale(pTrans!, CGFloat(xScale), CGFloat(yScale));
+        
+    }
+    
     func ResetCoordinates()
     {
 
@@ -286,7 +304,7 @@ class RotorPlaneView: UIView {
     
     func drawVector(vector : Vector)
     {
-        let strokeWidth = 2.55
+        let strokeWidth = 2.0
         // Get the context
 
         
@@ -326,22 +344,25 @@ class RotorPlaneView: UIView {
     
     override func drawRect(rect: CGRect)
     {
-        AdjustToCenterCartesian()
+        SetTransform()
         
-        DrawRotor()
+        var pPoint : CGPoint = CGPoint(x:0, y:50)
+        pPoint =  CGPointApplyAffineTransform ( pPoint, pTrans! );
         
-        var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
-        DrawWeight(weight)
-    
+        //DrawRotor()
         
-        var vec = Vector(fromAmp: 120, fromPhase: 340)
-        drawVector(vec)
-        
-        var vec2 = Vector(fromAmp: 130, fromPhase: 75)
-        drawVector(vec2)
-        
-        var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
-        drawVector(vec3)
+//        var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
+//        DrawWeight(weight)
+//    
+//        
+//        var vec = Vector(fromAmp: 120, fromPhase: 340)
+//        drawVector(vec)
+//        
+//        var vec2 = Vector(fromAmp: 130, fromPhase: 75)
+//        drawVector(vec2)
+//        
+//        var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
+//        drawVector(vec3)
     
         
     }
