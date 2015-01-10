@@ -119,9 +119,15 @@ class RotorPlaneView: UIView {
         let yScale = -1.0
         
         transform = CGAffineTransformScale(transform, CGFloat(xScale), CGFloat(yScale));
-        
-        
         CGContextConcatCTM(context, transform);
+    }
+    func ResetCoordinates()
+    {
+
+        CGContextSaveGState(UIGraphicsGetCurrentContext())
+
+        CGContextRestoreGState(UIGraphicsGetCurrentContext())
+
     }
     
     func ConvertVectorToXY(vector : Vector) -> (x:Float, y:Float)
@@ -194,7 +200,7 @@ class RotorPlaneView: UIView {
     func GetArrowEnds( vector : Vector ) -> (xA:Float, yA:Float, xB:Float, yB:Float)
     {
         let arrowAngle : Float = 160
-        let arrowLength : Float = 12
+        let arrowLength : Float = 20
         
         var radiansA : Float = 0.0
         var radiansB : Float = 0.0
@@ -285,7 +291,7 @@ class RotorPlaneView: UIView {
     
     func drawVector(vector : Vector)
     {
-        let strokeWidth = 1.0
+        let strokeWidth = 2.5
         // Get the context
 
         
@@ -305,13 +311,16 @@ class RotorPlaneView: UIView {
         var yScaleA : Float = 0.0
         var xScaleB : Float = 0.0
         var yScaleB : Float = 0.0
+        var xMidScale : Float = 0.0
+        var yMidScale : Float = 0.0
+
         (xScaleA, yScaleA, xScaleB, yScaleB) = GetArrowEnds(vector)
-        
-        CGContextMoveToPoint(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd))
-        CGContextAddLineToPoint(context, CGFloat(xScaleA), CGFloat(yScaleA))
-        CGContextStrokePath(context)
-        
-        CGContextMoveToPoint(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd))
+        xMidScale = vector.xEnd
+        yMidScale = vector.yEnd
+
+
+        CGContextMoveToPoint(context, CGFloat(xScaleA), CGFloat(yScaleA))
+        CGContextAddLineToPoint(context, CGFloat(xMidScale), CGFloat(yMidScale))
         CGContextAddLineToPoint(context, CGFloat(xScaleB), CGFloat(yScaleB))
         CGContextStrokePath(context)
         
