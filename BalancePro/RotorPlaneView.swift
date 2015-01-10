@@ -266,9 +266,16 @@ class RotorPlaneView: UIView {
         let fontName = "Helvetica"
         let textFont = UIFont(name: fontName, size: 14)
         let string = "Some String" as NSString
+        
+        let context = UIGraphicsGetCurrentContext()
+        var transform = CGAffineTransformIdentity
+        CGContextConcatCTM(context, transform);
 
-        //string.drawAtPoint(CGPointMake(0, 0), withAttributes: [NSFontAttributeName : textFont!])
-        string.drawInRect(CGRectMake(CGFloat(0), CGFloat(0), CGFloat(100), CGFloat(20) ), withAttributes: [NSFontAttributeName : textFont!])
+        string.drawAtPoint(CGPointMake(0, 0), withAttributes: [NSFontAttributeName : textFont!])
+        //string.drawInRect(CGRectMake(CGFloat(0), CGFloat(0), CGFloat(100), CGFloat(20) ), withAttributes: [NSFontAttributeName : textFont!])
+        
+        //AdjustToCenterCartesian()
+        
     }
     
     func drawVector(vector : Vector)
