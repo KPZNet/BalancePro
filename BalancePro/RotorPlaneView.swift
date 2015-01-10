@@ -8,6 +8,8 @@
 
 import UIKit
 
+import UIFont
+
 class Vector
 {
     var amp : Float
@@ -17,6 +19,8 @@ class Vector
     var yOrigin : Float
     var xEnd : Float
     var yEnd : Float
+    
+    var name : String
     
     
     init()
@@ -29,9 +33,12 @@ class Vector
         
         xEnd = 0.0
         yEnd = 0.0
+        
+        name = "vec"
     }
     init(fromAmp _amp : Float, fromPhase _phase : Float)
     {
+        name = "vec"
         amp = _amp
         phase = _phase
         
@@ -49,6 +56,7 @@ class Vector
     }
     init(xOrigin _xOrigin:Float, yOrigin _yOrigin:Float, xEnd _xEnd:Float, yEnd _yEnd:Float)
     {
+        name = "vec"
         amp = 0.0
         phase = 0
         
@@ -253,6 +261,27 @@ class RotorPlaneView: UIView {
 
     }
     
+    func drawText(vector : Vector)
+    {
+        // Get the context
+        let context = UIGraphicsGetCurrentContext()
+        
+        let text: NSString = "A"
+        let font = NSFont(name: "Helvetica Bold", size: 14.0)
+        
+        let textRect: NSRect = NSMakeRect(5, 3, 125, 18)
+        let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+        textStyle.alignment = NSTextAlignment.LeftTextAlignment
+        let textColor = NSColor(calibratedRed: 0.147, green: 0.222, blue: 0.162, alpha: 1.0)
+        
+        let textFontAttributes = [
+            NSFontAttributeName: font,
+            NSForegroundColorAttributeName: textColor,
+            NSParagraphStyleAttributeName: textStyle
+        ]
+        
+        text.drawInRect(NSOffsetRect(textRect, 0, 1), withAttributes: textFontAttributes)
+    }
     func drawVector(vector : Vector)
     {
         let strokeWidth = 1.0
@@ -298,13 +327,13 @@ class RotorPlaneView: UIView {
         DrawWeight(weight)
     
         
-//        var vec = Vector(fromAmp: 80, fromPhase: 300)
-//        drawVector(vec)
-//        
-//        var vec2 = Vector(fromAmp: 50, fromPhase: 85)
-//        drawVector(vec2)
+        var vec = Vector(fromAmp: 120, fromPhase: 340)
+        drawVector(vec)
         
-        var vec3 = Vector(xOrigin: 30, yOrigin: 25, xEnd: -10, yEnd: 75)
+        var vec2 = Vector(fromAmp: 130, fromPhase: 75)
+        drawVector(vec2)
+        
+        var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
         drawVector(vec3)
     
         
