@@ -261,27 +261,15 @@ class RotorPlaneView: UIView {
 
     }
     
-//    func drawText(vector : Vector)
-//    {
-//        // Get the context
-//        let context = UIGraphicsGetCurrentContext()
-//        
-//        let text: NSString = "A"
-//        let font = NSFont(name: "Helvetica Bold", size: 14.0)
-//        
-//        let textRect: NSRect = NSMakeRect(5, 3, 125, 18)
-//        let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
-//        textStyle.alignment = NSTextAlignment.LeftTextAlignment
-//        let textColor = NSColor(calibratedRed: 0.147, green: 0.222, blue: 0.162, alpha: 1.0)
-//        
-//        let textFontAttributes = [
-//            NSFontAttributeName: font,
-//            NSForegroundColorAttributeName: textColor,
-//            NSParagraphStyleAttributeName: textStyle
-//        ]
-//        
-//        text.drawInRect(NSOffsetRect(textRect, 0, 1), withAttributes: textFontAttributes)
-//    }
+    func DrawVectorName(vector:Vector)
+    {
+        let fontName = "Helvetica"
+        let textFont = UIFont(name: fontName, size: 14)
+        let string = "Some String" as NSString
+
+        //string.drawAtPoint(CGPointMake(0, 0), withAttributes: [NSFontAttributeName : textFont!])
+        string.drawInRect(CGRectMake(CGFloat(0), CGFloat(0), CGFloat(100), CGFloat(20) ), withAttributes: [NSFontAttributeName : textFont!])
+    }
     
     func drawVector(vector : Vector)
     {
@@ -314,6 +302,8 @@ class RotorPlaneView: UIView {
         CGContextMoveToPoint(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd))
         CGContextAddLineToPoint(context, CGFloat(xScaleB), CGFloat(yScaleB))
         CGContextStrokePath(context)
+        
+        DrawVectorName(vector)
         
     }
 
