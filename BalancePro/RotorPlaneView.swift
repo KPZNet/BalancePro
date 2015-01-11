@@ -406,13 +406,28 @@ class RotorPlaneView: UIView {
             CGContextAddLineToPoint(context, CGFloat(xEnd), CGFloat(yEnd))
 
             CGContextStrokePath(context)
-            
+
             var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd), y:CGFloat(yEnd) )
-            DrawTextAt(Text: "xx", At: textPoint, Rotate: 0, Size: 9)
+            var degrees = index as NSNumber
+            DrawTextAt(Text: degrees.stringValue, At: textPoint, Rotate: (Float(0)) , Size: 9)
+            
             
         }
         
         PopToDefaultTransform()
+
+//        for var index = 0; index < 360; index+=15
+//        {
+//            var xStart : Float = (rotorRadius - 5.0) * cos( GetRadians( Float(index) ) )
+//            var yStart : Float = (rotorRadius - 5.0) * sin( GetRadians( Float(index) ) )
+//            var xEnd   : Float = (rotorRadius) * cos( GetRadians( Float(index) ) )
+//            var yEnd   : Float = (rotorRadius) * sin( GetRadians( Float(index) ) )
+//            
+//            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd), y:CGFloat(yEnd) )
+//            var degrees = index as NSNumber
+//            DrawTextAt(Text: degrees.stringValue, At: textPoint, Rotate: (Float(0)) , Size: 9)
+//            
+//        }
     }
     
     func Setup()
