@@ -303,10 +303,17 @@ class RotorPlaneView: UIView {
     func DrawVectorName(vector:Vector)
     {
         let fontName = "Helvetica"
-        let textFont = UIFont(name: fontName, size: 14)
-        let string = "Some String" as NSString
+        let textFont = UIFont(name: fontName, size: 12)
+        let string = "Vxz" as NSString
         
-        string.drawAtPoint(CGPointMake(20, 20), withAttributes: [NSFontAttributeName : textFont!])
+        var midPoint : CGPoint = CGPoint(x:0, y:0)
+        
+        midPoint.x = CGFloat((vector.xOrigin + vector.xEnd) / Float(2.0))
+        midPoint.y = CGFloat((vector.yOrigin + vector.yEnd) / Float(2.0))
+        
+        var pPoint =  CGPointApplyAffineTransform ( midPoint, pCartesianTrans );
+        
+        string.drawAtPoint(CGPointMake(pPoint.x, pPoint.y), withAttributes: [NSFontAttributeName : textFont!])
         
     }
     
