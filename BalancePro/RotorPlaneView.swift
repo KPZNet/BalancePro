@@ -362,7 +362,7 @@ class RotorPlaneView: UIView {
     func DrawTextAt(Text _textString:String, At _point:CGPoint)
     {
         let fontName = "Helvetica"
-        let textFont = UIFont(name: fontName, size: 12)
+        let textFont = UIFont(name: fontName, size: 14)
         
         
         var pPoint =  CGPointApplyAffineTransform ( _point, pCartesianTrans );
