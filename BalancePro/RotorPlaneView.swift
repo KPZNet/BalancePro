@@ -108,7 +108,7 @@ class RotorPlaneView: UIView {
     }
     */
     
-    var pTrans : CGAffineTransform = CGAffineTransformIdentity
+    var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     
 //    override init(frame aRect: CGRect)
 //    {
@@ -124,40 +124,38 @@ class RotorPlaneView: UIView {
 //        
 //    }
 
-    func SetTransform()
+    func InitalizeCartesianTransform()
     {
-        pTrans = GetTransform()
+        pCartesianTrans = GetCartisianTransform()
     }
-    func AdjustToCenterCartesian()
+    func PushToCartesianTransform()
+    {
+        CGContextSaveGState(UIGraphicsGetCurrentContext())
+        
+        let context = UIGraphicsGetCurrentContext()
+        CGContextConcatCTM(context, pCartesianTrans);
+    }
+    func PopToDefaultTransform()
+    {
+        CGContextRestoreGState(UIGraphicsGetCurrentContext())
+    }
+    func GetCartisianTransform() -> CGAffineTransform
     {
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextConcatCTM(context, pTrans);
-    }
-    func GetTransform() -> CGAffineTransform
-    {
+        var pTempCartesianTransform : CGAffineTransform = CGAffineTransformIdentity
         
-        let context = UIGraphicsGetCurrentContext()
-        var pTransReturn : CGAffineTransform = CGAffineTransformIdentity
-        
-        pTransReturn = CGAffineTransformTranslate(pTrans, (self.frame.size.width / 2), (self.frame.size.height / 2));
+        pTempCartesianTransform = CGAffineTransformTranslate(pTempCartesianTransform, (self.frame.size.width / 2), (self.frame.size.height / 2));
         
         let xScale =  1.0
         let yScale = -1.0
         
-        pTransReturn = CGAffineTransformScale(pTrans, CGFloat(xScale), CGFloat(yScale));
+        pTempCartesianTransform = CGAffineTransformScale(pTempCartesianTransform, CGFloat(xScale), CGFloat(yScale));
         
-        return pTransReturn
+        return pTempCartesianTransform
     }
     
-    func ResetCoordinates()
-    {
 
-        CGContextSaveGState(UIGraphicsGetCurrentContext())
-
-        CGContextRestoreGState(UIGraphicsGetCurrentContext())
-
-    }
     
     func ConvertVectorToXY(vector : Vector) -> (x:Float, y:Float)
     {
@@ -184,6 +182,7 @@ class RotorPlaneView: UIView {
     
     func DrawWeight( weight : BalanceWeight )
     {
+        PushToCartesianTransform()
         
         var x : Int
         var y : Int
@@ -224,6 +223,7 @@ class RotorPlaneView: UIView {
         // Draw the arc
         CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
+        PopToDefaultTransform()
     }
     
     func GetArrowEnds( vector : Vector ) -> (xA:Float, yA:Float, xB:Float, yB:Float)
@@ -264,6 +264,8 @@ class RotorPlaneView: UIView {
     
     func DrawRotor()
     {
+        PushToCartesianTransform()
+        
         var startAngle: Float = Float(2 * M_PI)
         var endAngle: Float = 0.0
         
@@ -293,6 +295,8 @@ class RotorPlaneView: UIView {
         
         // Draw the arc
         CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        
+        PopToDefaultTransform()
 
     }
     
@@ -302,19 +306,14 @@ class RotorPlaneView: UIView {
         let textFont = UIFont(name: fontName, size: 14)
         let string = "Some String" as NSString
         
-        let context = UIGraphicsGetCurrentContext()
-        var transform = CGAffineTransformIdentity
-        CGContextConcatCTM(context, transform);
-
-        string.drawAtPoint(CGPointMake(0, 0), withAttributes: [NSFontAttributeName : textFont!])
-        //string.drawInRect(CGRectMake(CGFloat(0), CGFloat(0), CGFloat(100), CGFloat(20) ), withAttributes: [NSFontAttributeName : textFont!])
-        
-        //AdjustToCenterCartesian()
+        string.drawAtPoint(CGPointMake(20, 20), withAttributes: [NSFontAttributeName : textFont!])
         
     }
     
     func drawVector(vector : Vector)
     {
+        PushToCartesianTransform()
+        
         let strokeWidth = 2.0
         // Get the context
 
@@ -348,31 +347,34 @@ class RotorPlaneView: UIView {
         CGContextAddLineToPoint(context, CGFloat(xScaleB), CGFloat(yScaleB))
         CGContextStrokePath(context)
         
-        //DrawVectorName(vector)
+        PopToDefaultTransform()
+        
+        DrawVectorName(vector)
         
     }
 
     
     override func drawRect(rect: CGRect)
     {
-        
+        InitalizeCartesianTransform()
+
         var pPoint : CGPoint = CGPoint(x:0, y:50)
-        pPoint =  CGPointApplyAffineTransform ( pPoint, pTrans );
+        pPoint =  CGPointApplyAffineTransform ( pPoint, pCartesianTrans );
         
-        //DrawRotor()
+        DrawRotor()
         
-//        var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
-//        DrawWeight(weight)
-//    
-//        
-//        var vec = Vector(fromAmp: 120, fromPhase: 340)
-//        drawVector(vec)
-//        
-//        var vec2 = Vector(fromAmp: 130, fromPhase: 75)
-//        drawVector(vec2)
-//        
-//        var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
-//        drawVector(vec3)
+        var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
+        DrawWeight(weight)
+
+        
+        var vec = Vector(fromAmp: 120, fromPhase: 340)
+        drawVector(vec)
+
+        var vec2 = Vector(fromAmp: 130, fromPhase: 75)
+        drawVector(vec2)
+        
+        var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
+        drawVector(vec3)
     
         
     }
