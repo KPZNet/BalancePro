@@ -108,35 +108,46 @@ class RotorPlaneView: UIView {
     }
     */
     
-    var pTrans : CGAffineTransform?
+    var pTrans : CGAffineTransform = CGAffineTransformIdentity
     
+//    override init(frame aRect: CGRect)
+//    {
+//
+//        super.init(frame:aRect)
+//        pTrans = GetTransform()
+//        
+//    }
+//
+//    required init(coder aDecoder: NSCoder)
+//    {
+//        super.init(coder:aDecoder)
+//        
+//    }
+
+    func SetTransform()
+    {
+        pTrans = GetTransform()
+    }
     func AdjustToCenterCartesian()
     {
         
         let context = UIGraphicsGetCurrentContext()
-        var transform = CGAffineTransformIdentity
-        
-        transform = CGAffineTransformTranslate(transform, (self.frame.size.width / 2), (self.frame.size.height / 2));
-        
-        let xScale =  1.0
-        let yScale = -1.0
-        
-        transform = CGAffineTransformScale(transform, CGFloat(xScale), CGFloat(yScale));
-        CGContextConcatCTM(context, transform);
+        CGContextConcatCTM(context, pTrans);
     }
-    func SetTransform()
+    func GetTransform() -> CGAffineTransform
     {
         
         let context = UIGraphicsGetCurrentContext()
-        pTrans = CGAffineTransformIdentity
+        var pTransReturn : CGAffineTransform = CGAffineTransformIdentity
         
-        pTrans = CGAffineTransformTranslate(pTrans!, (self.frame.size.width / 2), (self.frame.size.height / 2));
+        pTransReturn = CGAffineTransformTranslate(pTrans, (self.frame.size.width / 2), (self.frame.size.height / 2));
         
         let xScale =  1.0
         let yScale = -1.0
         
-        pTrans = CGAffineTransformScale(pTrans!, CGFloat(xScale), CGFloat(yScale));
+        pTransReturn = CGAffineTransformScale(pTrans, CGFloat(xScale), CGFloat(yScale));
         
+        return pTransReturn
     }
     
     func ResetCoordinates()
@@ -344,10 +355,9 @@ class RotorPlaneView: UIView {
     
     override func drawRect(rect: CGRect)
     {
-        SetTransform()
         
         var pPoint : CGPoint = CGPoint(x:0, y:50)
-        pPoint =  CGPointApplyAffineTransform ( pPoint, pTrans! );
+        pPoint =  CGPointApplyAffineTransform ( pPoint, pTrans );
         
         //DrawRotor()
         
