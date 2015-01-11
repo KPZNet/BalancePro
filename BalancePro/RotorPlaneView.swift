@@ -340,7 +340,6 @@ class RotorPlaneView: UIView {
         PopToDefaultTransform()
     }
     
-
     
     func drawVector(vector : Vector)
     {
@@ -407,6 +406,9 @@ class RotorPlaneView: UIView {
             CGContextAddLineToPoint(context, CGFloat(xEnd), CGFloat(yEnd))
 
             CGContextStrokePath(context)
+            
+            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd), y:CGFloat(yEnd) )
+            DrawTextAt(Text: "xx", At: textPoint, Rotate: 0, Size: 9)
             
         }
         
