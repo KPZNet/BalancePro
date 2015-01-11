@@ -109,6 +109,8 @@ class RotorPlaneView: UIView {
     */
     
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
+    var rotorRadius : Float = Float(1.0)
+    var rotorRadiusStrokeWidth : Float = Float(1.0)
     
 //    override init(frame aRect: CGRect)
 //    {
@@ -269,10 +271,6 @@ class RotorPlaneView: UIView {
         var startAngle: Float = Float(2 * M_PI)
         var endAngle: Float = 0.0
         
-        // Drawing code
-        // Set the radius
-        let strokeWidth = 1.0
-        let radius = CGFloat( (CGFloat(self.frame.size.width) - CGFloat(strokeWidth)) / 2)
         
         // Get the context
         let context = UIGraphicsGetCurrentContext()
@@ -282,16 +280,16 @@ class RotorPlaneView: UIView {
         
         
         // Draw the arc around the circle
-        CGContextAddArc(context, center.x, center.y, CGFloat(radius), CGFloat(0), CGFloat(2 * M_PI), 1)
+        CGContextAddArc(context, center.x, center.y, CGFloat(rotorRadius), CGFloat(0), CGFloat(2 * M_PI), 1)
         
         // Set the fill color (if you are filling the circle)
         CGContextSetFillColorWithColor(context, UIColor.grayColor().CGColor)
         
         // Set the stroke color
-        CGContextSetStrokeColorWithColor(context, UIColor.blueColor().CGColor)
+        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
 
         // Set the line width
-        CGContextSetLineWidth(context, CGFloat(strokeWidth))
+        CGContextSetLineWidth(context, CGFloat(rotorRadiusStrokeWidth))
         
         // Draw the arc
         CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
@@ -304,7 +302,7 @@ class RotorPlaneView: UIView {
     {
         let fontName = "Helvetica"
         let textFont = UIFont(name: fontName, size: 12)
-        let string = "Vxz" as NSString
+        let string = vector.name
         
         var midPoint : CGPoint = CGPoint(x:0, y:0)
         
@@ -317,6 +315,8 @@ class RotorPlaneView: UIView {
         
     }
     
+
+    
     func drawVector(vector : Vector)
     {
         PushToCartesianTransform()
@@ -324,7 +324,6 @@ class RotorPlaneView: UIView {
         let strokeWidth = 2.0
         // Get the context
 
-        
         let context = UIGraphicsGetCurrentContext()
         
         // Set the stroke color
@@ -359,16 +358,64 @@ class RotorPlaneView: UIView {
         DrawVectorName(vector)
         
     }
+    
+    func DrawTextAt(Text _textString:String, At _point:CGPoint)
+    {
+        let fontName = "Helvetica"
+        let textFont = UIFont(name: fontName, size: 12)
+        
+        
+        var pPoint =  CGPointApplyAffineTransform ( _point, pCartesianTrans );
+        
+        _textString.drawAtPoint(CGPointMake(pPoint.x, pPoint.y), withAttributes: [NSFontAttributeName : textFont!])
+    }
+    
+    func DrawRotorDegreeTics()
+    {
+        PushToCartesianTransform()
+        let context = UIGraphicsGetCurrentContext()
+        
+        // Set the stroke color
+        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
+        // Set the line width
+        CGContextSetLineWidth(context, CGFloat(1.0))
 
+        
+        for var index = 0; index < 360; index+=15
+        {
+            var xStart : Float = (rotorRadius - 5.0) * cos( GetRadians( Float(index) ) )
+            var yStart : Float = (rotorRadius - 5.0) * sin( GetRadians( Float(index) ) )
+            var xEnd   : Float = (rotorRadius) * cos( GetRadians( Float(index) ) )
+            var yEnd   : Float = (rotorRadius) * sin( GetRadians( Float(index) ) )
+            
+            CGContextMoveToPoint(context, CGFloat(xStart), CGFloat(yStart))
+            CGContextAddLineToPoint(context, CGFloat(xEnd), CGFloat(yEnd))
+
+            CGContextStrokePath(context)
+            
+        }
+        
+        PopToDefaultTransform()
+    }
+    
+    func Setup()
+    {
+        InitalizeCartesianTransform()
+        rotorRadiusStrokeWidth = 1.0
+        rotorRadius = Float( (CGFloat(self.frame.size.width) - CGFloat(rotorRadiusStrokeWidth)) / 2.0) - 10
+        
+    }
     
     override func drawRect(rect: CGRect)
     {
-        InitalizeCartesianTransform()
+        Setup()
 
         var pPoint : CGPoint = CGPoint(x:0, y:50)
         pPoint =  CGPointApplyAffineTransform ( pPoint, pCartesianTrans );
         
         DrawRotor()
+        
+        DrawRotorDegreeTics()
         
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
