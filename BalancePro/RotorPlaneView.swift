@@ -156,7 +156,24 @@ class RotorPlaneView: UIView {
         
         return pTempCartesianTransform
     }
+    func GetRotatedTextTransform(At _point:CGPoint, Rotate _rotate:Float) -> CGAffineTransform
+    {
+        let context = UIGraphicsGetCurrentContext()
+        var pTempTransform : CGAffineTransform = CGAffineTransformIdentity
+        
+        pTempTransform = CGAffineTransformTranslate(pTempTransform, _point.x, _point.y)
+        pTempTransform = CGAffineTransformRotate(pTempTransform, CGFloat(_rotate) * -1.0 );
+        
+        return pTempTransform
+    }
     
+    func PushToTextTransform(At _point:CGPoint, Rotate _rotate:Float)
+    {
+        CGContextSaveGState(UIGraphicsGetCurrentContext())
+        
+        let context = UIGraphicsGetCurrentContext()
+        CGContextConcatCTM(context, GetRotatedTextTransform(At:_point, Rotate:_rotate));
+    }
 
     
     func ConvertVectorToXY(vector : Vector) -> (x:Float, y:Float)
@@ -300,19 +317,27 @@ class RotorPlaneView: UIView {
     
     func DrawVectorName(vector:Vector)
     {
-        let fontName = "Helvetica"
-        let textFont = UIFont(name: fontName, size: 12)
-        let string = vector.name
         
         var midPoint : CGPoint = CGPoint(x:0, y:0)
         
         midPoint.x = CGFloat((vector.xOrigin + vector.xEnd) / Float(2.0))
         midPoint.y = CGFloat((vector.yOrigin + vector.yEnd) / Float(2.0))
         
-        var pPoint =  CGPointApplyAffineTransform ( midPoint, pCartesianTrans );
+        DrawTextAt(Text: vector.name, At: midPoint, Rotate: vector.phase, Size: 12)
         
-        string.drawAtPoint(CGPointMake(pPoint.x, pPoint.y), withAttributes: [NSFontAttributeName : textFont!])
+    }
+    
+    func DrawTextAt(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
+    {
         
+        let fontName = "Helvetica"
+        let textFont = UIFont(name: fontName, size: CGFloat(_size))
+        
+        var pPoint =  CGPointApplyAffineTransform ( _point, pCartesianTrans );
+        
+        PushToTextTransform(At: pPoint, Rotate: GetRadians(_rotate) )
+        _text.drawAtPoint(CGPointMake(0,0), withAttributes: [NSFontAttributeName : textFont!])
+        PopToDefaultTransform()
     }
     
 
@@ -358,17 +383,7 @@ class RotorPlaneView: UIView {
         DrawVectorName(vector)
         
     }
-    
-    func DrawTextAt(Text _textString:String, At _point:CGPoint)
-    {
-        let fontName = "Helvetica"
-        let textFont = UIFont(name: fontName, size: 14)
-        
-        
-        var pPoint =  CGPointApplyAffineTransform ( _point, pCartesianTrans );
-        
-        _textString.drawAtPoint(CGPointMake(pPoint.x, pPoint.y), withAttributes: [NSFontAttributeName : textFont!])
-    }
+
     
     func DrawRotorDegreeTics()
     {
