@@ -386,7 +386,7 @@ class RotorPlaneView: UIView {
     
     func DrawRotorDegreeTics()
     {
-        PushToCartesianTransform()
+        
         let context = UIGraphicsGetCurrentContext()
         
         // Set the stroke color
@@ -394,9 +394,11 @@ class RotorPlaneView: UIView {
         // Set the line width
         CGContextSetLineWidth(context, CGFloat(1.0))
 
-        
+        PushToCartesianTransform()
         for var index = 0; index < 360; index+=15
         {
+            
+
             var xStart : Float = (rotorRadius - 5.0) * cos( GetRadians( Float(index) ) )
             var yStart : Float = (rotorRadius - 5.0) * sin( GetRadians( Float(index) ) )
             var xEnd   : Float = (rotorRadius) * cos( GetRadians( Float(index) ) )
@@ -404,30 +406,12 @@ class RotorPlaneView: UIView {
             
             CGContextMoveToPoint(context, CGFloat(xStart), CGFloat(yStart))
             CGContextAddLineToPoint(context, CGFloat(xEnd), CGFloat(yEnd))
-
             CGContextStrokePath(context)
-
-            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd), y:CGFloat(yEnd) )
-            var degrees = index as NSNumber
-            DrawTextAt(Text: degrees.stringValue, At: textPoint, Rotate: (Float(0)) , Size: 9)
-            
-            
+ 
         }
-        
         PopToDefaultTransform()
+        
 
-//        for var index = 0; index < 360; index+=15
-//        {
-//            var xStart : Float = (rotorRadius - 5.0) * cos( GetRadians( Float(index) ) )
-//            var yStart : Float = (rotorRadius - 5.0) * sin( GetRadians( Float(index) ) )
-//            var xEnd   : Float = (rotorRadius) * cos( GetRadians( Float(index) ) )
-//            var yEnd   : Float = (rotorRadius) * sin( GetRadians( Float(index) ) )
-//            
-//            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd), y:CGFloat(yEnd) )
-//            var degrees = index as NSNumber
-//            DrawTextAt(Text: degrees.stringValue, At: textPoint, Rotate: (Float(0)) , Size: 9)
-//            
-//        }
     }
     
     func Setup()
