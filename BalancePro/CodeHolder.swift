@@ -66,7 +66,34 @@ import Foundation
 //}
 
 
-
+//override func drawRect(rect: CGRect)
+//{
+//    //    let fontName = "HelveticaNeue-Bold"
+//    //    let helveticaBold = UIFont(name: fontName, size: 40.0)
+//    //    let string = "Some String" as NSString
+//    //    string.drawAtPoint(CGPointMake(40.0, 180.0),
+//    //      withAttributes: [NSFontAttributeName : helveticaBold!])
+//    
+//    
+//    let _text:String = "ASDFASDFA"
+//    
+//    
+//    let fontName = "Helvetica"
+//    let textFont:UIFont = UIFont(name: fontName, size: CGFloat(14))!
+//    
+//    let adjustedRect:CGRect = CGRect(   x:30,
+//        y: 100,
+//        width:100,
+//        height:20)
+//    
+//    
+//    let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+//    textStyle.alignment = NSTextAlignment.Left
+//    var tattribs = [NSFontAttributeName: textFont,
+//        NSParagraphStyleAttributeName: textStyle]
+//    _text.drawInRect(adjustedRect, withAttributes: tattribs)
+//    
+//}
 
 
 

@@ -156,6 +156,7 @@ class RotorPlaneView: UIView {
         
         return pTempCartesianTransform
     }
+    
     func GetRotatedTextTransform(At _point:CGPoint, Rotate _rotate:Float) -> CGAffineTransform
     {
         let context = UIGraphicsGetCurrentContext()
@@ -174,6 +175,7 @@ class RotorPlaneView: UIView {
         let context = UIGraphicsGetCurrentContext()
         CGContextConcatCTM(context, GetRotatedTextTransform(At:_point, Rotate:_rotate));
     }
+
 
     
     func ConvertVectorToXY(vector : Vector) -> (x:Float, y:Float)
@@ -331,14 +333,49 @@ class RotorPlaneView: UIView {
     {
         
         let fontName = "Helvetica"
-        let textFont = UIFont(name: fontName, size: CGFloat(_size))
+        let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
         
-        var pPoint =  CGPointApplyAffineTransform ( _point, pCartesianTrans );
+        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
+        
+        let adjustedPoint:CGPoint = CGPoint(x:_point.x, y: _point.y + CGFloat(textHeight) )
+        var pPoint =  CGPointApplyAffineTransform ( adjustedPoint, pCartesianTrans );
         
         PushToTextTransform(At: pPoint, Rotate: GetRadians(_rotate) )
-        _text.drawAtPoint(CGPointMake(0,0), withAttributes: [NSFontAttributeName : textFont!])
+        _text.drawAtPoint(CGPointMake(0,0), withAttributes: [NSFontAttributeName : textFont])
         PopToDefaultTransform()
+        
+        
     }
+    
+    func DrawTextAt2(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
+    {
+        let fontName = "Helvetica"
+        let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
+        
+        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
+        
+        let adjustedRect:CGRect = CGRect(   x:_point.x,
+                                            y: _point.y + CGFloat(textHeight),
+                                            width:15,
+                                            height:15)
+       
+        var pRect =  CGRectApplyAffineTransform ( adjustedRect, pCartesianTrans );
+        var pPoint:CGPoint = CGPoint(x: pRect.minX, y:pRect.maxY)
+        
+        PushToTextTransform(At: pPoint, Rotate: GetRadians(_rotate) )
+        
+        let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+        textStyle.alignment = NSTextAlignment.Left
+        var tattribs = [NSFontAttributeName: textFont, NSParagraphStyleAttributeName: textStyle]
+        _text.drawInRect(pRect, withAttributes: tattribs)
+        
+        PopToDefaultTransform()
+        
+        
+
+    }
+    
+
     
     
     func drawVector(vector : Vector)
@@ -383,6 +420,26 @@ class RotorPlaneView: UIView {
         
     }
 
+    func DrawRotorDegreeLabels()
+    {
+        let context = UIGraphicsGetCurrentContext()
+        
+        // Set the stroke color
+        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
+        // Set the line width
+        CGContextSetLineWidth(context, CGFloat(1.0))
+        
+        
+        var xEnd   : Float = (rotorRadius) * cos( GetRadians( Float(0) ) )
+        var yEnd   : Float = (rotorRadius) * sin( GetRadians( Float(0) ) )
+        
+        //var textPoint : CGPoint = CGPoint( x:CGFloat(xEnd)+2.0, y:CGFloat(yEnd) )
+        
+        var textPoint : CGPoint = CGPoint( x:CGFloat(0), y:CGFloat(0) )
+        
+        DrawTextAt2(Text: "90", At: textPoint, Rotate: 0, Size: 10)
+        
+    }
     
     func DrawRotorDegreeTics()
     {
@@ -411,6 +468,7 @@ class RotorPlaneView: UIView {
         }
         PopToDefaultTransform()
         
+        DrawRotorDegreeLabels()
 
     }
     
@@ -418,7 +476,7 @@ class RotorPlaneView: UIView {
     {
         InitalizeCartesianTransform()
         rotorRadiusStrokeWidth = 1.0
-        rotorRadius = Float( (CGFloat(self.frame.size.width) - CGFloat(rotorRadiusStrokeWidth)) / 2.0) - 10
+        rotorRadius = Float( (CGFloat(self.frame.size.width) - CGFloat(rotorRadiusStrokeWidth)) / 2.0) - 15
         
     }
     
@@ -432,6 +490,7 @@ class RotorPlaneView: UIView {
         DrawRotor()
         
         DrawRotorDegreeTics()
+        DrawRotorDegreeLabels()
         
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
