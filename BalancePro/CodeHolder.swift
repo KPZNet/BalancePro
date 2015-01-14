@@ -97,6 +97,23 @@ import Foundation
 
 
 
+
+//let adjustedRect:CGRect = CGRect(   x:0,
+//    y: 10,
+//    width:100,
+//    height:20)
+//
+//var label = UILabel(frame: adjustedRect)
+////label.center = CGPointMake(0, 0)
+//label.textAlignment = NSTextAlignment.Center
+//label.text = "KLabel"
+//label.backgroundColor = UIColor.blueColor()
+//addSubview(label)
+
+
+
+
+
 //let aFont = UIFont(name: "Optima-Bold", size: radius/5)
 //// create a dictionary of attributes to be applied to the string
 //let attr:CFDictionaryRef = [NSFontAttributeName:aFont!,NSForegroundColorAttributeName:UIColor.whiteColor()]
