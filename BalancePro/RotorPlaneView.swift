@@ -329,54 +329,7 @@ class RotorPlaneView: UIView {
         
     }
     
-    func DrawTextAt(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
-    {
-        
-        let fontName = "Helvetica"
-        let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
-        
-        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
-        
-        let adjustedPoint:CGPoint = CGPoint(x:_point.x, y: _point.y + CGFloat(textHeight) )
-        var pPoint =  CGPointApplyAffineTransform ( adjustedPoint, pCartesianTrans );
-        
-        PushToTextTransform(At: pPoint, Rotate: GetRadians(_rotate) )
-        _text.drawAtPoint(CGPointMake(0,0), withAttributes: [NSFontAttributeName : textFont])
-        PopToDefaultTransform()
-        
-        
-    }
-    
-    func DrawTextAt2(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
-    {
-        let fontName = "Helvetica"
-        let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
-        
-        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
-        
-        let adjustedRect:CGRect = CGRect(   x:_point.x,
-                                            y: _point.y + CGFloat(textHeight),
-                                            width:15,
-                                            height:15)
-       
-        var pRect =  CGRectApplyAffineTransform ( adjustedRect, pCartesianTrans );
-        var pPoint:CGPoint = CGPoint(x: pRect.minX, y:pRect.maxY)
-        
-        PushToTextTransform(At: pPoint, Rotate: GetRadians(_rotate) )
-        
-        let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
-        textStyle.alignment = NSTextAlignment.Left
-        var tattribs = [NSFontAttributeName: textFont, NSParagraphStyleAttributeName: textStyle]
-        _text.drawInRect(pRect, withAttributes: tattribs)
-        
-        PopToDefaultTransform()
-        
-        
 
-    }
-    
-
-    
     
     func drawVector(vector : Vector)
     {
@@ -419,7 +372,30 @@ class RotorPlaneView: UIView {
         DrawVectorName(vector)
         
     }
-
+    
+    func DrawTextAt(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
+    {
+        let fontName = "Helvetica"
+        let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
+        
+        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
+        
+        let adjustPoint:CGPoint = CGPoint(  x:_point.x,
+            y: _point.y + CGFloat(textHeight) )
+        
+        var pPoint:CGPoint = CGPointApplyAffineTransform ( adjustPoint, pCartesianTrans );
+        
+        PushToTextTransform(At: pPoint, Rotate: GetRadians(_rotate) )
+        
+        let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+        textStyle.alignment = NSTextAlignment.Left
+        var tattribs = [NSFontAttributeName: textFont, NSParagraphStyleAttributeName: textStyle]
+        _text.drawAtPoint(CGPointMake(0,0), withAttributes: tattribs)
+        
+        PopToDefaultTransform()
+        
+    }
+    
     func DrawRotorDegreeLabels()
     {
         let context = UIGraphicsGetCurrentContext()
@@ -429,15 +405,16 @@ class RotorPlaneView: UIView {
         // Set the line width
         CGContextSetLineWidth(context, CGFloat(1.0))
         
-        
+
         var xEnd   : Float = (rotorRadius) * cos( GetRadians( Float(0) ) )
         var yEnd   : Float = (rotorRadius) * sin( GetRadians( Float(0) ) )
+        var textPoint : CGPoint = CGPoint( x:CGFloat(xEnd)+2.0, y:CGFloat(yEnd) )
+        DrawTextAt(Text: "0", At: textPoint, Rotate: 0, Size: 10)
         
-        //var textPoint : CGPoint = CGPoint( x:CGFloat(xEnd)+2.0, y:CGFloat(yEnd) )
-        
-        var textPoint : CGPoint = CGPoint( x:CGFloat(0), y:CGFloat(0) )
-        
-        DrawTextAt2(Text: "90", At: textPoint, Rotate: 0, Size: 10)
+         xEnd   = (rotorRadius) * cos( GetRadians( Float(90) ) )
+         yEnd   = (rotorRadius) * sin( GetRadians( Float(90) ) )
+         textPoint = CGPoint( x:CGFloat(xEnd), y:CGFloat(yEnd) )
+        DrawTextAt(Text: "90", At: textPoint, Rotate: 90, Size: 10)
         
     }
     
