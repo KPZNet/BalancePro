@@ -395,184 +395,36 @@ class RotorPlaneView: UIView {
         PopToDefaultTransform()
         
     }
-        
-    func DrawDegrees_0(At _point:CGPoint)
-    {
-        let _text:String = "0"
-        let fontName = "Helvetica"
-        let textFont:UIFont = UIFont(name: fontName, size: CGFloat(10))!
-        
-        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
-        
-        let adjustPoint:CGPoint = CGPoint(  x:_point.x,
-            y: _point.y + CGFloat(textHeight) )
-        
-        var pPoint:CGPoint = CGPointApplyAffineTransform ( adjustPoint, pCartesianTrans );
-        
-        PushToTextTransform(At: pPoint, Rotate: GetRadians(0) )
-        
-        let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
-        textStyle.alignment = NSTextAlignment.Left
-        var tattribs = [NSFontAttributeName: textFont, NSParagraphStyleAttributeName: textStyle]
-        _text.drawAtPoint(CGPointMake(0,0), withAttributes: tattribs)
-        
-        PopToDefaultTransform()
-        
-    }
-    func DrawDegrees_90(At _point:CGPoint)
-    {
-        let _text:String = "0"
-        let fontName = "Helvetica"
-        let textFont:UIFont = UIFont(name: fontName, size: CGFloat(10))!
-        
-        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
-        
-        let adjustPoint:CGPoint = CGPoint(  x:_point.x,
-            y: _point.y + CGFloat(textHeight) )
-        
-        var pPoint:CGPoint = CGPointApplyAffineTransform ( adjustPoint, pCartesianTrans );
-        
-        PushToTextTransform(At: pPoint, Rotate: GetRadians(0) )
-        
-        let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
-        textStyle.alignment = NSTextAlignment.Left
-        var tattribs = [NSFontAttributeName: textFont, NSParagraphStyleAttributeName: textStyle]
-        _text.drawAtPoint(CGPointMake(0,0), withAttributes: tattribs)
-        
-        PopToDefaultTransform()
-        
-    }
 
-    func DrawDegreeLabel_0(At _point:CGPoint)
+
+    func DrawDegreeLabel(At _point:CGPoint, Ratio _ratio:CGPoint, Degree _degree:Float)
     {
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
 
-        let textBoxHeight:CGFloat = 15
-        let adjustedY:CGFloat = CGFloat(textBoxHeight)/CGFloat(2.0)
+        let centerExtension:CGFloat = 10.0
+        let xExtension:CGFloat = centerExtension * _ratio.x
+        let yExtension:CGFloat = centerExtension * _ratio.y
 
-        let sPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y - adjustedY )
-        let sRect:CGRect = CGRectMake(sPoint.x, sPoint.y, 20, 15)
-        var aRect:CGRect = CGRectApplyAffineTransform ( sRect, pCartesianTrans );
+        let sPoint:CGPoint = CGPoint(  x:_point.x + xExtension, y: _point.y + yExtension)
+        let sRect:CGRect = CGRectMake(0, 0, 20, 10)
         var aPoint:CGPoint = CGPointApplyAffineTransform ( sPoint, pCartesianTrans );
 
+        let degTextInt:NSNumber = Int(_degree)
+        let degText:String = degTextInt.stringValue
 
-        PushToTextTransform(At: aPoint, Rotate: GetRadians(0) )
-            var label = UILabel(frame: aRect)
+        PushToTextTransform(At: aPoint, Rotate: GetRadians(_degree) )
+            var label = UILabel(frame: sRect)
+            label.center = aPoint
             label.font = textFont
-            label.textAlignment = NSTextAlignment.Left
-            label.text = "0"
-            label.backgroundColor = UIColor.greenColor()
+            label.textAlignment = NSTextAlignment.Center
+            label.text = degText
+            //label.backgroundColor = UIColor.lightTextColor()
+            label.layer.cornerRadius = 5
+            label.layer.masksToBounds = true
             addSubview(label)
         PopToDefaultTransform()
     }
 
-    func DrawDegreeLabel_90(At _point:CGPoint)
-    {
-        let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
-
-        let textBoxHeight:CGFloat = 15
-        let textBoxWidth:CGFloat = 20
-
-        let adjustedY:CGFloat = CGFloat(textBoxHeight)/CGFloat(2.0)
-        let adjustedX:CGFloat = CGFloat(textBoxWidth)/CGFloat(2.0)
-
-        let sPoint:CGPoint = CGPoint(  x:_point.x - adjustedX, y: _point.y )
-        let sRect:CGRect = CGRectMake(sPoint.x, sPoint.y, 20, 15)
-        var aRect:CGRect = CGRectApplyAffineTransform ( sRect, pCartesianTrans );
-        var aPoint:CGPoint = CGPointApplyAffineTransform ( sPoint, pCartesianTrans );
-
-
-        PushToTextTransform(At: aPoint, Rotate: GetRadians(0) )
-        var label = UILabel(frame: aRect)
-        label.font = textFont
-        label.textAlignment = NSTextAlignment.Center
-        label.text = "90"
-        label.backgroundColor = UIColor.greenColor()
-        addSubview(label)
-        PopToDefaultTransform()
-    }
-
-    func DrawDegreeLabel_180(At _point:CGPoint)
-    {
-        let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
-
-        let textBoxHeight:CGFloat = 15
-        let textBoxWidth:CGFloat = 20
-
-        let adjustedY:CGFloat = CGFloat(textBoxHeight)/CGFloat(2.0)
-        let adjustedX:CGFloat = CGFloat(textBoxWidth)/CGFloat(2.0)
-
-        let sPoint:CGPoint = CGPoint(  x:_point.x - textBoxWidth, y: _point.y - adjustedY )
-        let sRect:CGRect = CGRectMake(sPoint.x, sPoint.y, 20, 15)
-        var aRect:CGRect = CGRectApplyAffineTransform ( sRect, pCartesianTrans );
-        var aPoint:CGPoint = CGPointApplyAffineTransform ( sPoint, pCartesianTrans );
-
-
-        PushToTextTransform(At: aPoint, Rotate: GetRadians(0) )
-        var label = UILabel(frame: aRect)
-        label.font = textFont
-        label.textAlignment = NSTextAlignment.Right
-        label.text = "180"
-        label.backgroundColor = UIColor.greenColor()
-        addSubview(label)
-        PopToDefaultTransform()
-    }
-    func DrawDegreeLabel_270(At _point:CGPoint)
-    {
-        let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
-
-        let textBoxHeight:CGFloat = 15
-        let textBoxWidth:CGFloat = 20
-
-        let adjustedY:CGFloat = CGFloat(textBoxHeight)/CGFloat(2.0)
-        let adjustedX:CGFloat = CGFloat(textBoxWidth)/CGFloat(2.0)
-
-        let sPoint:CGPoint = CGPoint(  x:_point.x - adjustedX, y: _point.y - textBoxHeight )
-        let sRect:CGRect = CGRectMake(sPoint.x, sPoint.y, 20, 15)
-        var aRect:CGRect = CGRectApplyAffineTransform ( sRect, pCartesianTrans );
-        var aPoint:CGPoint = CGPointApplyAffineTransform ( sPoint, pCartesianTrans );
-
-
-        PushToTextTransform(At: aPoint, Rotate: GetRadians(0) )
-        var label = UILabel(frame: aRect)
-        label.font = textFont
-        label.textAlignment = NSTextAlignment.Center
-        label.text = "270"
-        label.backgroundColor = UIColor.greenColor()
-        addSubview(label)
-        PopToDefaultTransform()
-    }
-
-    func DrawRotorDegreeLabels()
-    {
-        let context = UIGraphicsGetCurrentContext()
-        
-        // Set the stroke color
-        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
-        // Set the line width
-        CGContextSetLineWidth(context, CGFloat(1.0))
-        
-
-        var xEnd   : Float = (rotorRadius) * cos( GetRadians( Float(0) ) )
-        var yEnd   : Float = (rotorRadius) * sin( GetRadians( Float(0) ) )
-        var textPoint : CGPoint = CGPoint( x:CGFloat(xEnd), y:CGFloat(yEnd) )
-        DrawDegreeLabel_0(At: textPoint)
-
-         xEnd    = (rotorRadius) * cos( GetRadians( Float(90) ) )
-         yEnd    = (rotorRadius) * sin( GetRadians( Float(90) ) )
-         textPoint  = CGPoint( x:CGFloat(xEnd), y:CGFloat(yEnd) )
-        DrawDegreeLabel_90(At: textPoint)
-
-        xEnd    = (rotorRadius) * cos( GetRadians( Float(180) ) )
-        yEnd    = (rotorRadius) * sin( GetRadians( Float(180) ) )
-        textPoint  = CGPoint( x:CGFloat(xEnd), y:CGFloat(yEnd) )
-        DrawDegreeLabel_180(At: textPoint)
-
-        xEnd    = (rotorRadius) * cos( GetRadians( Float(270) ) )
-        yEnd    = (rotorRadius) * sin( GetRadians( Float(270) ) )
-        textPoint  = CGPoint( x:CGFloat(xEnd), y:CGFloat(yEnd) )
-        DrawDegreeLabel_270(At: textPoint)
-    }
     
     func DrawRotorDegreeTics()
     {
@@ -588,7 +440,6 @@ class RotorPlaneView: UIView {
         for var index = 0; index < 360; index+=15
         {
             
-
             var xStart : Float = (rotorRadius - 5.0) * cos( GetRadians( Float(index) ) )
             var yStart : Float = (rotorRadius - 5.0) * sin( GetRadians( Float(index) ) )
             var xEnd   : Float = (rotorRadius) * cos( GetRadians( Float(index) ) )
@@ -600,8 +451,22 @@ class RotorPlaneView: UIView {
  
         }
         PopToDefaultTransform()
+
+    }
+
+    func DrawRotorDegreeTicLabels()
+    {
         
-        DrawRotorDegreeLabels()
+        for var index = 0; index < 360; index+=45
+        {
+
+        var xEnd2   : Float = cos( GetRadians( Float(index) ) )
+        var yEnd2   : Float = sin( GetRadians( Float(index) ) )
+        var ratioPoint:CGPoint = CGPoint(x:CGFloat(xEnd2), y:CGFloat(yEnd2))
+        var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2*rotorRadius), y:CGFloat(yEnd2*rotorRadius))
+        DrawDegreeLabel(At: textPoint, Ratio:ratioPoint, Degree:Float(index))
+ 
+        }
 
     }
     
@@ -621,7 +486,7 @@ class RotorPlaneView: UIView {
         DrawRotor()
         
         DrawRotorDegreeTics()
-        DrawRotorDegreeLabels()
+        DrawRotorDegreeTicLabels()
         
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
