@@ -53,7 +53,7 @@ class Vector
         
         xEnd = Float(  amp * cos( radians ))
         yEnd = Float(  amp * sin( radians ))
-
+        
     }
     init(xOrigin _xOrigin:Float, yOrigin _yOrigin:Float, xEnd _xEnd:Float, yEnd _yEnd:Float)
     {
@@ -112,20 +112,20 @@ class RotorPlaneView: UIView {
     var rotorRadius : Float = Float(1.0)
     var rotorRadiusStrokeWidth : Float = Float(1.0)
     
-//    override init(frame aRect: CGRect)
-//    {
-//
-//        super.init(frame:aRect)
-//        pTrans = GetTransform()
-//        
-//    }
-//
-//    required init(coder aDecoder: NSCoder)
-//    {
-//        super.init(coder:aDecoder)
-//        
-//    }
-
+    //    override init(frame aRect: CGRect)
+    //    {
+    //
+    //        super.init(frame:aRect)
+    //        pTrans = GetTransform()
+    //
+    //    }
+    //
+    //    required init(coder aDecoder: NSCoder)
+    //    {
+    //        super.init(coder:aDecoder)
+    //
+    //    }
+    
     func InitalizeCartesianTransform()
     {
         pCartesianTrans = GetCartisianTransform()
@@ -175,8 +175,8 @@ class RotorPlaneView: UIView {
         let context = UIGraphicsGetCurrentContext()
         CGContextConcatCTM(context, GetRotatedTextTransform(At:_point, Rotate:_rotate));
     }
-
-
+    
+    
     
     func ConvertVectorToXY(vector : Vector) -> (x:Float, y:Float)
     {
@@ -306,7 +306,7 @@ class RotorPlaneView: UIView {
         
         // Set the stroke color
         CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
-
+        
         // Set the line width
         CGContextSetLineWidth(context, CGFloat(rotorRadiusStrokeWidth))
         
@@ -314,7 +314,7 @@ class RotorPlaneView: UIView {
         CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
         PopToDefaultTransform()
-
+        
     }
     
     func DrawVectorName(vector:Vector)
@@ -329,7 +329,7 @@ class RotorPlaneView: UIView {
         
     }
     
-
+    
     
     func drawVector(vector : Vector)
     {
@@ -337,14 +337,14 @@ class RotorPlaneView: UIView {
         
         let strokeWidth = 2.0
         // Get the context
-
+        
         let context = UIGraphicsGetCurrentContext()
         
         // Set the stroke color
         CGContextSetStrokeColorWithColor(context, UIColor.blueColor().CGColor)
         // Set the line width
         CGContextSetLineWidth(context, CGFloat(strokeWidth))
-
+        
         CGContextMoveToPoint(context, CGFloat(vector.xOrigin), CGFloat(vector.yOrigin) )
         CGContextAddLineToPoint(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd))
         CGContextStrokePath(context)
@@ -356,12 +356,12 @@ class RotorPlaneView: UIView {
         var yScaleB : Float = 0.0
         var xMidScale : Float = 0.0
         var yMidScale : Float = 0.0
-
+        
         (xScaleA, yScaleA, xScaleB, yScaleB) = GetArrowEnds(vector)
         xMidScale = vector.xEnd
         yMidScale = vector.yEnd
-
-
+        
+        
         CGContextMoveToPoint(context, CGFloat(xScaleA), CGFloat(yScaleA))
         CGContextAddLineToPoint(context, CGFloat(xMidScale), CGFloat(yMidScale))
         CGContextAddLineToPoint(context, CGFloat(xScaleB), CGFloat(yScaleB))
@@ -395,36 +395,36 @@ class RotorPlaneView: UIView {
         PopToDefaultTransform()
         
     }
-
-
+    
+    
     func DrawDegreeLabel(At _point:CGPoint, Ratio _ratio:CGPoint, Degree _degree:Float)
     {
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
-
+        
         let centerExtension:CGFloat = 10.0
         let xExtension:CGFloat = centerExtension * _ratio.x
         let yExtension:CGFloat = centerExtension * _ratio.y
-
+        
         let sPoint:CGPoint = CGPoint(  x:_point.x + xExtension, y: _point.y + yExtension)
         let sRect:CGRect = CGRectMake(0, 0, 20, 10)
         var aPoint:CGPoint = CGPointApplyAffineTransform ( sPoint, pCartesianTrans );
-
+        
         let degTextInt:NSNumber = Int(_degree)
         let degText:String = degTextInt.stringValue
-
+        
         PushToTextTransform(At: aPoint, Rotate: GetRadians(_degree) )
-            var label = UILabel(frame: sRect)
-            label.center = aPoint
-            label.font = textFont
-            label.textAlignment = NSTextAlignment.Center
-            label.text = degText
-            //label.backgroundColor = UIColor.lightTextColor()
-            label.layer.cornerRadius = 5
-            label.layer.masksToBounds = true
-            addSubview(label)
+        var label = UILabel(frame: sRect)
+        label.center = aPoint
+        label.font = textFont
+        label.textAlignment = NSTextAlignment.Center
+        label.text = degText
+        //label.backgroundColor = UIColor.lightTextColor()
+        label.layer.cornerRadius = 5
+        label.layer.masksToBounds = true
+        addSubview(label)
         PopToDefaultTransform()
     }
-
+    
     
     func DrawRotorDegreeTics()
     {
@@ -435,7 +435,7 @@ class RotorPlaneView: UIView {
         CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
         // Set the line width
         CGContextSetLineWidth(context, CGFloat(1.0))
-
+        
         PushToCartesianTransform()
         for var index = 0; index < 360; index+=15
         {
@@ -448,26 +448,26 @@ class RotorPlaneView: UIView {
             CGContextMoveToPoint(context, CGFloat(xStart), CGFloat(yStart))
             CGContextAddLineToPoint(context, CGFloat(xEnd), CGFloat(yEnd))
             CGContextStrokePath(context)
- 
+            
         }
         PopToDefaultTransform()
-
+        
     }
-
+    
     func DrawRotorDegreeTicLabels()
     {
         
         for var index = 0; index < 360; index+=45
         {
-
-        var xEnd2   : Float = cos( GetRadians( Float(index) ) )
-        var yEnd2   : Float = sin( GetRadians( Float(index) ) )
-        var ratioPoint:CGPoint = CGPoint(x:CGFloat(xEnd2), y:CGFloat(yEnd2))
-        var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2*rotorRadius), y:CGFloat(yEnd2*rotorRadius))
-        DrawDegreeLabel(At: textPoint, Ratio:ratioPoint, Degree:Float(index))
- 
+            
+            var xEnd2   : Float = cos( GetRadians( Float(index) ) )
+            var yEnd2   : Float = sin( GetRadians( Float(index) ) )
+            var ratioPoint:CGPoint = CGPoint(x:CGFloat(xEnd2), y:CGFloat(yEnd2))
+            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2*rotorRadius), y:CGFloat(yEnd2*rotorRadius))
+            DrawDegreeLabel(At: textPoint, Ratio:ratioPoint, Degree:Float(index))
+            
         }
-
+        
     }
     
     func Setup()
@@ -480,9 +480,9 @@ class RotorPlaneView: UIView {
     
     override func drawRect(rect: CGRect)
     {
-
+        
         Setup()
-
+        
         DrawRotor()
         
         DrawRotorDegreeTics()
@@ -490,17 +490,17 @@ class RotorPlaneView: UIView {
         
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
-
+        
         
         var vec = Vector(fromAmp: 120, fromPhase: 340)
         drawVector(vec)
-
+        
         var vec2 = Vector(fromAmp: 130, fromPhase: 75)
         drawVector(vec2)
         
         var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
         drawVector(vec3)
-    
+        
         
     }
     
