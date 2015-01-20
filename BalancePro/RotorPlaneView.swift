@@ -380,8 +380,7 @@ class RotorPlaneView: UIView {
         
         var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
         
-        let adjustPoint:CGPoint = CGPoint(  x:_point.x,
-            y: _point.y + CGFloat(textHeight) )
+        let adjustPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y + CGFloat(textHeight) )
         
         var pPoint:CGPoint = CGPointApplyAffineTransform ( adjustPoint, pCartesianTrans );
         
