@@ -109,7 +109,7 @@ class RotorPlaneView: UIView {
     */
     
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
-    var rotorRadius : Float = Float(1.0)
+    var vibScale: Float = Float(1.0)
     var rotorRadiusStrokeWidth : Float = Float(1.0)
     
     //    override init(frame aRect: CGRect)
@@ -299,7 +299,7 @@ class RotorPlaneView: UIView {
         
         
         // Draw the arc around the circle
-        CGContextAddArc(context, center.x, center.y, CGFloat(rotorRadius), CGFloat(0), CGFloat(2 * M_PI), 1)
+        CGContextAddArc(context, center.x, center.y, CGFloat(vibScale), CGFloat(0), CGFloat(2 * M_PI), 1)
         
         // Set the fill color (if you are filling the circle)
         CGContextSetFillColorWithColor(context, UIColor.grayColor().CGColor)
@@ -439,10 +439,10 @@ class RotorPlaneView: UIView {
         for var index = 0; index < 360; index+=15
         {
             
-            var xStart : Float = (rotorRadius - 5.0) * cos( GetRadians( Float(index) ) )
-            var yStart : Float = (rotorRadius - 5.0) * sin( GetRadians( Float(index) ) )
-            var xEnd   : Float = (rotorRadius) * cos( GetRadians( Float(index) ) )
-            var yEnd   : Float = (rotorRadius) * sin( GetRadians( Float(index) ) )
+            var xStart : Float = (vibScale - 5.0) * cos( GetRadians( Float(index) ) )
+            var yStart : Float = (vibScale - 5.0) * sin( GetRadians( Float(index) ) )
+            var xEnd   : Float = (vibScale) * cos( GetRadians( Float(index) ) )
+            var yEnd   : Float = (vibScale) * sin( GetRadians( Float(index) ) )
             
             CGContextMoveToPoint(context, CGFloat(xStart), CGFloat(yStart))
             CGContextAddLineToPoint(context, CGFloat(xEnd), CGFloat(yEnd))
@@ -462,7 +462,7 @@ class RotorPlaneView: UIView {
             var xEnd2   : Float = cos( GetRadians( Float(index) ) )
             var yEnd2   : Float = sin( GetRadians( Float(index) ) )
             var ratioPoint:CGPoint = CGPoint(x:CGFloat(xEnd2), y:CGFloat(yEnd2))
-            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2*rotorRadius), y:CGFloat(yEnd2*rotorRadius))
+            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2 * vibScale), y:CGFloat(yEnd2 * vibScale))
             DrawDegreeLabel(At: textPoint, Ratio:ratioPoint, Degree:Float(index))
             
         }
@@ -473,7 +473,7 @@ class RotorPlaneView: UIView {
     {
         InitalizeCartesianTransform()
         rotorRadiusStrokeWidth = 1.0
-        rotorRadius = Float( (CGFloat(self.frame.size.width) - CGFloat(rotorRadiusStrokeWidth)) / 2.0) - 15
+        vibScale = Float( (CGFloat(self.frame.size.width) - CGFloat(rotorRadiusStrokeWidth)) / 2.0) - 15
         
     }
     
