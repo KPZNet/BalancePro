@@ -209,7 +209,7 @@ class RotorPlaneView: UIView {
         var y : Int
         
         let weightSlotSize = 10
-        let margin = 5
+        let margin = -5
         
         // Drawing code
         // Set the radius
@@ -218,7 +218,7 @@ class RotorPlaneView: UIView {
         // Get the context
         var context = UIGraphicsGetCurrentContext()
         
-        let weightSlot = Float( (self.frame.size.width/2.0) ) - Float(weightSlotSize) - Float(margin)
+        let weightSlot = Float( vibScale ) - Float(weightSlotSize) - Float(margin)
         
         var radians = GetRadians( Float(weight.location) )
         x = Int(  weightSlot * cos( radians ))
@@ -246,6 +246,7 @@ class RotorPlaneView: UIView {
         
         PopToDefaultTransform()
     }
+    
     
     func GetArrowEnds( vector : Vector ) -> (xA:Float, yA:Float, xB:Float, yB:Float)
     {
