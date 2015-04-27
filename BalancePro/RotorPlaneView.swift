@@ -116,6 +116,8 @@ class RotorPlaneView: UIView {
     var vibScale10th : Float = Float(0.1)
     var vibScaleLineWidth : Float = Float(0.1)
     var rotorRadius : Float = 1.0
+    var vectorStrokeWidth : Float = 1.0
+    var vectorArrowLength : Float = 1.0
     
     //    override init(frame aRect: CGRect)
     //    {
@@ -208,24 +210,24 @@ class RotorPlaneView: UIView {
     {
         PushToCartesianTransform()
         
-        var x : Int
-        var y : Int
+        var x : Float
+        var y : Float
         
-        let weightSlotSize = 1
         let margin = 0
         
         // Drawing code
         // Set the radius
-        let strokeWidth = 0.1
+        let weightSlotRadius = rotorRadius * 0.1
+        let strokeWidth = vibScaleLineWidth
         
         // Get the context
         var context = UIGraphicsGetCurrentContext()
         
-        let weightSlot = Float( vibScale ) - Float(weightSlotSize) - Float(margin)
+        let weightSlotCenter = Float( rotorRadius ) - Float(weightSlotRadius)
         
         var radians = GetRadians( Float(weight.location) )
-        x = Int(  weightSlot * cos( radians ))
-        y = Int(  weightSlot * sin( radians ))
+        x = weightSlotCenter * cos( radians )
+        y = weightSlotCenter * sin( radians )
         
         
         // Find the middle of the circle
@@ -241,8 +243,7 @@ class RotorPlaneView: UIView {
         CGContextSetFillColorWithColor(context, UIColor.blackColor().CGColor)
         
         // Draw the arc around the circle
-        let radius = CGFloat(10)
-        CGContextAddArc(context, center.x, center.y, CGFloat(radius), CGFloat(0), CGFloat(2 * M_PI), 1)
+        CGContextAddArc(context, center.x, center.y, CGFloat(weightSlotRadius), CGFloat(0), CGFloat(2 * M_PI), 1)
         
         // Draw the arc
         CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
@@ -250,11 +251,91 @@ class RotorPlaneView: UIView {
         PopToDefaultTransform()
     }
     
+    func DrawRotorCenterNob()
+    {
+        PushToCartesianTransform()
+        
+
+        var startAngle: Float = Float(2.0 * M_PI)
+        var endAngle: Float = 0.0
+                
+        // Get the context
+        let context = UIGraphicsGetCurrentContext()
+        
+        // Find the middle of the circle
+        let center = CGPointMake(0 , 0)
+        
+        // Draw the arc around the circle
+        CGContextAddArc(context, center.x, center.y, CGFloat(rotorRadius * 0.01), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+        
+        // Set the fill color (if you are filling the circle)
+        CGContextSetFillColorWithColor(context, UIColor.blackColor().CGColor)
+        
+        // Set the stroke color
+        //CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
+        
+        // Set the line width
+        CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
+        
+        // Draw the arc
+        CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        
+        PopToDefaultTransform()
+        
+    }
+
+    func DrawRotor()
+    {
+        PushToCartesianTransform()
+        
+
+        var startAngle: Float = Float(2.0 * M_PI)
+        var endAngle: Float = 0.0
+                
+        // Get the context
+        let context = UIGraphicsGetCurrentContext()
+        
+        // Find the middle of the circle
+        let center = CGPointMake(0 , 0)
+        
+        // Draw the arc around the circle
+        CGContextAddArc(context, center.x, center.y, CGFloat(rotorRadius), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+        
+        // Set the fill color (if you are filling the circle)
+        CGContextSetFillColorWithColor(context, UIColor.grayColor().CGColor)
+        
+        // Set the stroke color
+        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
+        
+        // Set the line width
+        CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
+        
+        // Draw the arc
+        CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        
+        PopToDefaultTransform()
+
+        DrawRotorCenterNob()
+        
+    }
     
+    func DrawVectorName(vector:Vector)
+    {
+        
+        var midPoint : CGPoint = CGPoint(x:0, y:0)
+        
+        midPoint.x = CGFloat((vector.xOrigin + vector.xEnd) / Float(2.0))
+        midPoint.y = CGFloat((vector.yOrigin + vector.yEnd) / Float(2.0))
+        
+        DrawTextAt(Text: vector.name, At: midPoint, Rotate: vector.phase, Size: 12)
+        
+    }
+    
+       
     func GetArrowEnds( vector : Vector ) -> (xA:Float, yA:Float, xB:Float, yB:Float)
     {
         let arrowAngle : Float = 160
-        let arrowLength : Float = 0.1
+        let arrowLength : Float = vectorArrowLength
         
         var radiansA : Float = 0.0
         var radiansB : Float = 0.0
@@ -286,63 +367,10 @@ class RotorPlaneView: UIView {
         return (xScaleA, yScaleA, xScaleB, yScaleB)
     }
     
-    
-    func DrawRotor()
-    {
-        PushToCartesianTransform()
-        
-        var rotorRadius = vibScale * 0.9
-        var rotorRadiusStrokeWidth = vibScaleLineWidth
-
-        var startAngle: Float = Float(2 * M_PI)
-        var endAngle: Float = 0.0
-        
-        
-        // Get the context
-        let context = UIGraphicsGetCurrentContext()
-        
-        // Find the middle of the circle
-        let center = CGPointMake(0 , 0)
-        
-        
-        // Draw the arc around the circle
-        CGContextAddArc(context, center.x, center.y, CGFloat(rotorRadius), CGFloat(0), CGFloat(2 * M_PI), 1)
-        
-        // Set the fill color (if you are filling the circle)
-        CGContextSetFillColorWithColor(context, UIColor.grayColor().CGColor)
-        
-        // Set the stroke color
-        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
-        
-        // Set the line width
-        CGContextSetLineWidth(context, CGFloat(rotorRadiusStrokeWidth))
-        
-        // Draw the arc
-        CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
-        
-        PopToDefaultTransform()
-        
-    }
-    
-    func DrawVectorName(vector:Vector)
-    {
-        
-        var midPoint : CGPoint = CGPoint(x:0, y:0)
-        
-        midPoint.x = CGFloat((vector.xOrigin + vector.xEnd) / Float(2.0))
-        midPoint.y = CGFloat((vector.yOrigin + vector.yEnd) / Float(2.0))
-        
-        DrawTextAt(Text: vector.name, At: midPoint, Rotate: vector.phase, Size: 12)
-        
-    }
-    
-    
-    
     func drawVector(vector : Vector)
     {
         PushToCartesianTransform()
         
-        let strokeWidth = 0.1
         // Get the context
         
         let context = UIGraphicsGetCurrentContext()
@@ -350,7 +378,7 @@ class RotorPlaneView: UIView {
         // Set the stroke color
         CGContextSetStrokeColorWithColor(context, UIColor.blueColor().CGColor)
         // Set the line width
-        CGContextSetLineWidth(context, CGFloat(strokeWidth))
+        CGContextSetLineWidth(context, CGFloat(vectorStrokeWidth))
         
         CGContextMoveToPoint(context, CGFloat(vector.xOrigin), CGFloat(vector.yOrigin) )
         CGContextAddLineToPoint(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd))
@@ -479,14 +507,16 @@ class RotorPlaneView: UIView {
     
     func Setup()
     {
-        InitalizeCartesianTransform()
-
         vibScale = Float(10.0)
         vibScale100th = vibScale * Float(0.01)
         vibScale10th = vibScale * Float(0.1)
         vibScaleLineWidth = vibScale100th
+        vectorStrokeWidth = vibScale * 0.02
+        vectorArrowLength = vibScale * Float(0.06)
 
-        rotorRadius = vibScale * 0.9
+        rotorRadius = vibScale * 0.85
+
+        InitalizeCartesianTransform()
         
     }
     
@@ -500,12 +530,12 @@ class RotorPlaneView: UIView {
         DrawRotorDegreeTics()
         DrawRotorDegreeTicLabels()
         
-//        var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
-//        DrawWeight(weight)
+        var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
+        DrawWeight(weight)
 //        
 //        
-//        var vec = Vector(fromAmp: 5, fromPhase: 340)
-//        drawVector(vec)
+        var vec = Vector(fromAmp: 5, fromPhase: 340)
+        drawVector(vec)
 //        
 //        var vec2 = Vector(fromAmp: 8, fromPhase: 75)
 //        drawVector(vec2)
