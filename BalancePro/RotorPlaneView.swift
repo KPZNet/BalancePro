@@ -387,7 +387,7 @@ class RotorPlaneView: UIView {
         
         PushToTextTransform(At: pPoint, Rotate: GetRadians(_rotate) )
         
-        let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+        let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         textStyle.alignment = NSTextAlignment.Left
         var tattribs = [NSFontAttributeName: textFont, NSParagraphStyleAttributeName: textStyle]
         _text.drawAtPoint(CGPointMake(0,0), withAttributes: tattribs)
