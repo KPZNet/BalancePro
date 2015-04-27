@@ -22,6 +22,8 @@ class Vector
     
     var name : String
     var color : UIColor?
+
+    
     
     
     init()
@@ -109,8 +111,11 @@ class RotorPlaneView: UIView {
     */
     
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
-    var vibScale: Float = Float(1.0)
-    var rotorRadiusStrokeWidth : Float = Float(1.0)
+    var vibScale: Float = Float(10.0)
+    var vibScale100th : Float = Float(0.01)
+    var vibScale10th : Float = Float(0.1)
+    var vibScaleLineWidth : Float = Float(0.1)
+    var rotorRadius : Float = 1.0
     
     //    override init(frame aRect: CGRect)
     //    {
@@ -149,8 +154,8 @@ class RotorPlaneView: UIView {
         
         pTempCartesianTransform = CGAffineTransformTranslate(pTempCartesianTransform, (self.frame.size.width / 2), (self.frame.size.height / 2));
         
-        let xScale =  1.0
-        let yScale = -1.0
+        let xScale =  (self.frame.size.width / 2) / CGFloat(vibScale)
+        let yScale = -1.0 * ( (self.frame.size.height / 2) / CGFloat(vibScale) )
         
         pTempCartesianTransform = CGAffineTransformScale(pTempCartesianTransform, CGFloat(xScale), CGFloat(yScale));
         
@@ -175,8 +180,6 @@ class RotorPlaneView: UIView {
         let context = UIGraphicsGetCurrentContext()
         CGContextConcatCTM(context, GetRotatedTextTransform(At:_point, Rotate:_rotate));
     }
-    
-    
     
     func ConvertVectorToXY(vector : Vector) -> (x:Float, y:Float)
     {
@@ -208,12 +211,12 @@ class RotorPlaneView: UIView {
         var x : Int
         var y : Int
         
-        let weightSlotSize = 10
-        let margin = -5
+        let weightSlotSize = 1
+        let margin = 0
         
         // Drawing code
         // Set the radius
-        let strokeWidth = 1.0
+        let strokeWidth = 0.1
         
         // Get the context
         var context = UIGraphicsGetCurrentContext()
@@ -251,7 +254,7 @@ class RotorPlaneView: UIView {
     func GetArrowEnds( vector : Vector ) -> (xA:Float, yA:Float, xB:Float, yB:Float)
     {
         let arrowAngle : Float = 160
-        let arrowLength : Float = 20
+        let arrowLength : Float = 0.1
         
         var radiansA : Float = 0.0
         var radiansB : Float = 0.0
@@ -288,6 +291,9 @@ class RotorPlaneView: UIView {
     {
         PushToCartesianTransform()
         
+        var rotorRadius = vibScale * 0.9
+        var rotorRadiusStrokeWidth = vibScaleLineWidth
+
         var startAngle: Float = Float(2 * M_PI)
         var endAngle: Float = 0.0
         
@@ -300,7 +306,7 @@ class RotorPlaneView: UIView {
         
         
         // Draw the arc around the circle
-        CGContextAddArc(context, center.x, center.y, CGFloat(vibScale), CGFloat(0), CGFloat(2 * M_PI), 1)
+        CGContextAddArc(context, center.x, center.y, CGFloat(rotorRadius), CGFloat(0), CGFloat(2 * M_PI), 1)
         
         // Set the fill color (if you are filling the circle)
         CGContextSetFillColorWithColor(context, UIColor.grayColor().CGColor)
@@ -336,7 +342,7 @@ class RotorPlaneView: UIView {
     {
         PushToCartesianTransform()
         
-        let strokeWidth = 2.0
+        let strokeWidth = 0.1
         // Get the context
         
         let context = UIGraphicsGetCurrentContext()
@@ -401,7 +407,7 @@ class RotorPlaneView: UIView {
     {
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
         
-        let centerExtension:CGFloat = 10.0
+        let centerExtension:CGFloat = CGFloat(vibScale10th / 2.0)
         let xExtension:CGFloat = centerExtension * _ratio.x
         let yExtension:CGFloat = centerExtension * _ratio.y
         
@@ -411,18 +417,17 @@ class RotorPlaneView: UIView {
         
         let degTextInt:NSNumber = Int(_degree)
         let degText:String = degTextInt.stringValue
-        
-        PushToTextTransform(At: aPoint, Rotate: GetRadians(_degree) )
+
         var label = UILabel(frame: sRect)
         label.center = aPoint
         label.font = textFont
         label.textAlignment = NSTextAlignment.Center
         label.text = degText
         //label.backgroundColor = UIColor.lightTextColor()
-        label.layer.cornerRadius = 5
+        //label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
         addSubview(label)
-        PopToDefaultTransform()
+
     }
     
     
@@ -430,20 +435,22 @@ class RotorPlaneView: UIView {
     {
         
         let context = UIGraphicsGetCurrentContext()
+
+        let lineLength = ( vibScale10th / 3.0 )
         
         // Set the stroke color
         CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
         // Set the line width
-        CGContextSetLineWidth(context, CGFloat(1.0))
+        CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
         
         PushToCartesianTransform()
         for var index = 0; index < 360; index+=15
         {
             
-            var xStart : Float = (vibScale - 5.0) * cos( GetRadians( Float(index) ) )
-            var yStart : Float = (vibScale - 5.0) * sin( GetRadians( Float(index) ) )
-            var xEnd   : Float = (vibScale) * cos( GetRadians( Float(index) ) )
-            var yEnd   : Float = (vibScale) * sin( GetRadians( Float(index) ) )
+            var xStart : Float = (rotorRadius - lineLength) * cos( GetRadians( Float(index) ) )
+            var yStart : Float = (rotorRadius - lineLength) * sin( GetRadians( Float(index) ) )
+            var xEnd   : Float = (rotorRadius) * cos( GetRadians( Float(index) ) )
+            var yEnd   : Float = (rotorRadius) * sin( GetRadians( Float(index) ) )
             
             CGContextMoveToPoint(context, CGFloat(xStart), CGFloat(yStart))
             CGContextAddLineToPoint(context, CGFloat(xEnd), CGFloat(yEnd))
@@ -456,25 +463,30 @@ class RotorPlaneView: UIView {
     
     func DrawRotorDegreeTicLabels()
     {
-        
+      
         for var index = 0; index < 360; index+=45
         {
             
             var xEnd2   : Float = cos( GetRadians( Float(index) ) )
             var yEnd2   : Float = sin( GetRadians( Float(index) ) )
             var ratioPoint:CGPoint = CGPoint(x:CGFloat(xEnd2), y:CGFloat(yEnd2))
-            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2 * vibScale), y:CGFloat(yEnd2 * vibScale))
+            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2 * rotorRadius), y:CGFloat(yEnd2 * rotorRadius))
             DrawDegreeLabel(At: textPoint, Ratio:ratioPoint, Degree:Float(index))
             
         }
-        
+
     }
     
     func Setup()
     {
         InitalizeCartesianTransform()
-        rotorRadiusStrokeWidth = 1.0
-        vibScale = Float( (CGFloat(self.frame.size.width) - CGFloat(rotorRadiusStrokeWidth)) / 2.0) - 15
+
+        vibScale = Float(10.0)
+        vibScale100th = vibScale * Float(0.01)
+        vibScale10th = vibScale * Float(0.1)
+        vibScaleLineWidth = vibScale100th
+
+        rotorRadius = vibScale * 0.9
         
     }
     
@@ -488,18 +500,18 @@ class RotorPlaneView: UIView {
         DrawRotorDegreeTics()
         DrawRotorDegreeTicLabels()
         
-        var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
-        DrawWeight(weight)
-        
-        
-        var vec = Vector(fromAmp: 120, fromPhase: 340)
-        drawVector(vec)
-        
-        var vec2 = Vector(fromAmp: 130, fromPhase: 75)
-        drawVector(vec2)
-        
-        var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
-        drawVector(vec3)
+//        var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
+//        DrawWeight(weight)
+//        
+//        
+//        var vec = Vector(fromAmp: 5, fromPhase: 340)
+//        drawVector(vec)
+//        
+//        var vec2 = Vector(fromAmp: 8, fromPhase: 75)
+//        drawVector(vec2)
+//        
+//        var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
+//        drawVector(vec3)
         
         
     }
