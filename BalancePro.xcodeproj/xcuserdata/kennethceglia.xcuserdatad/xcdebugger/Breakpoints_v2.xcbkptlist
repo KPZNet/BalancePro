@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BalancePro/RotorPlaneView.swift"
-            timestampString = "451861588.043443"
+            timestampString = "451862992.683013"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234">
+            startingLineNumber = "232"
+            endingLineNumber = "232">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

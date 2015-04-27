@@ -112,8 +112,6 @@ class RotorPlaneView: UIView {
     
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     var vibScale: Float = Float(10.0)
-    var vibScale100th : Float = Float(0.01)
-    var vibScale10th : Float = Float(0.1)
     var vibScaleLineWidth : Float = Float(0.1)
     var rotorRadius : Float = 1.0
     var vectorStrokeWidth : Float = 1.0
@@ -435,7 +433,7 @@ class RotorPlaneView: UIView {
     {
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
         
-        let centerExtension:CGFloat = CGFloat(vibScale10th / 2.0)
+        let centerExtension:CGFloat = CGFloat( (vibScale * 0.1) / 2.0)
         let xExtension:CGFloat = centerExtension * _ratio.x
         let yExtension:CGFloat = centerExtension * _ratio.y
         
@@ -464,7 +462,7 @@ class RotorPlaneView: UIView {
         
         let context = UIGraphicsGetCurrentContext()
 
-        let lineLength = ( vibScale10th / 3.0 )
+        let lineLength = ( (vibScale * 0.1) / 3.0 )
         
         // Set the stroke color
         CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
@@ -508,9 +506,7 @@ class RotorPlaneView: UIView {
     func Setup()
     {
         vibScale = Float(10.0)
-        vibScale100th = vibScale * Float(0.01)
-        vibScale10th = vibScale * Float(0.1)
-        vibScaleLineWidth = vibScale100th
+        vibScaleLineWidth = (vibScale * 0.01)
         vectorStrokeWidth = vibScale * 0.02
         vectorArrowLength = vibScale * Float(0.06)
 
