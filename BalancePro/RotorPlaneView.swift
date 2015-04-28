@@ -120,6 +120,8 @@ class RotorPlaneView: UIView {
     var xScale : Float = 0.0
     var yScale : Float = 0.0
     
+    var viewScale: Float = 0.0
+    
     //    override init(frame aRect: CGRect)
     //    {
     //
@@ -151,20 +153,17 @@ class RotorPlaneView: UIView {
     }
     func GetCartisianTransform() -> CGAffineTransform
     {
-        let vibScaleUp = vibScale * 1.2
+        viewScale = vibScale * 1.2
         let context = UIGraphicsGetCurrentContext()
         var pTempCartesianTransform : CGAffineTransform = CGAffineTransformIdentity
         
         pTempCartesianTransform = CGAffineTransformTranslate(pTempCartesianTransform, (self.frame.size.width / 2), (self.frame.size.height / 2));
         
-        let xcScale =  (self.frame.size.width / 2) / CGFloat(vibScaleUp)
-        let ycScale = -1.0 * ( (self.frame.size.height / 2) / CGFloat(vibScaleUp) )
+        xScale =  Float((self.frame.size.width / 2) / CGFloat(viewScale))
+        yScale = Float(-1.0 * ( (self.frame.size.height / 2) / CGFloat(viewScale) ))
         
-        pTempCartesianTransform = CGAffineTransformScale(pTempCartesianTransform, CGFloat(xcScale), CGFloat(ycScale));
+        pTempCartesianTransform = CGAffineTransformScale(pTempCartesianTransform, CGFloat(xScale), CGFloat(yScale));
         
-xScale = Float(xcScale)
-yScale = Float(ycScale)
-
         return pTempCartesianTransform
     }
     
@@ -270,7 +269,7 @@ yScale = Float(ycScale)
         let center = CGPointMake(0 , 0)
         
         // Draw the arc around the circle
-        CGContextAddArc(context, center.x, center.y, CGFloat(rotorRadius * 0.01), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+        CGContextAddArc(context, center.x, center.y, CGFloat(rotorRadius * 0.05), CGFloat(0), CGFloat(2.0 * M_PI), 1)
         
         // Set the fill color (if you are filling the circle)
         CGContextSetFillColorWithColor(context, UIColor.blackColor().CGColor)
@@ -415,16 +414,13 @@ yScale = Float(ycScale)
     func DrawTextAt(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
     {
 
-//PushToCartesianTransform()
-
         let fontName = "Helvetica"
         let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
         
         var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
         var txHeight = Float(textHeight) / yScale
-        //var  textHeight:Float = Float(0.0)
         
-        let adjustPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y + CGFloat(txHeight) )
+        let adjustPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y )
         
         var pPoint:CGPoint = CGPointApplyAffineTransform ( adjustPoint, pCartesianTrans );
         
@@ -436,8 +432,6 @@ yScale = Float(ycScale)
         _text.drawAtPoint(CGPointMake(0,0), withAttributes: tattribs)
         
         PopToDefaultTransform()
-        
-//PopToDefaultTransform()
 
     }
     
@@ -463,32 +457,18 @@ yScale = Float(ycScale)
     func DrawDegreeLabel(At _point:CGPoint, Ratio _ratio:CGPoint, Degree _degree:Float)
     {
 
-//PushToCartesianTransform()
-
-        let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
+        let centerExtension:CGFloat = CGFloat( (viewScale - rotorRadius) / 2.0)
         
-        let centerExtension:CGFloat = CGFloat( (vibScale * 0.1) / 2.0)
         let xExtension:CGFloat = centerExtension * _ratio.x
         let yExtension:CGFloat = centerExtension * _ratio.y
         
         let sPoint:CGPoint = CGPoint(  x:_point.x + xExtension, y: _point.y + yExtension)
-        let sRect:CGRect = CGRectMake(0, 0, 20, 10)
-        var aPoint:CGPoint = CGPointApplyAffineTransform ( sPoint, pCartesianTrans );
+
         
         let degTextInt:NSNumber = Int(_degree)
         let degText:String = degTextInt.stringValue
 
-        var label = UILabel(frame: sRect)
-        label.center = aPoint
-        label.font = textFont
-        label.textAlignment = NSTextAlignment.Center
-        label.text = degText
-        //label.backgroundColor = UIColor.lightTextColor()
-        //label.layer.cornerRadius = 5
-        label.layer.masksToBounds = true
-        addSubview(label)
-
-//PopToDefaultTransform()
+        DrawTextLabel(At: sPoint, Text: degText)
 
     }
     
@@ -565,13 +545,16 @@ yScale = Float(ycScale)
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
         
-        var vec = Vector(fromAmp: 10, fromPhase: 340)
+        var vec = Vector(fromAmp: 10, fromPhase: 0)
         drawVector(vec)
         
-        var vec2 = Vector(fromAmp: 8, fromPhase: 75)
+        var vec2 = Vector(fromAmp: 10, fromPhase: 180)
         drawVector(vec2)
         
-        var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
+        var vec3 = Vector(fromAmp: 10, fromPhase: 90)
+        drawVector(vec3)
+        
+        //var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
         drawVector(vec3)
         
         
