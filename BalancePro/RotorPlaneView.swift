@@ -113,7 +113,7 @@ class RotorPlaneView: UIView {
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     var vibScale: Float = Float(10.0)
     var vibScaleLineWidth : Float = Float(0.1)
-    var rotorRadius : Float = 1.0
+
     var vectorStrokeWidth : Float = 1.0
     var vectorArrowLength : Float = 1.0
 
@@ -220,13 +220,13 @@ class RotorPlaneView: UIView {
         
         // Drawing code
         // Set the radius
-        let weightSlotRadius = rotorRadius * 0.1
+        let weightSlotRadius = vibScale * 0.1
         let strokeWidth = vibScaleLineWidth
         
         // Get the context
         var context = UIGraphicsGetCurrentContext()
         
-        let weightSlotCenter = Float( rotorRadius ) - Float(weightSlotRadius)
+        let weightSlotCenter = Float( vibScale ) - Float(weightSlotRadius)
         
         var radians = GetRadians( Float(weight.location) )
         x = weightSlotCenter * cos( radians )
@@ -269,7 +269,7 @@ class RotorPlaneView: UIView {
         let center = CGPointMake(0 , 0)
         
         // Draw the arc around the circle
-        CGContextAddArc(context, center.x, center.y, CGFloat(rotorRadius * 0.05), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+        CGContextAddArc(context, center.x, center.y, CGFloat(vibScale * 0.05), CGFloat(0), CGFloat(2.0 * M_PI), 1)
         
         // Set the fill color (if you are filling the circle)
         CGContextSetFillColorWithColor(context, UIColor.blackColor().CGColor)
@@ -302,7 +302,7 @@ class RotorPlaneView: UIView {
         let center = CGPointMake(0 , 0)
         
         // Draw the arc around the circle
-        CGContextAddArc(context, center.x, center.y, CGFloat(rotorRadius), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+        CGContextAddArc(context, center.x, center.y, CGFloat(vibScale), CGFloat(0), CGFloat(2.0 * M_PI), 1)
         
         // Set the fill color (if you are filling the circle)
         CGContextSetFillColorWithColor(context, UIColor.grayColor().CGColor)
@@ -457,7 +457,7 @@ class RotorPlaneView: UIView {
     func DrawDegreeLabel(At _point:CGPoint, Ratio _ratio:CGPoint, Degree _degree:Float)
     {
 
-        let centerExtension:CGFloat = CGFloat( (viewScale - rotorRadius) / 2.0)
+        let centerExtension:CGFloat = CGFloat( (viewScale - vibScale) / 2.0)
         
         let xExtension:CGFloat = centerExtension * _ratio.x
         let yExtension:CGFloat = centerExtension * _ratio.y
@@ -489,10 +489,10 @@ class RotorPlaneView: UIView {
         for var index = 0; index < 360; index+=15
         {
             
-            var xStart : Float = (rotorRadius - lineLength) * cos( GetRadians( Float(index) ) )
-            var yStart : Float = (rotorRadius - lineLength) * sin( GetRadians( Float(index) ) )
-            var xEnd   : Float = (rotorRadius) * cos( GetRadians( Float(index) ) )
-            var yEnd   : Float = (rotorRadius) * sin( GetRadians( Float(index) ) )
+            var xStart : Float = (vibScale - lineLength) * cos( GetRadians( Float(index) ) )
+            var yStart : Float = (vibScale - lineLength) * sin( GetRadians( Float(index) ) )
+            var xEnd   : Float = (vibScale) * cos( GetRadians( Float(index) ) )
+            var yEnd   : Float = (vibScale) * sin( GetRadians( Float(index) ) )
             
             CGContextMoveToPoint(context, CGFloat(xStart), CGFloat(yStart))
             CGContextAddLineToPoint(context, CGFloat(xEnd), CGFloat(yEnd))
@@ -512,7 +512,7 @@ class RotorPlaneView: UIView {
             var xEnd2   : Float = cos( GetRadians( Float(index) ) )
             var yEnd2   : Float = sin( GetRadians( Float(index) ) )
             var ratioPoint:CGPoint = CGPoint(x:CGFloat(xEnd2), y:CGFloat(yEnd2))
-            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2 * rotorRadius), y:CGFloat(yEnd2 * rotorRadius))
+            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2 * vibScale), y:CGFloat(yEnd2 * vibScale))
             DrawDegreeLabel(At: textPoint, Ratio:ratioPoint, Degree:Float(index))
             
         }
@@ -526,7 +526,7 @@ class RotorPlaneView: UIView {
         vectorStrokeWidth = vibScale * 0.02
         vectorArrowLength = vibScale * Float(0.06)
 
-        rotorRadius = vibScale
+        
 
         InitalizeCartesianTransform()
         
