@@ -148,14 +148,14 @@ class RotorPlaneView: UIView {
     }
     func GetCartisianTransform() -> CGAffineTransform
     {
-        
+        let vibScaleUp = vibScale * 1.2
         let context = UIGraphicsGetCurrentContext()
         var pTempCartesianTransform : CGAffineTransform = CGAffineTransformIdentity
         
         pTempCartesianTransform = CGAffineTransformTranslate(pTempCartesianTransform, (self.frame.size.width / 2), (self.frame.size.height / 2));
         
-        let xScale =  (self.frame.size.width / 2) / CGFloat(vibScale)
-        let yScale = -1.0 * ( (self.frame.size.height / 2) / CGFloat(vibScale) )
+        let xScale =  (self.frame.size.width / 2) / CGFloat(vibScaleUp)
+        let yScale = -1.0 * ( (self.frame.size.height / 2) / CGFloat(vibScaleUp) )
         
         pTempCartesianTransform = CGAffineTransformScale(pTempCartesianTransform, CGFloat(xScale), CGFloat(yScale));
         
@@ -408,10 +408,12 @@ class RotorPlaneView: UIView {
     
     func DrawTextAt(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
     {
+
         let fontName = "Helvetica"
         let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
         
         var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
+        //var  textHeight:Float = Float(0.0)
         
         let adjustPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y + CGFloat(textHeight) )
         
@@ -428,9 +430,30 @@ class RotorPlaneView: UIView {
         
     }
     
+    func DrawTextLabel(At _point:CGPoint, Text _text:String)
+    {
+        let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
+        
+        let sPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y)
+        let sRect:CGRect = CGRectMake(0, 0, 20, 10)
+        var aPoint:CGPoint = CGPointApplyAffineTransform ( sPoint, pCartesianTrans );
+        
+
+        var label = UILabel(frame: sRect)
+        label.center = aPoint
+        label.font = textFont
+        label.textAlignment = NSTextAlignment.Center
+        label.text = _text
+        //label.backgroundColor = UIColor.lightTextColor()
+        //label.layer.cornerRadius = 5
+        label.layer.masksToBounds = true
+        addSubview(label)
+    }
     
     func DrawDegreeLabel(At _point:CGPoint, Ratio _ratio:CGPoint, Degree _degree:Float)
     {
+        DrawTextAt(Text: "aaa", At: _point, Rotate: 0.0, Size: 10)
+        /*
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
         
         let centerExtension:CGFloat = CGFloat( (vibScale * 0.1) / 2.0)
@@ -453,6 +476,7 @@ class RotorPlaneView: UIView {
         //label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
         addSubview(label)
+*/
 
     }
     
@@ -510,7 +534,7 @@ class RotorPlaneView: UIView {
         vectorStrokeWidth = vibScale * 0.02
         vectorArrowLength = vibScale * Float(0.06)
 
-        rotorRadius = vibScale * 0.85
+        rotorRadius = vibScale
 
         InitalizeCartesianTransform()
         
@@ -528,16 +552,15 @@ class RotorPlaneView: UIView {
         
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
-//        
-//        
-        var vec = Vector(fromAmp: 5, fromPhase: 340)
+        
+        var vec = Vector(fromAmp: 10, fromPhase: 340)
         drawVector(vec)
-//        
-//        var vec2 = Vector(fromAmp: 8, fromPhase: 75)
-//        drawVector(vec2)
-//        
-//        var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
-//        drawVector(vec3)
+        
+        var vec2 = Vector(fromAmp: 8, fromPhase: 75)
+        drawVector(vec2)
+        
+        var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
+        drawVector(vec3)
         
         
     }
