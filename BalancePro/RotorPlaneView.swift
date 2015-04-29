@@ -39,9 +39,9 @@ class Vector
         
         name = "vec"
     }
-    init(fromAmp _amp : Float, fromPhase _phase : Float)
+    init(fromAmp _amp : Float, fromPhase _phase : Float, withName _name:String = "")
     {
-        name = "vec"
+        name = _name
         amp = _amp
         phase = _phase
         
@@ -57,9 +57,9 @@ class Vector
         yEnd = Float(  amp * sin( radians ))
         
     }
-    init(xOrigin _xOrigin:Float, yOrigin _yOrigin:Float, xEnd _xEnd:Float, yEnd _yEnd:Float)
+    init(xOrigin _xOrigin:Float, yOrigin _yOrigin:Float, xEnd _xEnd:Float, yEnd _yEnd:Float, withName _name:String = "")
     {
-        name = "vec"
+        name = _name
         amp = 0.0
         phase = 0
         
@@ -269,7 +269,7 @@ class RotorPlaneView: UIView {
         let center = CGPointMake(0 , 0)
         
         // Draw the arc around the circle
-        CGContextAddArc(context, center.x, center.y, CGFloat(vibScale * 0.05), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+        CGContextAddArc(context, center.x, center.y, CGFloat(vibScale * 0.04), CGFloat(0), CGFloat(2.0 * M_PI), 1)
         
         // Set the fill color (if you are filling the circle)
         CGContextSetFillColorWithColor(context, UIColor.blackColor().CGColor)
@@ -327,8 +327,8 @@ class RotorPlaneView: UIView {
         
         var midPoint : CGPoint = CGPoint(x:0, y:0)
         
-        midPoint.x = CGFloat((vector.xOrigin + vector.xEnd) / Float(2.0))
-        midPoint.y = CGFloat((vector.yOrigin + vector.yEnd) / Float(2.0))
+        midPoint.x = CGFloat((vector.xOrigin + vector.xEnd) / Float(2))
+        midPoint.y = CGFloat((vector.yOrigin + vector.yEnd) / Float(2))
         
         DrawTextAt(Text: vector.name, At: midPoint, Rotate: vector.phase, Size: 12)
         
@@ -478,7 +478,7 @@ class RotorPlaneView: UIView {
         
         let context = UIGraphicsGetCurrentContext()
 
-        let lineLength = ( (vibScale * 0.1) / 3.0 )
+        let lineLength = ( (vibScale * 0.04) )
         
         // Set the stroke color
         CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
@@ -519,23 +519,21 @@ class RotorPlaneView: UIView {
 
     }
     
-    func Setup()
+    func SetupScales(MaxVib _maxVib : Float)
     {
-        vibScale = Float(10.0)
+        vibScale = Float(_maxVib)
         vibScaleLineWidth = (vibScale * 0.01)
-        vectorStrokeWidth = vibScale * 0.02
-        vectorArrowLength = vibScale * Float(0.06)
+        vectorStrokeWidth = (vibScale * 0.02)
+        vectorArrowLength = (vibScale * Float(0.05))
 
         
-
         InitalizeCartesianTransform()
-        
     }
     
     override func drawRect(rect: CGRect)
     {
         
-        Setup()
+        SetupScales(MaxVib: 10.0)
         
         DrawRotor()
         
@@ -545,17 +543,25 @@ class RotorPlaneView: UIView {
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
         
-        var vec = Vector(fromAmp: 10, fromPhase: 0)
+        var vec = Vector(fromAmp: 10, fromPhase: 0, withName:"0")
         drawVector(vec)
+
+        var vecA = Vector(fromAmp: 10, fromPhase: 45, withName:"45")
+        drawVector(vecA)
         
-        var vec2 = Vector(fromAmp: 10, fromPhase: 180)
-        drawVector(vec2)
+        var vecB = Vector(fromAmp: 10, fromPhase: 135, withName:"180")
+        drawVector(vecB)
         
-        var vec3 = Vector(fromAmp: 10, fromPhase: 90)
-        drawVector(vec3)
+        var vecC = Vector(fromAmp: 10, fromPhase: 315, withName:"270")
+        drawVector(vecC)
         
-        //var vec3 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd)
-        drawVector(vec3)
+        
+//        var vec2 = Vector(fromAmp: 9.7, fromPhase: 75, withName:"Influence")
+//        drawVector(vec2)
+//        
+//        
+//        var vec4 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd, withName:"Sub")
+//        drawVector(vec4)
         
         
     }
