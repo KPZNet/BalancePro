@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFI-ID-baA" userLabel="BalancePlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
-                                <rect key="frame" x="16" y="72" width="313" height="254"/>
+                                <rect key="frame" x="16" y="72" width="568" height="254"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="LFI-ID-baA" secondAttribute="height" multiplier="1:1" id="Yla-kl-4md"/>
@@ -61,7 +61,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KtM-4h-DT9" userLabel="BalancePlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
-                                <rect key="frame" x="16" y="72" width="313" height="313"/>
+                                <rect key="frame" x="16" y="72" width="568" height="260"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="KtM-4h-DT9" secondAttribute="height" multiplier="1:1" id="1x5-29-Od0"/>
@@ -103,7 +103,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqj-Rg-RDf" userLabel="BalancePlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
-                                <rect key="frame" x="16" y="72" width="313" height="313"/>
+                                <rect key="frame" x="16" y="72" width="568" height="313"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="sqj-Rg-RDf" secondAttribute="height" multiplier="1:1" id="i94-n2-3KS"/>
@@ -126,24 +126,6 @@
             </objects>
             <point key="canvasLocation" x="3013" y="-302"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="yl2-sM-qoP">
-            <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
-                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="kCB-Za-Dxa" kind="show" id="TZb-uI-18h"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-614" y="-297"/>
-        </scene>
         <!--Balance Pro-->
         <scene sceneID="6Wf-3g-GEI">
             <objects>
@@ -163,7 +145,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9pv-A4-QxB" kind="show" id="o8D-cr-Y8l"/>
+                                    <segue destination="9pv-A4-QxB" kind="show" identifier="KTabB" id="o8D-cr-Y8l"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYK-0Q-vlC">

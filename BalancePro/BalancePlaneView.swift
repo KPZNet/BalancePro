@@ -12,57 +12,65 @@ import UIKit
 
 class Vector
 {
-    var amp : Float
-    var phase : Float
-    
-    var xOrigin : Float
-    var yOrigin : Float
-    var xEnd : Float
-    var yEnd : Float
-    
-    var name : String
-    var color : UIColor?
-    
-    
 
+    var amp : Float
+    {
+
+            get {
+                var tempX :Float = xEnd - xOrigin
+                var tempY :Float = yEnd - yOrigin
+                
+                var radians = atan2( tempY , tempX )
+                
+                let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
+                let amp = sqrt( (tempX * tempX) + (tempY * tempY) )
+                return amp
+            }
+    }
+    var phase : Float
+        {
+
+        get {
+            var tempX :Float = xEnd - xOrigin
+            var tempY :Float = yEnd - yOrigin
+            
+            var radians = atan2( tempY , tempX )
+            
+            let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
+            let phase = RadToDegreesConversion * Float(radians)
+            return phase
+        }
+    }
+
+    
+    var xOrigin : Float = 0.0
+    var yOrigin : Float = 0.0
+    var xEnd : Float = 0.0
+    var yEnd : Float = 0.0
+    
+    var name : String = "v"
+    var color : UIColor = UIColor.blueColor()
     
     
     init()
     {
-        amp = 0.0
-        phase = 0
         
-        xOrigin = 0.0
-        yOrigin = 0.0
-        
-        xEnd = 0.0
-        yEnd = 0.0
-        
-        name = "vec"
     }
     init(fromAmp _amp : Float, fromPhase _phase : Float, withName _name:String = "")
     {
         name = _name
-        amp = _amp
-        phase = _phase
-        
-        xOrigin = 0.0
-        yOrigin = 0.0
-        
         
         let DegToRadConversion : Float = Float(M_PI) / Float(180)
         var radians : Float = 0.0
-        radians = DegToRadConversion * Float(phase)
+        radians = DegToRadConversion * Float(_phase)
         
-        xEnd = Float(  amp * cos( radians ))
-        yEnd = Float(  amp * sin( radians ))
+        xEnd = Float(  _amp * cos( radians ))
+        yEnd = Float(  _amp * sin( radians ))
         
     }
     init(xOrigin _xOrigin:Float, yOrigin _yOrigin:Float, xEnd _xEnd:Float, yEnd _yEnd:Float, withName _name:String = "")
     {
         name = _name
-        amp = 0.0
-        phase = 0
         
         xOrigin = _xOrigin
         yOrigin = _yOrigin
@@ -70,21 +78,22 @@ class Vector
         xEnd = _xEnd
         yEnd = _yEnd
         
-        var tempX :Float = _xEnd - _xOrigin
-        var tempY :Float = _yEnd - _yOrigin
-        
-        var radians = atan2( tempY , tempX )
-        
-        let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
-        phase = RadToDegreesConversion * Float(radians)
-        
-        amp = sqrt( (tempX * tempX) + (tempY * tempY) )
-        
     }
     
 
 }
 
+func *(left:Float, right:Vector) -> Vector
+{
+    
+    var vecSub = Vector(xOrigin: 0,
+        yOrigin: 0,
+        xEnd: right.xEnd * left,
+        yEnd: right.yEnd * left,
+        withName:"vec")
+    
+    return vecSub
+}
 func +(left:Vector, right:Vector) -> Vector
 {
     
@@ -103,6 +112,7 @@ func -(left:Vector, right:Vector) -> Vector
     
     return vecSub
 }
+
 
 class BalanceWeight
 {
@@ -401,7 +411,7 @@ class BalancePlaneView: UIView {
         let context = UIGraphicsGetCurrentContext()
         
         // Set the stroke color
-        CGContextSetStrokeColorWithColor(context, UIColor.blueColor().CGColor)
+        CGContextSetStrokeColorWithColor(context, vector.color.CGColor)
         // Set the line width
         CGContextSetLineWidth(context, CGFloat(vectorStrokeWidth))
         
@@ -426,6 +436,31 @@ class BalancePlaneView: UIView {
         CGContextAddLineToPoint(context, CGFloat(xMidScale), CGFloat(yMidScale))
         CGContextAddLineToPoint(context, CGFloat(xScaleB), CGFloat(yScaleB))
         CGContextStrokePath(context)
+        
+        
+        //Draw the vector base nob
+        var startAngle: Float = Float(2.0 * M_PI)
+        var endAngle: Float = 0.0
+        
+        // Find the middle of the circle
+        let center = CGPointMake(0 , 0)
+        
+        // Draw the arc around the circle
+        CGContextAddArc(context, CGFloat(vector.xOrigin), CGFloat(vector.yOrigin), CGFloat(vectorStrokeWidth*0.65), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+        
+        // Set the fill color (if you are filling the circle)
+        CGContextSetFillColorWithColor(context, vector.color.CGColor)
+        
+        // Set the stroke color
+        CGContextSetStrokeColorWithColor(context, vector.color.CGColor)
+        
+        // Set the line width
+        CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
+        
+        // Draw the arc
+        CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        // end Draw vector base nob
+        
         
         PopToDefaultTransform()
         
@@ -568,24 +603,28 @@ class BalancePlaneView: UIView {
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
         
-        var vec1 = Vector(fromAmp: 7, fromPhase: 0, withName:"0")
-        drawVector(vec1)
+        var vec1 = Vector(fromAmp: 7, fromPhase: 0, withName:"vec1")
+        //drawVector(vec1)
         
-        var vec2 = Vector(fromAmp: 10, fromPhase: 45, withName:"45")
-        drawVector(vec2)
+        var vec2 = Vector(fromAmp: 10, fromPhase: 45, withName:"vec2")
+        //drawVector(vec2)
         
-        var vec3 = Vector(fromAmp: 7.5, fromPhase: 135, withName:"135")
-        drawVector(vec3)
+        var vec3 = Vector(fromAmp: 7.5, fromPhase: 135, withName:"vec3")
+        //drawVector(vec3)
         
-        var vec4 = Vector(fromAmp: 9, fromPhase: 290, withName:"290")
-        drawVector(vec4)
+        var vec4 = Vector(fromAmp: 9, fromPhase: 290, withName:"vec4")
+        //drawVector(vec4)
         
         
         var vec5 = vec4 - vec1
         var vec6 = vec4 + vec1
         
         drawVector(vec5)
-        drawVector(vec6)
+        //drawVector(vec6)
+        
+//        var vec5 = vec4 + (-1.0 * vec1)
+//        vec5.name = "vec5"
+//        drawVector(vec5)
         
         
     }

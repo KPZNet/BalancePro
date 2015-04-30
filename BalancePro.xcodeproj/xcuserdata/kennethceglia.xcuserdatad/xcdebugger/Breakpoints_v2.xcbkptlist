@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BalancePro/BalancePlaneView.swift"
-            timestampString = "451862992.683013"
+            timestampString = "452120424.620332"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
-            landmarkName = "DrawWeight(_:)"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "GetRadians(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BalancePro/BalancePlaneView.swift"
-            timestampString = "451937605.428079"
+            timestampString = "452122127.818582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "457"
-            endingLineNumber = "457"
-            landmarkName = "DrawDegreeLabel(At:Ratio:Degree:)"
+            startingLineNumber = "492"
+            endingLineNumber = "492"
+            landmarkName = "DrawTextAt(Text:At:Rotate:Size:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BalancePro/BalancePlaneView.swift"
-            timestampString = "451937801.544948"
+            timestampString = "452122127.818582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "412"
-            endingLineNumber = "412"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "drawVector(_:)"
             landmarkType = "5">
          </BreakpointContent>
