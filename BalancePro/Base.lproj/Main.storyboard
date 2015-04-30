@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kCB-Za-Dxa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Initial Run-->
@@ -16,12 +18,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFI-ID-baA" userLabel="RotorPlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
-                                <rect key="frame" x="16" y="72" width="313" height="313"/>
+                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFI-ID-baA" userLabel="BalancePlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
+                                <rect key="frame" x="16" y="72" width="313" height="254"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="LFI-ID-baA" secondAttribute="height" multiplier="1:1" id="Yla-kl-4md"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LFI-ID-baA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="KvL-bQ-cNF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LFI-ID-baA" secondAttribute="trailing" id="Npd-ca-Jaw"/>
+                            <constraint firstItem="LFI-ID-baA" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="10" id="XUd-9x-Hrd"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Initial Run" id="6pz-97-wgN">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="2a8-i5-0pt">
@@ -30,6 +40,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="balanceView" destination="LFI-ID-baA" id="pmg-xC-2UR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -47,12 +60,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KtM-4h-DT9" userLabel="RotorPlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
+                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KtM-4h-DT9" userLabel="BalancePlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
                                 <rect key="frame" x="16" y="72" width="313" height="313"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KtM-4h-DT9" secondAttribute="height" multiplier="1:1" id="1x5-29-Od0"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KtM-4h-DT9" firstAttribute="top" secondItem="cfQ-6z-Fb9" secondAttribute="bottom" constant="10" id="6d6-Wn-DBH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KtM-4h-DT9" secondAttribute="trailing" id="azD-ao-NsP"/>
+                            <constraint firstItem="KtM-4h-DT9" firstAttribute="leading" secondItem="uno-Gw-GcC" secondAttribute="leadingMargin" id="xCO-to-omu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Influence Run" id="ERS-7x-lOn">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="CHX-fm-Q7H">
@@ -61,6 +82,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="balanceView" destination="KtM-4h-DT9" id="PBJ-zr-5gb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pDu-NZ-Wrf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,14 +102,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqj-Rg-RDf" userLabel="RotorPlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
+                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqj-Rg-RDf" userLabel="BalancePlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
                                 <rect key="frame" x="16" y="72" width="313" height="313"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sqj-Rg-RDf" secondAttribute="height" multiplier="1:1" id="i94-n2-3KS"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="sqj-Rg-RDf" secondAttribute="trailing" id="BeU-jN-PPX"/>
+                            <constraint firstItem="sqj-Rg-RDf" firstAttribute="leading" secondItem="ACR-QI-oTC" secondAttribute="leadingMargin" id="s6m-pv-6uy"/>
+                            <constraint firstItem="sqj-Rg-RDf" firstAttribute="top" secondItem="TrI-aW-Hcc" secondAttribute="bottom" constant="10" id="zL7-Mf-gsO"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Final Run" id="d7B-Mt-ONT"/>
+                    <connections>
+                        <outlet property="balanceView" destination="sqj-Rg-RDf" id="WOJ-h7-Ouc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gZS-NR-N1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

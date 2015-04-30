@@ -10,10 +10,15 @@ import UIKit
 
 class FinalRunViewController: UIViewController {
 
+    
+    @IBOutlet weak var balanceView: BalancePlaneView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        balanceView.layer.cornerRadius = 10.0
+        balanceView.layer.masksToBounds = true
     }
 
     override func didReceiveMemoryWarning() {

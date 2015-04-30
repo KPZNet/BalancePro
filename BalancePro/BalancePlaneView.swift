@@ -22,7 +22,7 @@ class Vector
     
     var name : String
     var color : UIColor?
-
+    
     
     
     
@@ -113,28 +113,27 @@ class BalancePlaneView: UIView {
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     var vibScale: Float = Float(10.0)
     var vibScaleLineWidth : Float = Float(0.1)
-
+    
     var vectorStrokeWidth : Float = 1.0
     var vectorArrowLength : Float = 1.0
-
+    
     var xScale : Float = 0.0
     var yScale : Float = 0.0
     
     var viewScale: Float = 0.0
     
-    //    override init(frame aRect: CGRect)
-    //    {
-    //
-    //        super.init(frame:aRect)
-    //        pTrans = GetTransform()
-    //
-    //    }
-    //
-    //    required init(coder aDecoder: NSCoder)
-    //    {
-    //        super.init(coder:aDecoder)
-    //
-    //    }
+    override init(frame aRect: CGRect)
+    {
+        
+        super.init(frame:aRect)
+        
+    }
+    
+    required init(coder aDecoder: NSCoder)
+    {
+        super.init(coder:aDecoder)
+        
+    }
     
     func InitalizeCartesianTransform()
     {
@@ -258,10 +257,10 @@ class BalancePlaneView: UIView {
     {
         PushToCartesianTransform()
         
-
+        
         var startAngle: Float = Float(2.0 * M_PI)
         var endAngle: Float = 0.0
-                
+        
         // Get the context
         let context = UIGraphicsGetCurrentContext()
         
@@ -286,15 +285,15 @@ class BalancePlaneView: UIView {
         PopToDefaultTransform()
         
     }
-
+    
     func DrawRotor()
     {
         PushToCartesianTransform()
         
-
+        
         var startAngle: Float = Float(2.0 * M_PI)
         var endAngle: Float = 0.0
-                
+        
         // Get the context
         let context = UIGraphicsGetCurrentContext()
         
@@ -317,7 +316,7 @@ class BalancePlaneView: UIView {
         CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
         PopToDefaultTransform()
-
+        
         DrawRotorCenterNob()
         
     }
@@ -334,7 +333,7 @@ class BalancePlaneView: UIView {
         
     }
     
-       
+    
     func GetArrowEnds( vector : Vector ) -> (xA:Float, yA:Float, xB:Float, yB:Float)
     {
         let arrowAngle : Float = 160
@@ -413,7 +412,7 @@ class BalancePlaneView: UIView {
     
     func DrawTextAt(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
     {
-
+        
         let fontName = "Helvetica"
         let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
         
@@ -432,7 +431,7 @@ class BalancePlaneView: UIView {
         _text.drawAtPoint(CGPointMake(0,0), withAttributes: tattribs)
         
         PopToDefaultTransform()
-
+        
     }
     
     func DrawTextLabel(At _point:CGPoint, Text _text:String)
@@ -456,20 +455,20 @@ class BalancePlaneView: UIView {
     
     func DrawDegreeLabel(At _point:CGPoint, Ratio _ratio:CGPoint, Degree _degree:Float)
     {
-
+        
         let centerExtension:CGFloat = CGFloat( (viewScale - vibScale) / 2.0)
         
         let xExtension:CGFloat = centerExtension * _ratio.x
         let yExtension:CGFloat = centerExtension * _ratio.y
         
         let sPoint:CGPoint = CGPoint(  x:_point.x + xExtension, y: _point.y + yExtension)
-
+        
         
         let degTextInt:NSNumber = Int(_degree)
         let degText:String = degTextInt.stringValue
-
+        
         DrawTextLabel(At: sPoint, Text: degText)
-
+        
     }
     
     
@@ -477,7 +476,7 @@ class BalancePlaneView: UIView {
     {
         
         let context = UIGraphicsGetCurrentContext()
-
+        
         let lineLength = ( (vibScale * 0.04) )
         
         // Set the stroke color
@@ -505,7 +504,7 @@ class BalancePlaneView: UIView {
     
     func DrawRotorDegreeTicLabels()
     {
-      
+        
         for var index = 0; index < 360; index+=45
         {
             
@@ -516,7 +515,7 @@ class BalancePlaneView: UIView {
             DrawDegreeLabel(At: textPoint, Ratio:ratioPoint, Degree:Float(index))
             
         }
-
+        
     }
     
     func SetupScales(MaxVib _maxVib : Float)
@@ -525,9 +524,10 @@ class BalancePlaneView: UIView {
         vibScaleLineWidth = (vibScale * 0.01)
         vectorStrokeWidth = (vibScale * 0.02)
         vectorArrowLength = (vibScale * Float(0.05))
-
+        
         
         InitalizeCartesianTransform()
+        
     }
     
     override func drawRect(rect: CGRect)
@@ -545,7 +545,7 @@ class BalancePlaneView: UIView {
         
         var vec = Vector(fromAmp: 10, fromPhase: 0, withName:"0")
         drawVector(vec)
-
+        
         var vecA = Vector(fromAmp: 10, fromPhase: 45, withName:"45")
         drawVector(vecA)
         
@@ -556,12 +556,12 @@ class BalancePlaneView: UIView {
         drawVector(vecC)
         
         
-//        var vec2 = Vector(fromAmp: 9.7, fromPhase: 75, withName:"Influence")
-//        drawVector(vec2)
-//        
-//        
-//        var vec4 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd, withName:"Sub")
-//        drawVector(vec4)
+        //        var vec2 = Vector(fromAmp: 9.7, fromPhase: 75, withName:"Influence")
+        //        drawVector(vec2)
+        //
+        //
+        //        var vec4 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd, withName:"Sub")
+        //        drawVector(vec4)
         
         
     }

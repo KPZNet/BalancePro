@@ -10,9 +10,15 @@ import UIKit
 
 class InfluenceRunViewController: UIViewController {
 
+    
+    @IBOutlet weak var balanceView: BalancePlaneView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        balanceView.layer.cornerRadius = 10.0
+        balanceView.layer.masksToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
