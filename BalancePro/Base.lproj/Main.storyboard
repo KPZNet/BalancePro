@@ -23,7 +23,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Initial Balance Run" id="6pz-97-wgN">
+                    <navigationItem key="navigationItem" title="Initial Run" id="6pz-97-wgN">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="2a8-i5-0pt">
                             <connections>
                                 <segue destination="N3N-d8-JS7" kind="show" id="feO-Xq-G9W"/>
