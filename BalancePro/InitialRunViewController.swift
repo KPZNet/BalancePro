@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  InitialRunViewController
 //  BalancePro
 //
 //  Created by KenCeglia on 11/18/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class InitialRunViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

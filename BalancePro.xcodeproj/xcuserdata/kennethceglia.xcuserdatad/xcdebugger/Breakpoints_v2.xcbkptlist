@@ -9,7 +9,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BalancePro/RotorPlaneView.swift"
+            filePath = "BalancePro/BalancePlaneView.swift"
             timestampString = "451862992.683013"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -25,7 +25,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BalancePro/RotorPlaneView.swift"
+            filePath = "BalancePro/BalancePlaneView.swift"
             timestampString = "451937605.428079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -41,13 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BalancePro/RotorPlaneView.swift"
+            filePath = "BalancePro/BalancePlaneView.swift"
             timestampString = "451937801.544948"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "412"
             endingLineNumber = "412"
-            landmarkName = "DrawTextAt(Text:At:Rotate:Size:)"
+            landmarkName = "drawVector(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

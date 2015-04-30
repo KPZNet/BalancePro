@@ -100,7 +100,7 @@ class BalanceWeight
 
 
 
-class RotorPlaneView: UIView {
+class BalancePlaneView: UIView {
     
     /*
     // Only override drawRect: if you perform custom drawing.

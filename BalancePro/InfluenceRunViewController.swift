@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  InfluenceRunViewController.swift
 //  BalancePro
 //
 //  Created by KenCeglia on 11/18/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class InfluenceRunViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

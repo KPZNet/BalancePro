@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kCB-Za-Dxa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Rotor Balance-->
+        <!--Initial Run-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="BalancePro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" userLabel="Initial Run" customClass="InitialRunViewController" customModule="BalancePro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -18,28 +16,80 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFI-ID-baA" userLabel="RotorPlaneView" customClass="RotorPlaneView" customModule="BalancePro" customModuleProvider="target">
-                                <rect key="frame" x="16" y="28" width="313" height="313"/>
+                            <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFI-ID-baA" userLabel="RotorPlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
+                                <rect key="frame" x="16" y="72" width="313" height="313"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="LFI-ID-baA" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="B1F-V6-wSX"/>
-                            <constraint firstItem="LFI-ID-baA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="centerXWithinMargins" id="gSm-8o-SHD"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="B1F-V6-wSX"/>
-                                <exclude reference="gSm-8o-SHD"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Rotor Balance" image="first" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" title="Initial Balance Run" id="6pz-97-wgN">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="2a8-i5-0pt">
+                            <connections>
+                                <segue destination="N3N-d8-JS7" kind="show" id="feO-Xq-G9W"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-320"/>
+            <point key="canvasLocation" x="1629" y="-302"/>
+        </scene>
+        <!--Influence Run-->
+        <scene sceneID="u9B-B8-IOO">
+            <objects>
+                <viewController id="N3N-d8-JS7" customClass="InfluenceRunViewController" customModule="BalancePro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cfQ-6z-Fb9"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uz8-ag-SuN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uno-Gw-GcC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KtM-4h-DT9" userLabel="RotorPlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
+                                <rect key="frame" x="16" y="72" width="313" height="313"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Influence Run" id="ERS-7x-lOn">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="CHX-fm-Q7H">
+                            <connections>
+                                <segue destination="icA-Dz-5Cs" kind="show" id="dgy-L0-Urh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pDu-NZ-Wrf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2318" y="-302"/>
+        </scene>
+        <!--Final Run-->
+        <scene sceneID="UIF-Uc-bVx">
+            <objects>
+                <viewController id="icA-Dz-5Cs" customClass="FinalRunViewController" customModule="BalancePro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TrI-aW-Hcc"/>
+                        <viewControllerLayoutGuide type="bottom" id="43q-QP-pbj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ACR-QI-oTC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqj-Rg-RDf" userLabel="RotorPlaneView" customClass="BalancePlaneView" customModule="BalancePro" customModuleProvider="target">
+                                <rect key="frame" x="16" y="72" width="313" height="313"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Final Run" id="d7B-Mt-ONT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gZS-NR-N1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3013" y="-302"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -52,15 +102,68 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="kCB-Za-Dxa" kind="show" id="TZb-uI-18h"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-614" y="-297"/>
+        </scene>
+        <!--Balance Pro-->
+        <scene sceneID="6Wf-3g-GEI">
+            <objects>
+                <viewController id="y7P-Dq-SaW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EJg-hU-MJ7"/>
+                        <viewControllerLayoutGuide type="bottom" id="dja-ox-8mp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yK6-Wb-7yj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fi-lA-58F">
+                                <rect key="frame" x="16" y="124" width="143" height="113"/>
+                                <color key="backgroundColor" red="0.50147832322956409" green="0.82412321895425356" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="New Balance Run">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="9pv-A4-QxB" kind="show" id="o8D-cr-Y8l"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYK-0Q-vlC">
+                                <rect key="frame" x="167" y="124" width="143" height="113"/>
+                                <color key="backgroundColor" red="0.50147832319999996" green="0.82412321899999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Saved Runs">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Balance Pro" id="xsR-G0-UQj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1VP-6Z-aP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="937" y="-302"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3WZ-fa-MeI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kCB-Za-Dxa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aci-xz-4C0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="y7P-Dq-SaW" kind="relationship" relationship="rootViewController" id="VY3-1Q-XdI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v0z-Vg-ZsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="174" y="-302"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="first" width="30" height="30"/>
-    </resources>
 </document>

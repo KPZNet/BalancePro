@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63DEA81F1AF1CE1A0011FB4A /* FinalRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */; };
 		71676AA31A5F75790049BF07 /* CodeHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71676AA21A5F75790049BF07 /* CodeHolder.swift */; };
-		71BE483F1A1BFBFA0067CA2B /* RotorPlaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE483E1A1BFBFA0067CA2B /* RotorPlaneView.swift */; };
+		71BE483F1A1BFBFA0067CA2B /* BalancePlaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */; };
 		71BE48411A1C37780067CA2B /* RotorPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE48401A1C37780067CA2B /* RotorPlane.swift */; };
 		71FA859E1A1BCA3500E69D40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FA859D1A1BCA3500E69D40 /* AppDelegate.swift */; };
-		71FA85A01A1BCA3500E69D40 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FA859F1A1BCA3500E69D40 /* FirstViewController.swift */; };
-		71FA85A21A1BCA3500E69D40 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FA85A11A1BCA3500E69D40 /* SecondViewController.swift */; };
+		71FA85A01A1BCA3500E69D40 /* InitialRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FA859F1A1BCA3500E69D40 /* InitialRunViewController.swift */; };
+		71FA85A21A1BCA3500E69D40 /* InfluenceRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FA85A11A1BCA3500E69D40 /* InfluenceRunViewController.swift */; };
 		71FA85A51A1BCA3500E69D40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71FA85A31A1BCA3500E69D40 /* Main.storyboard */; };
 		71FA85A71A1BCA3500E69D40 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71FA85A61A1BCA3500E69D40 /* Images.xcassets */; };
 		71FA85AA1A1BCA3500E69D40 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71FA85A81A1BCA3500E69D40 /* LaunchScreen.xib */; };
@@ -30,14 +31,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalRunViewController.swift; sourceTree = "<group>"; };
 		71676AA21A5F75790049BF07 /* CodeHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeHolder.swift; sourceTree = "<group>"; };
-		71BE483E1A1BFBFA0067CA2B /* RotorPlaneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotorPlaneView.swift; sourceTree = "<group>"; };
+		71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancePlaneView.swift; sourceTree = "<group>"; };
 		71BE48401A1C37780067CA2B /* RotorPlane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotorPlane.swift; sourceTree = "<group>"; };
 		71FA85981A1BCA3500E69D40 /* BalancePro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BalancePro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71FA859C1A1BCA3500E69D40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71FA859D1A1BCA3500E69D40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		71FA859F1A1BCA3500E69D40 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		71FA85A11A1BCA3500E69D40 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		71FA859F1A1BCA3500E69D40 /* InitialRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialRunViewController.swift; sourceTree = "<group>"; };
+		71FA85A11A1BCA3500E69D40 /* InfluenceRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceRunViewController.swift; sourceTree = "<group>"; };
 		71FA85A41A1BCA3500E69D40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		71FA85A61A1BCA3500E69D40 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		71FA85A91A1BCA3500E69D40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -86,9 +88,10 @@
 			isa = PBXGroup;
 			children = (
 				71FA859D1A1BCA3500E69D40 /* AppDelegate.swift */,
-				71FA859F1A1BCA3500E69D40 /* FirstViewController.swift */,
-				71FA85A11A1BCA3500E69D40 /* SecondViewController.swift */,
-				71BE483E1A1BFBFA0067CA2B /* RotorPlaneView.swift */,
+				71FA859F1A1BCA3500E69D40 /* InitialRunViewController.swift */,
+				63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */,
+				71FA85A11A1BCA3500E69D40 /* InfluenceRunViewController.swift */,
+				71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */,
 				71FA85A31A1BCA3500E69D40 /* Main.storyboard */,
 				71FA85A61A1BCA3500E69D40 /* Images.xcassets */,
 				71FA85A81A1BCA3500E69D40 /* LaunchScreen.xib */,
@@ -225,11 +228,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				71BE48411A1C37780067CA2B /* RotorPlane.swift in Sources */,
-				71BE483F1A1BFBFA0067CA2B /* RotorPlaneView.swift in Sources */,
-				71FA85A21A1BCA3500E69D40 /* SecondViewController.swift in Sources */,
+				71BE483F1A1BFBFA0067CA2B /* BalancePlaneView.swift in Sources */,
+				71FA85A21A1BCA3500E69D40 /* InfluenceRunViewController.swift in Sources */,
 				71FA859E1A1BCA3500E69D40 /* AppDelegate.swift in Sources */,
+				63DEA81F1AF1CE1A0011FB4A /* FinalRunViewController.swift in Sources */,
 				71676AA31A5F75790049BF07 /* CodeHolder.swift in Sources */,
-				71FA85A01A1BCA3500E69D40 /* FirstViewController.swift in Sources */,
+				71FA85A01A1BCA3500E69D40 /* InitialRunViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
