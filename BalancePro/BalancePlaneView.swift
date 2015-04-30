@@ -24,6 +24,7 @@ class Vector
     var color : UIColor?
     
     
+
     
     
     init()
@@ -80,7 +81,29 @@ class Vector
         amp = sqrt( (tempX * tempX) + (tempY * tempY) )
         
     }
+    
+
 }
+
+func +(left:Vector, right:Vector) -> Vector
+{
+    
+    var vecSub = Vector(xOrigin: right.xOrigin + left.xOrigin,
+                        yOrigin: right.yOrigin + left.yOrigin,
+                        xEnd: right.xEnd + left.xEnd,
+                        yEnd: right.yEnd + left.yEnd,
+                        withName:"vec")
+    
+    return vecSub
+}
+func -(left:Vector, right:Vector) -> Vector
+{
+    
+    var vecSub = Vector(xOrigin: right.xEnd, yOrigin: right.yEnd, xEnd: left.xEnd, yEnd: left.yEnd, withName:"vec")
+    
+    return vecSub
+}
+
 class BalanceWeight
 {
     var weight : Float
@@ -530,6 +553,8 @@ class BalancePlaneView: UIView {
         
     }
     
+    
+    
     override func drawRect(rect: CGRect)
     {
         
@@ -543,25 +568,24 @@ class BalancePlaneView: UIView {
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
         
-        var vec = Vector(fromAmp: 10, fromPhase: 0, withName:"0")
-        drawVector(vec)
+        var vec1 = Vector(fromAmp: 7, fromPhase: 0, withName:"0")
+        drawVector(vec1)
         
-        var vecA = Vector(fromAmp: 10, fromPhase: 45, withName:"45")
-        drawVector(vecA)
+        var vec2 = Vector(fromAmp: 10, fromPhase: 45, withName:"45")
+        drawVector(vec2)
         
-        var vecB = Vector(fromAmp: 10, fromPhase: 135, withName:"180")
-        drawVector(vecB)
+        var vec3 = Vector(fromAmp: 7.5, fromPhase: 135, withName:"135")
+        drawVector(vec3)
         
-        var vecC = Vector(fromAmp: 10, fromPhase: 315, withName:"270")
-        drawVector(vecC)
+        var vec4 = Vector(fromAmp: 9, fromPhase: 290, withName:"290")
+        drawVector(vec4)
         
         
-        //        var vec2 = Vector(fromAmp: 9.7, fromPhase: 75, withName:"Influence")
-        //        drawVector(vec2)
-        //
-        //
-        //        var vec4 = Vector(xOrigin: vec.xEnd, yOrigin: vec.yEnd, xEnd: vec2.xEnd, yEnd: vec2.yEnd, withName:"Sub")
-        //        drawVector(vec4)
+        var vec5 = vec4 - vec1
+        var vec6 = vec4 + vec1
+        
+        drawVector(vec5)
+        drawVector(vec6)
         
         
     }
