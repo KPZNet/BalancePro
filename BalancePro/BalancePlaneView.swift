@@ -304,10 +304,10 @@ class BalancePlaneView: UIView {
         CGContextAddArc(context, center.x, center.y, CGFloat(vibScale * 0.04), CGFloat(0), CGFloat(2.0 * M_PI), 1)
         
         // Set the fill color (if you are filling the circle)
-        CGContextSetFillColorWithColor(context, UIColor.blackColor().CGColor)
+        CGContextSetFillColorWithColor(context, UIColor.darkGrayColor().CGColor)
         
         // Set the stroke color
-        //CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
+        CGContextSetStrokeColorWithColor(context, UIColor.darkGrayColor().CGColor)
         
         // Set the line width
         CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
@@ -607,7 +607,7 @@ class BalancePlaneView: UIView {
         //drawVector(vec1)
         
         var vec2 = Vector(fromAmp: 10, fromPhase: 45, withName:"vec2")
-        //drawVector(vec2)
+        drawVector(vec2)
         
         var vec3 = Vector(fromAmp: 7.5, fromPhase: 135, withName:"vec3")
         //drawVector(vec3)
