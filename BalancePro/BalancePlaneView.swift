@@ -145,7 +145,7 @@ class BalancePlaneView: UIView {
     
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     var vibScale: Float = Float(10.0)
-    var rotateRotor : Float = Float(1.0)
+    var rotateRotor : Float = Float(0.0)
     var vibScaleLineWidth : Float = Float(0.1)
     
     var vectorStrokeWidth : Float = 1.0
@@ -371,7 +371,7 @@ class BalancePlaneView: UIView {
         
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
         
-        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
+        var  textHeight:Float = Float(textFont.lineHeight) / (Float(2.0) * yScale)
         midPoint.y += CGFloat(textHeight)
 
         let sRect:CGRect = CGRectMake(0, 0, 50, 10)
@@ -386,8 +386,9 @@ class BalancePlaneView: UIView {
         label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
         
-        
-        label.transform = CGAffineTransformMakeRotation(CGFloat(vector.phase) + CGFloat(rotateRotor) )
+        var textRotation = CGFloat(GetRadians(vector.phase)) + CGFloat(rotateRotor)
+        textRotation *= -1.0
+        label.transform = CGAffineTransformMakeRotation( textRotation )
         
         
         addSubview(label)
@@ -608,7 +609,7 @@ class BalancePlaneView: UIView {
     
     func SetupScales(MaxVib _maxVib : Float)
     {
-        rotateRotor = Float(M_PI_2)
+        //rotateRotor = Float(M_PI_2)
         
         vibScale = Float(_maxVib)
         vibScaleLineWidth = (vibScale * 0.01)
@@ -637,8 +638,8 @@ class BalancePlaneView: UIView {
         var vec1 = Vector(fromAmp: 7, fromPhase: 0, withName:"vec1")
         drawVector(vec1)
         
-        var vec2 = Vector(fromAmp: 10, fromPhase: 45, withName:"vec2")
-        //drawVector(vec2)
+        var vec2 = Vector(fromAmp: 10, fromPhase: 90, withName:"vec2")
+        drawVector(vec2)
         
         var vec3 = Vector(fromAmp: 7.5, fromPhase: 135, withName:"vec3")
         //drawVector(vec3)
