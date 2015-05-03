@@ -12,24 +12,24 @@ import UIKit
 
 class Vector
 {
-
+    
     var amp : Float
-    {
-
-            get {
-                var tempX :Float = xEnd - xOrigin
-                var tempY :Float = yEnd - yOrigin
-                
-                var radians = atan2( tempY , tempX )
-                
-                let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
-                let amp = sqrt( (tempX * tempX) + (tempY * tempY) )
-                return amp
-            }
+        {
+        
+        get {
+            var tempX :Float = xEnd - xOrigin
+            var tempY :Float = yEnd - yOrigin
+            
+            var radians = atan2( tempY , tempX )
+            
+            let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
+            let amp = sqrt( (tempX * tempX) + (tempY * tempY) )
+            return amp
+        }
     }
     var phase : Float
         {
-
+        
         get {
             var tempX :Float = xEnd - xOrigin
             var tempY :Float = yEnd - yOrigin
@@ -41,7 +41,7 @@ class Vector
             return phase
         }
     }
-
+    
     
     var xOrigin : Float = 0.0
     var yOrigin : Float = 0.0
@@ -80,7 +80,7 @@ class Vector
         
     }
     
-
+    
 }
 
 func *(left:Float, right:Vector) -> Vector
@@ -98,10 +98,10 @@ func +(left:Vector, right:Vector) -> Vector
 {
     
     var vecSub = Vector(xOrigin: right.xOrigin + left.xOrigin,
-                        yOrigin: right.yOrigin + left.yOrigin,
-                        xEnd: right.xEnd + left.xEnd,
-                        yEnd: right.yEnd + left.yEnd,
-                        withName:"vec")
+        yOrigin: right.yOrigin + left.yOrigin,
+        xEnd: right.xEnd + left.xEnd,
+        yEnd: right.yEnd + left.yEnd,
+        withName:"vec")
     
     return vecSub
 }
@@ -145,6 +145,7 @@ class BalancePlaneView: UIView {
     
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     var vibScale: Float = Float(10.0)
+    var rotateRotor : Float = Float(1.0)
     var vibScaleLineWidth : Float = Float(0.1)
     
     var vectorStrokeWidth : Float = 1.0
@@ -196,16 +197,22 @@ class BalancePlaneView: UIView {
         
         pTempCartesianTransform = CGAffineTransformScale(pTempCartesianTransform, CGFloat(xScale), CGFloat(yScale));
         
+        pTempCartesianTransform =  CGAffineTransformRotate(pTempCartesianTransform, CGFloat(rotateRotor))
+        
         return pTempCartesianTransform
     }
     
     func GetRotatedTextTransform(At _point:CGPoint, Rotate _rotate:Float) -> CGAffineTransform
     {
+        let rotationAngle = _rotate
+        
         let context = UIGraphicsGetCurrentContext()
         var pTempTransform : CGAffineTransform = CGAffineTransformIdentity
         
         pTempTransform = CGAffineTransformTranslate(pTempTransform, _point.x, _point.y)
-        pTempTransform = CGAffineTransformRotate(pTempTransform, CGFloat(_rotate) * -1.0 );
+        pTempTransform = CGAffineTransformRotate(pTempTransform, CGFloat(rotationAngle) * -1.0 );
+        
+        pTempTransform =  CGAffineTransformRotate(pTempTransform, CGFloat(rotateRotor))
         
         return pTempTransform
     }
@@ -362,7 +369,28 @@ class BalancePlaneView: UIView {
         midPoint.x = CGFloat((vector.xOrigin + vector.xEnd) / Float(2))
         midPoint.y = CGFloat((vector.yOrigin + vector.yEnd) / Float(2))
         
-        DrawTextAt(Text: vector.name, At: midPoint, Rotate: vector.phase, Size: 12)
+        let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
+        
+        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
+        midPoint.y += CGFloat(textHeight)
+
+        let sRect:CGRect = CGRectMake(0, 0, 50, 10)
+        var aPoint:CGPoint = CGPointApplyAffineTransform ( midPoint, pCartesianTrans );
+        
+        var label = UILabel(frame: sRect)
+        label.center = aPoint
+        label.font = textFont
+        label.textAlignment = NSTextAlignment.Center
+        label.text = vector.name
+        label.backgroundColor = UIColor.lightTextColor()
+        label.layer.cornerRadius = 5
+        label.layer.masksToBounds = true
+        
+        
+        label.transform = CGAffineTransformMakeRotation(CGFloat(vector.phase) + CGFloat(rotateRotor) )
+        
+        
+        addSubview(label)
         
     }
     
@@ -468,36 +496,38 @@ class BalancePlaneView: UIView {
         
     }
     
-    func DrawTextAt(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
-    {
-        
-        let fontName = "Helvetica"
-        let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
-        
-        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
-        var txHeight = Float(textHeight) / yScale
-        
-        let adjustPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y )
-        
-        var pPoint:CGPoint = CGPointApplyAffineTransform ( adjustPoint, pCartesianTrans );
-        
-        PushToTextTransform(At: pPoint, Rotate: GetRadians(_rotate) )
-        
-        let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-        textStyle.alignment = NSTextAlignment.Left
-        var tattribs = [NSFontAttributeName: textFont, NSParagraphStyleAttributeName: textStyle]
-        _text.drawAtPoint(CGPointMake(0,0), withAttributes: tattribs)
-        
-        PopToDefaultTransform()
-        
-    }
+//    func DrawVectorLabelAt(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
+//    {
+//        
+//        let fontName = "Helvetica"
+//        let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
+//        
+//        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
+//        var txHeight = Float(textHeight) / yScale
+//        
+//        let adjustPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y )
+//        
+//        var pPoint:CGPoint = CGPointApplyAffineTransform ( adjustPoint, pCartesianTrans );
+//        
+//        PushToTextTransform(At: pPoint, Rotate: GetRadians(_rotate) )
+//        
+//        let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+//        textStyle.alignment = NSTextAlignment.Left
+//        var tattribs = [NSFontAttributeName: textFont, NSParagraphStyleAttributeName: textStyle]
+//        _text.drawAtPoint(CGPointMake(0,0), withAttributes: tattribs)
+//        
+//        PopToDefaultTransform()
+//        
+//    }
+    
+
     
     func DrawTextLabel(At _point:CGPoint, Text _text:String)
     {
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
         
         let sPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y)
-        let sRect:CGRect = CGRectMake(0, 0, 20, 10)
+        let sRect:CGRect = CGRectMake(0, 0, 50, 10)
         var aPoint:CGPoint = CGPointApplyAffineTransform ( sPoint, pCartesianTrans );
         
         var label = UILabel(frame: sRect)
@@ -578,6 +608,8 @@ class BalancePlaneView: UIView {
     
     func SetupScales(MaxVib _maxVib : Float)
     {
+        rotateRotor = Float(M_PI_2)
+        
         vibScale = Float(_maxVib)
         vibScaleLineWidth = (vibScale * 0.01)
         vectorStrokeWidth = (vibScale * 0.02)
@@ -585,7 +617,6 @@ class BalancePlaneView: UIView {
         
         
         InitalizeCartesianTransform()
-        
     }
     
     
@@ -604,10 +635,10 @@ class BalancePlaneView: UIView {
         DrawWeight(weight)
         
         var vec1 = Vector(fromAmp: 7, fromPhase: 0, withName:"vec1")
-        //drawVector(vec1)
+        drawVector(vec1)
         
         var vec2 = Vector(fromAmp: 10, fromPhase: 45, withName:"vec2")
-        drawVector(vec2)
+        //drawVector(vec2)
         
         var vec3 = Vector(fromAmp: 7.5, fromPhase: 135, withName:"vec3")
         //drawVector(vec3)
@@ -619,12 +650,12 @@ class BalancePlaneView: UIView {
         var vec5 = vec4 - vec1
         var vec6 = vec4 + vec1
         
-        drawVector(vec5)
+        //drawVector(vec5)
         //drawVector(vec6)
         
-//        var vec5 = vec4 + (-1.0 * vec1)
-//        vec5.name = "vec5"
-//        drawVector(vec5)
+        //        var vec5 = vec4 + (-1.0 * vec1)
+        //        vec5.name = "vec5"
+        //        drawVector(vec5)
         
         
     }
