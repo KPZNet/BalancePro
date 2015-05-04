@@ -390,7 +390,6 @@ class BalancePlaneView: UIView {
         textRotation *= -1.0
         label.transform = CGAffineTransformMakeRotation( textRotation )
         
-        
         addSubview(label)
         
     }
