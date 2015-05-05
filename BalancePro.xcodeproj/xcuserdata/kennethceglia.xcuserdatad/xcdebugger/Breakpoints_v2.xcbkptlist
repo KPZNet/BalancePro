@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BalancePro/BalancePlaneView.swift"
-            timestampString = "452383819.739887"
+            timestampString = "452473605.924593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
-            landmarkName = "DrawVectorName(_:)"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
+            landmarkName = "DrawVectorName(_:RotateText:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

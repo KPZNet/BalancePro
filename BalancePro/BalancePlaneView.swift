@@ -10,129 +10,6 @@ import UIKit
 
 
 
-class Vector
-{
-    
-    var amp : Float
-        {
-        
-        get {
-            var tempX :Float = xEnd - xOrigin
-            var tempY :Float = yEnd - yOrigin
-            
-            var radians = atan2( tempY , tempX )
-            
-            let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
-            let amp = sqrt( (tempX * tempX) + (tempY * tempY) )
-            return amp
-        }
-    }
-    var phase : Float
-        {
-        
-        get {
-            var tempX :Float = xEnd - xOrigin
-            var tempY :Float = yEnd - yOrigin
-            
-            var radians = atan2( tempY , tempX )
-            
-            let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
-            let phase = RadToDegreesConversion * Float(radians)
-            return phase
-        }
-    }
-    
-    
-    var xOrigin : Float = 0.0
-    var yOrigin : Float = 0.0
-    var xEnd : Float = 0.0
-    var yEnd : Float = 0.0
-    
-    var name : String = "v"
-    var color : UIColor = UIColor.blueColor()
-    
-    
-    init()
-    {
-        
-    }
-    init(fromAmp _amp : Float, fromPhase _phase : Float, withName _name:String = "")
-    {
-        name = _name
-        
-        let DegToRadConversion : Float = Float(M_PI) / Float(180)
-        var radians : Float = 0.0
-        radians = DegToRadConversion * Float(_phase)
-        
-        xEnd = Float(  _amp * cos( radians ))
-        yEnd = Float(  _amp * sin( radians ))
-        
-    }
-    init(xOrigin _xOrigin:Float, yOrigin _yOrigin:Float, xEnd _xEnd:Float, yEnd _yEnd:Float, withName _name:String = "")
-    {
-        name = _name
-        
-        xOrigin = _xOrigin
-        yOrigin = _yOrigin
-        
-        xEnd = _xEnd
-        yEnd = _yEnd
-        
-    }
-    
-    
-}
-
-func *(left:Float, right:Vector) -> Vector
-{
-    
-    var vecSub = Vector(xOrigin: 0,
-        yOrigin: 0,
-        xEnd: right.xEnd * left,
-        yEnd: right.yEnd * left,
-        withName:"vec")
-    
-    return vecSub
-}
-func +(left:Vector, right:Vector) -> Vector
-{
-    
-    var vecSub = Vector(xOrigin: right.xOrigin + left.xOrigin,
-        yOrigin: right.yOrigin + left.yOrigin,
-        xEnd: right.xEnd + left.xEnd,
-        yEnd: right.yEnd + left.yEnd,
-        withName:"vec")
-    
-    return vecSub
-}
-func -(left:Vector, right:Vector) -> Vector
-{
-    
-    var vecSub = Vector(xOrigin: right.xEnd, yOrigin: right.yEnd, xEnd: left.xEnd, yEnd: left.yEnd, withName:"vec")
-    
-    return vecSub
-}
-
-
-class BalanceWeight
-{
-    var weight : Float
-    var location : Int
-    
-    init()
-    {
-        weight = 0.0
-        location = 0
-    }
-    init(fromWeight _weight : Float, fromLocation _location : Int)
-    {
-        weight = _weight
-        location = _location
-    }
-}
-
-
-
 class BalancePlaneView: UIView {
     
     /*
@@ -361,7 +238,7 @@ class BalancePlaneView: UIView {
         
     }
     
-    func DrawVectorName(vector:Vector)
+    func DrawVectorName(vector:Vector, RotateText _rotateText:Bool = false)
     {
         
         var midPoint : CGPoint = CGPoint(x:0, y:0)
@@ -382,13 +259,18 @@ class BalancePlaneView: UIView {
         label.font = textFont
         label.textAlignment = NSTextAlignment.Center
         label.text = vector.name
-        label.backgroundColor = UIColor.lightTextColor()
+        label.backgroundColor = UIColor.grayColor()
+        label.layer.borderColor = UIColor.darkGrayColor().CGColor
+        label.layer.borderWidth = 0.5
         label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
         
-        var textRotation = CGFloat(GetRadians(vector.phase)) + CGFloat(rotateRotor)
-        textRotation *= -1.0
-        label.transform = CGAffineTransformMakeRotation( textRotation )
+        if(_rotateText)
+        {
+            var textRotation = CGFloat(GetRadians(vector.phase)) + CGFloat(rotateRotor)
+            textRotation *= -1.0
+            label.transform = CGAffineTransformMakeRotation( textRotation )
+        }
         
         addSubview(label)
         
@@ -640,17 +522,17 @@ class BalancePlaneView: UIView {
         var vec2 = Vector(fromAmp: 10, fromPhase: 90, withName:"vec2")
         drawVector(vec2)
         
-        var vec3 = Vector(fromAmp: 7.5, fromPhase: 135, withName:"vec3")
+        var vec3 = Vector(fromAmp: 7.5, fromPhase: 10, withName:"vec3")
         //drawVector(vec3)
         
         var vec4 = Vector(fromAmp: 9, fromPhase: 290, withName:"vec4")
         //drawVector(vec4)
         
         
-        var vec5 = vec4 - vec1
+        var vec5 = vec2 - vec1
         var vec6 = vec4 + vec1
         
-        //drawVector(vec5)
+        drawVector(vec5)
         //drawVector(vec6)
         
         //        var vec5 = vec4 + (-1.0 * vec1)

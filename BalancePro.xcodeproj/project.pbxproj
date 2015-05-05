@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		63DEA81F1AF1CE1A0011FB4A /* FinalRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */; };
+		63DEA8211AF825590011FB4A /* RunConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEA8201AF825590011FB4A /* RunConfigurationViewController.swift */; };
+		63DEA8231AF825D50011FB4A /* BalanceRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEA8221AF825D50011FB4A /* BalanceRun.swift */; };
 		71676AA31A5F75790049BF07 /* CodeHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71676AA21A5F75790049BF07 /* CodeHolder.swift */; };
 		71BE483F1A1BFBFA0067CA2B /* BalancePlaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */; };
 		71FA859E1A1BCA3500E69D40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FA859D1A1BCA3500E69D40 /* AppDelegate.swift */; };
@@ -31,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalRunViewController.swift; sourceTree = "<group>"; };
+		63DEA8201AF825590011FB4A /* RunConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunConfigurationViewController.swift; sourceTree = "<group>"; };
+		63DEA8221AF825D50011FB4A /* BalanceRun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceRun.swift; sourceTree = "<group>"; };
 		71676AA21A5F75790049BF07 /* CodeHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeHolder.swift; sourceTree = "<group>"; };
 		71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancePlaneView.swift; sourceTree = "<group>"; };
 		71FA85981A1BCA3500E69D40 /* BalancePro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BalancePro.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +91,7 @@
 			children = (
 				71FA859D1A1BCA3500E69D40 /* AppDelegate.swift */,
 				71FA859F1A1BCA3500E69D40 /* InitialRunViewController.swift */,
+				63DEA8201AF825590011FB4A /* RunConfigurationViewController.swift */,
 				63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */,
 				71FA85A11A1BCA3500E69D40 /* InfluenceRunViewController.swift */,
 				71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */,
@@ -95,6 +100,7 @@
 				71FA85A81A1BCA3500E69D40 /* LaunchScreen.xib */,
 				71FA859B1A1BCA3500E69D40 /* Supporting Files */,
 				71676AA21A5F75790049BF07 /* CodeHolder.swift */,
+				63DEA8221AF825D50011FB4A /* BalanceRun.swift */,
 			);
 			path = BalancePro;
 			sourceTree = "<group>";
@@ -224,11 +230,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63DEA8211AF825590011FB4A /* RunConfigurationViewController.swift in Sources */,
 				71BE483F1A1BFBFA0067CA2B /* BalancePlaneView.swift in Sources */,
 				71FA85A21A1BCA3500E69D40 /* InfluenceRunViewController.swift in Sources */,
 				71FA859E1A1BCA3500E69D40 /* AppDelegate.swift in Sources */,
 				63DEA81F1AF1CE1A0011FB4A /* FinalRunViewController.swift in Sources */,
 				71676AA31A5F75790049BF07 /* CodeHolder.swift in Sources */,
+				63DEA8231AF825D50011FB4A /* BalanceRun.swift in Sources */,
 				71FA85A01A1BCA3500E69D40 /* InitialRunViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
