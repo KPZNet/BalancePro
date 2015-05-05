@@ -1,8 +1,8 @@
 //
-//  BalanceRun.swift
+//  BalancePro.swift
 //  BalancePro
 //
-//  Created by Kenneth Ceglia on 5/4/15.
+//  Created by KenCeglia on 5/4/15.
 //  Copyright (c) 2015 KenCeglia. All rights reserved.
 //
 
@@ -131,5 +131,6 @@ class BalanceWeight
         location = _location
     }
 }
+
 
 
