@@ -516,16 +516,16 @@ class BalancePlaneView: UIView {
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
         
-        var vec1 = Vector(fromAmp: 7, fromPhase: 0, withName:"vec1")
+        var vec1 = Vector(fromAmp: 7, fromPhaseInDegrees: 0, withName:"vec1")
         drawVector(vec1)
         
-        var vec2 = Vector(fromAmp: 10, fromPhase: 90, withName:"vec2")
+        var vec2 = Vector(fromAmp: 10, fromPhaseInDegrees: 110, withName:"vec2")
         drawVector(vec2)
         
-        var vec3 = Vector(fromAmp: 7.5, fromPhase: 10, withName:"vec3")
+        var vec3 = Vector(fromAmp: 7.5, fromPhaseInDegrees: 10, withName:"vec3")
         //drawVector(vec3)
         
-        var vec4 = Vector(fromAmp: 9, fromPhase: 290, withName:"vec4")
+        var vec4 = Vector(fromAmp: 9, fromPhaseInDegrees: 290, withName:"vec4")
         //drawVector(vec4)
         
         

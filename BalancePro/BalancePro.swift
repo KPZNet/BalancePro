@@ -10,20 +10,31 @@ import Foundation
 import UIKit
 
 enum RotationDirection {case cw, ccw}
+enum BalanceRunType {case initial, influence, final, general}
 
 class Vector
 {
+    
+    var xOrigin : Float = 0.0
+    var yOrigin : Float = 0.0
+    var xEnd : Float = 0.0
+    var yEnd : Float = 0.0
+    
+    var name : String = "vec"
+    var color : UIColor = UIColor.blueColor()
+    
+    var runType :BalanceRunType = BalanceRunType.general
     
     var amp : Float
         {
         
         get {
-            var tempX :Float = xEnd - xOrigin
-            var tempY :Float = yEnd - yOrigin
+            let tempX :Float = xEnd - xOrigin
+            let tempY :Float = yEnd - yOrigin
             
-            var radians = atan2( tempY , tempX )
+            let radians = atan2( tempY , tempX )
             
-            let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
+            let RadToDegreesConversion : Float = Float(180) * Float(M_PI_2)
             let amp = sqrt( (tempX * tempX) + (tempY * tempY) )
             return amp
         }
@@ -32,32 +43,22 @@ class Vector
         {
         
         get {
-            var tempX :Float = xEnd - xOrigin
-            var tempY :Float = yEnd - yOrigin
+            let tempX :Float = xEnd - xOrigin
+            let tempY :Float = yEnd - yOrigin
             
-            var radians = atan2( tempY , tempX )
+            let radians = atan2( tempY , tempX )
             
-            let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
+            let RadToDegreesConversion : Float = Float(180) * Float(M_PI_2)
             let phase = RadToDegreesConversion * Float(radians)
             return phase
         }
     }
     
-    
-    var xOrigin : Float = 0.0
-    var yOrigin : Float = 0.0
-    var xEnd : Float = 0.0
-    var yEnd : Float = 0.0
-    
-    var name : String = "v"
-    var color : UIColor = UIColor.blueColor()
-    
-    
     init()
     {
         
     }
-    init(fromAmp _amp : Float, fromPhase _phase : Float, withName _name:String = "")
+    init(fromAmp _amp : Float, fromPhaseInDegrees _phase : Float, withName _name:String = "")
     {
         name = _name
         
@@ -80,8 +81,6 @@ class Vector
         yEnd = _yEnd
         
     }
-    
-    
 }
 
 func *(left:Float, right:Vector) -> Vector
@@ -108,7 +107,6 @@ func +(left:Vector, right:Vector) -> Vector
 }
 func -(left:Vector, right:Vector) -> Vector
 {
-    
     var vecSub = Vector(xOrigin: right.xEnd, yOrigin: right.yEnd, xEnd: left.xEnd, yEnd: left.yEnd, withName:"vec")
     
     return vecSub

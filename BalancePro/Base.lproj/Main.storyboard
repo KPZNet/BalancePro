@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kCB-Za-Dxa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -117,7 +118,13 @@
                             <constraint firstItem="sqj-Rg-RDf" firstAttribute="top" secondItem="TrI-aW-Hcc" secondAttribute="bottom" constant="10" id="zL7-Mf-gsO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Final Run" id="d7B-Mt-ONT"/>
+                    <navigationItem key="navigationItem" title="Final Run" id="d7B-Mt-ONT">
+                        <barButtonItem key="rightBarButtonItem" title="Final" id="VOu-J3-yiq">
+                            <connections>
+                                <segue destination="BUp-q4-Ucf" kind="show" id="KjJ-Xo-Raz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="balanceView" destination="sqj-Rg-RDf" id="WOJ-h7-Ouc"/>
                     </connections>
@@ -125,6 +132,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gZS-NR-N1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3013" y="-302"/>
+        </scene>
+        <!--Balance Report-->
+        <scene sceneID="dMx-n6-kZi">
+            <objects>
+                <viewController id="BUp-q4-Ucf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cBI-hc-L8M"/>
+                        <viewControllerLayoutGuide type="bottom" id="dhj-ev-2oX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mql-3b-7mF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UEb-fK-ZAw" userLabel="Balance Runs">
+                                <rect key="frame" x="396" y="114" width="188" height="171"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UEb-fK-ZAw" secondAttribute="height" multiplier="1:1" id="kWQ-xi-pJO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UEb-fK-ZAw" firstAttribute="leading" secondItem="Mql-3b-7mF" secondAttribute="centerXWithinMargins" id="9CC-fe-BoY"/>
+                            <constraint firstItem="UEb-fK-ZAw" firstAttribute="trailing" secondItem="Mql-3b-7mF" secondAttribute="trailingMargin" id="WTO-7C-X9D"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Balance Report" id="25x-dP-qAD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="88w-Lo-3QU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3013" y="427"/>
         </scene>
         <!--Balance Pro-->
         <scene sceneID="6Wf-3g-GEI">
@@ -177,7 +216,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-jA-TvG" userLabel="Balance Plane">
-                                <rect key="frame" x="16" y="152" width="343" height="323"/>
+                                <rect key="frame" x="16" y="215" width="343" height="323"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cEt-jA-TvG" secondAttribute="height" multiplier="1:1" id="m6m-fm-Oox"/>
@@ -205,6 +244,17 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="mils" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OiF-o5-fL4">
+                                <rect key="frame" x="16" y="145" width="123" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Units" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpQ-gM-FTk">
+                                <rect key="frame" x="147" y="149" width="40" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -222,7 +272,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FhS-HT-Xjv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1284" y="433"/>
+            <point key="canvasLocation" x="1326" y="459"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3WZ-fa-MeI">
