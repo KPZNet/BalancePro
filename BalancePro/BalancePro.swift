@@ -20,10 +20,77 @@ class Vector
     var xEnd : Float = 0.0
     var yEnd : Float = 0.0
     
-    var name : String = "vec"
-    var color : UIColor = UIColor.blueColor()
+    var userName : String = "user"
+    var userColor : UIColor = UIColor.orangeColor()
     
     var runType :BalanceRunType = BalanceRunType.general
+    
+    var name: String
+        {
+        get{
+            var returnName = "empty"
+            switch (runType) {
+            case BalanceRunType.general:
+                returnName = "general"
+                break;
+                
+            case BalanceRunType.general:
+                returnName = "general"
+                break;
+                
+            case BalanceRunType.initial:
+                returnName = "First"
+                break;
+                
+            case BalanceRunType.influence:
+                returnName = "Infl"
+                break;
+                
+            case BalanceRunType.final:
+                returnName = "Final"
+                break;
+                
+            default:
+                returnName = "general"
+                break;
+            }
+            return returnName
+        }
+    }
+    
+    var color: UIColor
+        {
+        get{
+            var returnColor = UIColor.blueColor()
+            switch (runType) {
+            case BalanceRunType.general:
+                returnColor = UIColor.blueColor()
+                break;
+                
+            case BalanceRunType.general:
+                returnColor = UIColor.blueColor()
+                break;
+                
+            case BalanceRunType.initial:
+                returnColor = UIColor.whiteColor()
+                break;
+                
+            case BalanceRunType.influence:
+                returnColor = UIColor.redColor()
+                break;
+                
+            case BalanceRunType.final:
+                returnColor = UIColor.orangeColor()
+                break;
+                
+            default:
+                returnColor = UIColor.blueColor()
+                break;
+            }
+            return returnColor
+        }
+    }
+    
     
     var amp : Float
         {
@@ -34,7 +101,7 @@ class Vector
             
             let radians = atan2( tempY , tempX )
             
-            let RadToDegreesConversion : Float = Float(180) * Float(M_PI_2)
+            let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
             let amp = sqrt( (tempX * tempX) + (tempY * tempY) )
             return amp
         }
@@ -48,7 +115,7 @@ class Vector
             
             let radians = atan2( tempY , tempX )
             
-            let RadToDegreesConversion : Float = Float(180) * Float(M_PI_2)
+            let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
             let phase = RadToDegreesConversion * Float(radians)
             return phase
         }
@@ -58,9 +125,9 @@ class Vector
     {
         
     }
-    init(fromAmp _amp : Float, fromPhaseInDegrees _phase : Float, withName _name:String = "")
+    init(fromAmp _amp : Float, fromPhaseInDegrees _phase : Float, withRunType _runType:BalanceRunType = BalanceRunType.general)
     {
-        name = _name
+        runType = _runType
         
         let DegToRadConversion : Float = Float(M_PI) / Float(180)
         var radians : Float = 0.0
@@ -70,9 +137,9 @@ class Vector
         yEnd = Float(  _amp * sin( radians ))
         
     }
-    init(xOrigin _xOrigin:Float, yOrigin _yOrigin:Float, xEnd _xEnd:Float, yEnd _yEnd:Float, withName _name:String = "")
+    init(xOrigin _xOrigin:Float, yOrigin _yOrigin:Float, xEnd _xEnd:Float, yEnd _yEnd:Float, withRunType _runType:BalanceRunType = BalanceRunType.general)
     {
-        name = _name
+        runType = _runType
         
         xOrigin = _xOrigin
         yOrigin = _yOrigin
@@ -89,8 +156,7 @@ func *(left:Float, right:Vector) -> Vector
     var vecSub = Vector(xOrigin: 0,
         yOrigin: 0,
         xEnd: right.xEnd * left,
-        yEnd: right.yEnd * left,
-        withName:"vec")
+        yEnd: right.yEnd * left)
     
     return vecSub
 }
@@ -100,14 +166,13 @@ func +(left:Vector, right:Vector) -> Vector
     var vecSub = Vector(xOrigin: right.xOrigin + left.xOrigin,
         yOrigin: right.yOrigin + left.yOrigin,
         xEnd: right.xEnd + left.xEnd,
-        yEnd: right.yEnd + left.yEnd,
-        withName:"vec")
+        yEnd: right.yEnd + left.yEnd)
     
     return vecSub
 }
 func -(left:Vector, right:Vector) -> Vector
 {
-    var vecSub = Vector(xOrigin: right.xEnd, yOrigin: right.yEnd, xEnd: left.xEnd, yEnd: left.yEnd, withName:"vec")
+    var vecSub = Vector(xOrigin: right.xEnd, yOrigin: right.yEnd, xEnd: left.xEnd, yEnd: left.yEnd)
     
     return vecSub
 }
@@ -129,6 +194,20 @@ class BalanceWeight
         location = _location
     }
 }
+
+
+
+extension UIFont {
+    func sizeOfString (string: NSString, constrainedToWidth width: Double) -> CGSize
+    {
+        return string.boundingRectWithSize(CGSize(width: width, height: DBL_MAX),
+            options: NSStringDrawingOptions.UsesLineFragmentOrigin,
+            attributes: [NSFontAttributeName: self],
+            context: nil).size
+    }
+}
+
+
 
 
 

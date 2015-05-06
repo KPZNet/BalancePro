@@ -250,8 +250,10 @@ class BalancePlaneView: UIView {
         
         var  textHeight:Float = Float(textFont.lineHeight) / (Float(2.0) * yScale)
         midPoint.y += CGFloat(textHeight)
+        
+        var  textSize = textFont.sizeOfString(vector.name, constrainedToWidth: 100)
 
-        let sRect:CGRect = CGRectMake(0, 0, 50, 10)
+        let sRect:CGRect = CGRectMake(0, 0, textSize.width*1.5, textSize.height)
         var aPoint:CGPoint = CGPointApplyAffineTransform ( midPoint, pCartesianTrans );
         
         var label = UILabel(frame: sRect)
@@ -284,6 +286,8 @@ class BalancePlaneView: UIView {
         
         var radiansA : Float = 0.0
         var radiansB : Float = 0.0
+        
+        var pphase = Float(vector.phase)
         
         var degreesA : Float = Float(vector.phase + arrowAngle)
         var degreesB : Float = Float(vector.phase - arrowAngle)
@@ -516,23 +520,23 @@ class BalancePlaneView: UIView {
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
         
-        var vec1 = Vector(fromAmp: 7, fromPhaseInDegrees: 0, withName:"vec1")
+        var vec1 = Vector(fromAmp: 9, fromPhaseInDegrees: 70, withRunType: BalanceRunType.initial)
         drawVector(vec1)
         
-        var vec2 = Vector(fromAmp: 10, fromPhaseInDegrees: 110, withName:"vec2")
-        drawVector(vec2)
+        var vec2 = Vector(fromAmp: 10, fromPhaseInDegrees: 110, withRunType: BalanceRunType.influence)
+        //drawVector(vec2)
         
-        var vec3 = Vector(fromAmp: 7.5, fromPhaseInDegrees: 10, withName:"vec3")
+        var vec3 = Vector(fromAmp: 7.5, fromPhaseInDegrees: 10)
         //drawVector(vec3)
         
-        var vec4 = Vector(fromAmp: 9, fromPhaseInDegrees: 290, withName:"vec4")
+        var vec4 = Vector(fromAmp: 9, fromPhaseInDegrees: 290)
         //drawVector(vec4)
         
         
         var vec5 = vec2 - vec1
         var vec6 = vec4 + vec1
         
-        drawVector(vec5)
+        //drawVector(vec5)
         //drawVector(vec6)
         
         //        var vec5 = vec4 + (-1.0 * vec1)
