@@ -251,7 +251,7 @@ class BalancePlaneView: UIView {
         var  textHeight:Float = Float(textFont.lineHeight) / (Float(2.0) * yScale)
         midPoint.y += CGFloat(textHeight)
         
-        var  textSize = textFont.sizeOfString(vector.name, constrainedToWidth: 100)
+        var  textSize = textFont.sizeOfString(vector.name)
 
         let sRect:CGRect = CGRectMake(0, 0, textSize.width*1.5, textSize.height)
         var aPoint:CGPoint = CGPointApplyAffineTransform ( midPoint, pCartesianTrans );
