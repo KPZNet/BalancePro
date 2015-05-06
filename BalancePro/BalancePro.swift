@@ -177,6 +177,12 @@ func -(left:Vector, right:Vector) -> Vector
     return vecSub
 }
 
+func max(left:CGSize, right:CGSize) -> CGSize
+{
+    var newSize : CGSize = CGSize(width: max(left.width, right.width),
+                                  height: max(left.height, right.height) )
+    return newSize
+}
 
 class BalanceWeight
 {

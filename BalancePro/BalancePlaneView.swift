@@ -246,14 +246,11 @@ class BalancePlaneView: UIView {
         midPoint.x = CGFloat((vector.xOrigin + vector.xEnd) / Float(2))
         midPoint.y = CGFloat((vector.yOrigin + vector.yEnd) / Float(2))
         
-        let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
+        let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(15))!
         
-        var  textHeight:Float = Float(textFont.lineHeight) / (Float(2.0) * yScale)
-        midPoint.y += CGFloat(textHeight)
-        
-        var  textSize = textFont.sizeOfString(vector.name)
+        var  textSize = textFont.sizeOfString(vector.name + "XX")
 
-        let sRect:CGRect = CGRectMake(0, 0, textSize.width*1.5, textSize.height)
+        let sRect:CGRect = CGRectMake(0, 0, textSize.width, textSize.height)
         var aPoint:CGPoint = CGPointApplyAffineTransform ( midPoint, pCartesianTrans );
         
         var label = UILabel(frame: sRect)
@@ -520,11 +517,11 @@ class BalancePlaneView: UIView {
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
         
-        var vec1 = Vector(fromAmp: 9, fromPhaseInDegrees: 70, withRunType: BalanceRunType.initial)
+        var vec1 = Vector(fromAmp: 9, fromPhaseInDegrees: 9, withRunType: BalanceRunType.initial)
         drawVector(vec1)
         
         var vec2 = Vector(fromAmp: 10, fromPhaseInDegrees: 110, withRunType: BalanceRunType.influence)
-        //drawVector(vec2)
+        drawVector(vec2)
         
         var vec3 = Vector(fromAmp: 7.5, fromPhaseInDegrees: 10)
         //drawVector(vec3)
@@ -536,7 +533,7 @@ class BalancePlaneView: UIView {
         var vec5 = vec2 - vec1
         var vec6 = vec4 + vec1
         
-        //drawVector(vec5)
+        drawVector(vec5)
         //drawVector(vec6)
         
         //        var vec5 = vec4 + (-1.0 * vec1)
