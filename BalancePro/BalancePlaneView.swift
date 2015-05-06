@@ -246,7 +246,7 @@ class BalancePlaneView: UIView {
         midPoint.x = CGFloat((vector.xOrigin + vector.xEnd) / Float(2))
         midPoint.y = CGFloat((vector.yOrigin + vector.yEnd) / Float(2))
         
-        let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(15))!
+        let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
         
         var  textSize = textFont.sizeOfString(vector.name + "XX")
 
@@ -257,6 +257,7 @@ class BalancePlaneView: UIView {
         label.center = aPoint
         label.font = textFont
         label.textAlignment = NSTextAlignment.Center
+        
         label.text = vector.name
         label.backgroundColor = UIColor.grayColor()
         label.layer.borderColor = UIColor.darkGrayColor().CGColor
