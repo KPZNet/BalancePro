@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import QuartzCore
 
 enum RotationDirection {case cw, ccw}
 enum BalanceRunType {case initial, influence, final, general}
@@ -24,6 +25,23 @@ class Vector
     var userColor : UIColor = UIColor.orangeColor()
     
     var runType :BalanceRunType = BalanceRunType.general
+    
+    var basePoint:CGPoint
+        {
+        get{
+            var point:CGPoint = CGPointMake( CGFloat(xOrigin), CGFloat(yOrigin) )
+            return point
+        }
+        
+    }
+    var endPoint:CGPoint
+        {
+        get{
+            var point:CGPoint = CGPointMake( CGFloat(xEnd), CGFloat(yEnd) )
+            return point
+        }
+        
+    }
     
     var name: String
         {
@@ -212,6 +230,72 @@ extension UIFont {
             context: nil).size
     }
 }
+
+
+
+func DrawArrow(viewControl _view:UIView, basePoint _basePoint:CGPoint, endPoint _endPoint:CGPoint,
+    stemWidth _stemWidth: CGFloat,
+    headWidth _headWidth: CGFloat,
+    headLength _headLength:CGFloat,
+    color _color:UIColor)
+{
+    var path:UIBezierPath = UIBezierPath.bezierPathWithArrowFromPoint(
+        _basePoint,
+        endPoint: _endPoint,
+        tailWidth: _stemWidth,
+        headWidth: _headWidth,
+        headLength: _headLength)
+    
+    var shape : CAShapeLayer = CAShapeLayer()
+    shape.path = path.CGPath;
+    shape.fillColor = _color.CGColor
+    
+    _view.layer.addSublayer(shape)
+}
+
+
+extension UIBezierPath {
+    
+    class func getAxisAlignedArrowPoints(inout points: Array<CGPoint>, forLength: CGFloat, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat ) {
+        
+        let tailLength = forLength - headLength
+        points.append(CGPointMake(0, tailWidth/2))
+        points.append(CGPointMake(tailLength, tailWidth/2))
+        points.append(CGPointMake(tailLength, headWidth/2))
+        points.append(CGPointMake(forLength, 0))
+        points.append(CGPointMake(tailLength, -headWidth/2))
+        points.append(CGPointMake(tailLength, -tailWidth/2))
+        points.append(CGPointMake(0, -tailWidth/2))
+        
+    }
+    
+    
+    class func transformForStartPoint(startPoint: CGPoint, endPoint: CGPoint, length: CGFloat) -> CGAffineTransform{
+        let cosine: CGFloat = (endPoint.x - startPoint.x)/length
+        let sine: CGFloat = (endPoint.y - startPoint.y)/length
+        
+        return CGAffineTransformMake(cosine, sine, -sine, cosine, startPoint.x, startPoint.y)
+    }
+    
+    
+    class func bezierPathWithArrowFromPoint(startPoint:CGPoint, endPoint: CGPoint, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat) -> UIBezierPath {
+        
+        let length = hypotf(Float(endPoint.x) - Float(startPoint.x), Float(endPoint.y) - Float(startPoint.y))
+        
+        var points = [CGPoint]()
+        self.getAxisAlignedArrowPoints(&points, forLength: CGFloat(length), tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
+        
+        var transform: CGAffineTransform = self.transformForStartPoint(startPoint, endPoint: endPoint, length:  CGFloat(length))
+        
+        var cgPath: CGMutablePathRef = CGPathCreateMutable()
+        CGPathAddLines(cgPath, &transform, points, 7)
+        CGPathCloseSubpath(cgPath)
+        
+        var uiPath: UIBezierPath = UIBezierPath(CGPath: cgPath)
+        return uiPath
+    }
+}
+
 
 
 

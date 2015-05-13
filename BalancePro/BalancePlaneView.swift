@@ -125,6 +125,27 @@ class BalancePlaneView: UIView {
         return radian
     }
     
+    func DrawBCurve(basePoint _basePoint:CGPoint, endPoint _endPoint:CGPoint,
+        stemWidth _stemWidth: CGFloat,
+        headWidth _headWidth: CGFloat,
+        headLength _headLength:CGFloat)
+    {
+        var path:UIBezierPath = UIBezierPath.bezierPathWithArrowFromPoint(
+            _basePoint,
+            endPoint: _endPoint,
+            tailWidth: _stemWidth,
+            headWidth: _headWidth,
+            headLength: _headLength)
+        
+        var shape : CAShapeLayer = CAShapeLayer()
+        shape.path = path.CGPath;
+        shape.fillColor = UIColor.blackColor().CGColor
+        
+        
+        self.layer.addSublayer(shape)
+        
+    }
+    
     func DrawWeight( weight : BalanceWeight )
     {
         PushToCartesianTransform()
@@ -203,6 +224,7 @@ class BalancePlaneView: UIView {
         
     }
     
+
     func DrawRotor()
     {
         PushToCartesianTransform()
@@ -277,132 +299,24 @@ class BalancePlaneView: UIView {
     }
     
     
-    func GetArrowEnds( vector : Vector ) -> (xA:Float, yA:Float, xB:Float, yB:Float)
-    {
-        let arrowAngle : Float = 160
-        let arrowLength : Float = vectorArrowLength
-        
-        var radiansA : Float = 0.0
-        var radiansB : Float = 0.0
-        
-        var pphase = Float(vector.phase)
-        
-        var degreesA : Float = Float(vector.phase + arrowAngle)
-        var degreesB : Float = Float(vector.phase - arrowAngle)
-        
-        radiansA = GetRadians(degreesA)
-        radiansB = GetRadians(degreesB)
-        
-        var xScaleA : Float = 0.0
-        var yScaleA : Float = 0.0
-        var xScaleB : Float = 0.0
-        var yScaleB : Float = 0.0
-        
-        xScaleA = cos(radiansA)  * arrowLength
-        yScaleA = sin(radiansA)  * arrowLength
-        
-        xScaleB = cos(radiansB)  * arrowLength
-        yScaleB = sin(radiansB)  * arrowLength
-        
-        
-        xScaleA += vector.xEnd
-        yScaleA += vector.yEnd
-        
-        xScaleB += vector.xEnd
-        yScaleB += vector.yEnd
-        
-        return (xScaleA, yScaleA, xScaleB, yScaleB)
-    }
-    
-    func drawVector(vector : Vector)
+
+    func drawBVector(vector : Vector)
     {
         PushToCartesianTransform()
-        
-        // Get the context
-        
-        let context = UIGraphicsGetCurrentContext()
-        
-        // Set the stroke color
-        CGContextSetStrokeColorWithColor(context, vector.color.CGColor)
-        // Set the line width
-        CGContextSetLineWidth(context, CGFloat(vectorStrokeWidth))
-        
-        CGContextMoveToPoint(context, CGFloat(vector.xOrigin), CGFloat(vector.yOrigin) )
-        CGContextAddLineToPoint(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd))
-        CGContextStrokePath(context)
-        
-        
-        var xScaleA : Float = 0.0
-        var yScaleA : Float = 0.0
-        var xScaleB : Float = 0.0
-        var yScaleB : Float = 0.0
-        var xMidScale : Float = 0.0
-        var yMidScale : Float = 0.0
-        
-        (xScaleA, yScaleA, xScaleB, yScaleB) = GetArrowEnds(vector)
-        xMidScale = vector.xEnd
-        yMidScale = vector.yEnd
-        
-        
-        CGContextMoveToPoint(context, CGFloat(xScaleA), CGFloat(yScaleA))
-        CGContextAddLineToPoint(context, CGFloat(xMidScale), CGFloat(yMidScale))
-        CGContextAddLineToPoint(context, CGFloat(xScaleB), CGFloat(yScaleB))
-        CGContextStrokePath(context)
-        
-        
-        //Draw the vector base nob
-        var startAngle: Float = Float(2.0 * M_PI)
-        var endAngle: Float = 0.0
-        
-        // Find the middle of the circle
-        let center = CGPointMake(0 , 0)
-        
-        // Draw the arc around the circle
-        CGContextAddArc(context, CGFloat(vector.xOrigin), CGFloat(vector.yOrigin), CGFloat(vectorStrokeWidth*0.65), CGFloat(0), CGFloat(2.0 * M_PI), 1)
-        
-        // Set the fill color (if you are filling the circle)
-        CGContextSetFillColorWithColor(context, vector.color.CGColor)
-        
-        // Set the stroke color
-        CGContextSetStrokeColorWithColor(context, vector.color.CGColor)
-        
-        // Set the line width
-        CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
-        
-        // Draw the arc
-        CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
-        // end Draw vector base nob
-        
+
+        DrawArrow(viewControl:self,
+                basePoint: CGPointApplyAffineTransform(vector.basePoint, pCartesianTrans),
+                endPoint: CGPointApplyAffineTransform(vector.endPoint, pCartesianTrans),
+                stemWidth: CGFloat(3),
+                headWidth: CGFloat(7),
+                headLength: CGFloat(10.0),
+                color:vector.color)
         
         PopToDefaultTransform()
         
         DrawVectorName(vector)
         
     }
-    
-//    func DrawVectorLabelAt(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
-//    {
-//        
-//        let fontName = "Helvetica"
-//        let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
-//        
-//        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
-//        var txHeight = Float(textHeight) / yScale
-//        
-//        let adjustPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y )
-//        
-//        var pPoint:CGPoint = CGPointApplyAffineTransform ( adjustPoint, pCartesianTrans );
-//        
-//        PushToTextTransform(At: pPoint, Rotate: GetRadians(_rotate) )
-//        
-//        let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-//        textStyle.alignment = NSTextAlignment.Left
-//        var tattribs = [NSFontAttributeName: textFont, NSParagraphStyleAttributeName: textStyle]
-//        _text.drawAtPoint(CGPointMake(0,0), withAttributes: tattribs)
-//        
-//        PopToDefaultTransform()
-//        
-//    }
     
 
     
@@ -512,6 +426,7 @@ class BalancePlaneView: UIView {
         
         DrawRotor()
         
+        
         DrawRotorDegreeTics()
         DrawRotorDegreeTicLabels()
         
@@ -519,13 +434,13 @@ class BalancePlaneView: UIView {
         DrawWeight(weight)
         
         var vec1 = Vector(fromAmp: 9, fromPhaseInDegrees: 9, withRunType: BalanceRunType.initial)
-        drawVector(vec1)
+        drawBVector(vec1)
         
-        var vec2 = Vector(fromAmp: 10, fromPhaseInDegrees: 110, withRunType: BalanceRunType.influence)
-        drawVector(vec2)
+        var vec2 = Vector(fromAmp: 9, fromPhaseInDegrees: 120, withRunType: BalanceRunType.influence)
+        drawBVector(vec2)
         
-        var vec3 = Vector(fromAmp: 7.5, fromPhaseInDegrees: 10)
-        //drawVector(vec3)
+        var vec3 = Vector(fromAmp: 7.5, fromPhaseInDegrees: 270)
+        drawBVector(vec3)
         
         var vec4 = Vector(fromAmp: 9, fromPhaseInDegrees: 290)
         //drawVector(vec4)
@@ -534,12 +449,13 @@ class BalancePlaneView: UIView {
         var vec5 = vec2 - vec1
         var vec6 = vec4 + vec1
         
-        drawVector(vec5)
+        drawBVector(vec5)
         //drawVector(vec6)
         
         //        var vec5 = vec4 + (-1.0 * vec1)
         //        vec5.name = "vec5"
         //        drawVector(vec5)
+        
         
         
     }

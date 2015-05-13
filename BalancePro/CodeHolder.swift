@@ -8,6 +8,31 @@
 
 import Foundation
 
+//    func DrawVectorLabelAt(Text _text:String, At _point:CGPoint, Rotate _rotate:Float, Size _size : Int)
+//    {
+//
+//        let fontName = "Helvetica"
+//        let textFont:UIFont = UIFont(name: fontName, size: CGFloat(_size))!
+//
+//        var  textHeight:Float = Float(textFont.lineHeight) / Float(2.0)
+//        var txHeight = Float(textHeight) / yScale
+//
+//        let adjustPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y )
+//
+//        var pPoint:CGPoint = CGPointApplyAffineTransform ( adjustPoint, pCartesianTrans );
+//
+//        PushToTextTransform(At: pPoint, Rotate: GetRadians(_rotate) )
+//
+//        let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+//        textStyle.alignment = NSTextAlignment.Left
+//        var tattribs = [NSFontAttributeName: textFont, NSParagraphStyleAttributeName: textStyle]
+//        _text.drawAtPoint(CGPointMake(0,0), withAttributes: tattribs)
+//
+//        PopToDefaultTransform()
+//
+//    }
+
+
 //
 //#import "UIBezierPath+dqd_arrowhead.h"
 //
@@ -134,3 +159,148 @@ import Foundation
 //// the line of text is drawn - see https://developer.apple.com/library/ios/DOCUMENTATION/StringsTextFonts/Conceptual/CoreText_Programming/LayoutOperations/LayoutOperations.html
 //// draw the line of text
 //CTLineDraw(line, ctx)
+
+
+
+/*
+
+- (void)drawRect:(CGRect)rect {
+    
+    //DRAW CURVE
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetLineWidth(context, 2.0);
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
+    
+    CGContextMoveToPoint(context, 100, 100);
+    CGContextAddArcToPoint(context, 100,200, 300,200, 100);
+    CGContextStrokePath(context);
+    
+    //DRAW LINE
+    CGContextSetLineWidth(context, 2.0);
+    
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    
+    CGFloat components[] = {0.0, 0.0, 1.0, 1.0};
+    
+    CGColorRef color = CGColorCreate(colorspace, components);
+    
+    CGContextSetStrokeColorWithColor(context, color);
+    
+    CGContextMoveToPoint(context, 0, 0);
+    CGContextAddLineToPoint(context, 300, 400);
+    
+    CGContextStrokePath(context);
+    CGColorSpaceRelease(colorspace);
+    CGColorRelease(color);
+
+*/
+
+
+
+/*
+
+func GetArrowEnds( vector : Vector ) -> (xA:Float, yA:Float, xB:Float, yB:Float)
+{
+    let arrowAngle : Float = 160
+    let arrowLength : Float = vectorArrowLength
+    
+    var radiansA : Float = 0.0
+    var radiansB : Float = 0.0
+    
+    var pphase = Float(vector.phase)
+    
+    var degreesA : Float = Float(vector.phase + arrowAngle)
+    var degreesB : Float = Float(vector.phase - arrowAngle)
+    
+    radiansA = GetRadians(degreesA)
+    radiansB = GetRadians(degreesB)
+    
+    var xScaleA : Float = 0.0
+    var yScaleA : Float = 0.0
+    var xScaleB : Float = 0.0
+    var yScaleB : Float = 0.0
+    
+    xScaleA = cos(radiansA)  * arrowLength
+    yScaleA = sin(radiansA)  * arrowLength
+    
+    xScaleB = cos(radiansB)  * arrowLength
+    yScaleB = sin(radiansB)  * arrowLength
+    
+    
+    xScaleA += vector.xEnd
+    yScaleA += vector.yEnd
+    
+    xScaleB += vector.xEnd
+    yScaleB += vector.yEnd
+    
+    return (xScaleA, yScaleA, xScaleB, yScaleB)
+}
+
+func drawVector(vector : Vector)
+{
+    PushToCartesianTransform()
+    
+    // Get the context
+    
+    let context = UIGraphicsGetCurrentContext()
+    
+    // Set the stroke color
+    CGContextSetStrokeColorWithColor(context, vector.color.CGColor)
+    // Set the line width
+    CGContextSetLineWidth(context, CGFloat(vectorStrokeWidth))
+    
+    CGContextMoveToPoint(context, CGFloat(vector.xOrigin), CGFloat(vector.yOrigin) )
+    CGContextAddLineToPoint(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd))
+    CGContextStrokePath(context)
+    
+    
+    var xScaleA : Float = 0.0
+    var yScaleA : Float = 0.0
+    var xScaleB : Float = 0.0
+    var yScaleB : Float = 0.0
+    var xMidScale : Float = 0.0
+    var yMidScale : Float = 0.0
+    
+    (xScaleA, yScaleA, xScaleB, yScaleB) = GetArrowEnds(vector)
+    xMidScale = vector.xEnd
+    yMidScale = vector.yEnd
+    
+    
+    CGContextMoveToPoint(context, CGFloat(xScaleA), CGFloat(yScaleA))
+    CGContextAddLineToPoint(context, CGFloat(xMidScale), CGFloat(yMidScale))
+    CGContextAddLineToPoint(context, CGFloat(xScaleB), CGFloat(yScaleB))
+    CGContextStrokePath(context)
+    
+    
+    //Draw the vector base nob
+    var startAngle: Float = Float(2.0 * M_PI)
+    var endAngle: Float = 0.0
+    
+    // Find the middle of the circle
+    let center = CGPointMake(0 , 0)
+    
+    // Draw the arc around the circle
+    CGContextAddArc(context, CGFloat(vector.xOrigin), CGFloat(vector.yOrigin), CGFloat(vectorStrokeWidth*0.65), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+    
+    // Set the fill color (if you are filling the circle)
+    CGContextSetFillColorWithColor(context, vector.color.CGColor)
+    
+    // Set the stroke color
+    CGContextSetStrokeColorWithColor(context, vector.color.CGColor)
+    
+    // Set the line width
+    CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
+    
+    // Draw the arc
+    CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
+    // end Draw vector base nob
+    
+    
+    PopToDefaultTransform()
+    
+    DrawVectorName(vector)
+    
+}
+*/
