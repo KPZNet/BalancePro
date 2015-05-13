@@ -130,7 +130,7 @@ class BalancePlaneView: UIView {
         headWidth _headWidth: CGFloat,
         headLength _headLength:CGFloat)
     {
-        var path:UIBezierPath = UIBezierPath.bezierPathWithArrowFromPoint(
+        var path:UIBezierPath = UIBezierPath.GetBezierArrowPathFromPoint(
             _basePoint,
             endPoint: _endPoint,
             tailWidth: _tailWidth,

@@ -239,7 +239,7 @@ func DrawArrow(viewControl _view:UIView, basePoint _basePoint:CGPoint, endPoint 
     headLength _headLength:CGFloat,
     color _color:UIColor)
 {
-    var path:UIBezierPath = UIBezierPath.bezierPathWithArrowFromPoint(
+    var path:UIBezierPath = UIBezierPath.GetBezierArrowPathFromPoint(
         _basePoint,
         endPoint: _endPoint,
         tailWidth: _tailWidth,
@@ -256,7 +256,8 @@ func DrawArrow(viewControl _view:UIView, basePoint _basePoint:CGPoint, endPoint 
 
 extension UIBezierPath {
     
-    class func getAxisAlignedArrowPoints(inout points: Array<CGPoint>, forLength: CGFloat, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat ) {
+    class func GetVectorAlignedPoints(inout points: Array<CGPoint>, forLength: CGFloat, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat )
+    {
         
         let tailLength = forLength - headLength
         points.append(CGPointMake(0, tailWidth/2))
@@ -270,7 +271,8 @@ extension UIBezierPath {
     }
     
     
-    class func transformForStartPoint(startPoint: CGPoint, endPoint: CGPoint, length: CGFloat) -> CGAffineTransform{
+    class func MakeTransformForStartPoint(startPoint: CGPoint, endPoint: CGPoint, length: CGFloat) -> CGAffineTransform
+    {
         let cosine: CGFloat = (endPoint.x - startPoint.x)/length
         let sine: CGFloat = (endPoint.y - startPoint.y)/length
         
@@ -278,17 +280,19 @@ extension UIBezierPath {
     }
     
     
-    class func bezierPathWithArrowFromPoint(startPoint:CGPoint, endPoint: CGPoint, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat) -> UIBezierPath {
+    class func GetBezierArrowPathFromPoint(startPoint:CGPoint, endPoint: CGPoint, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat) -> UIBezierPath
+    {
+        let NUM_VECTOR_POINTS = 7
         
         let length = hypotf(Float(endPoint.x) - Float(startPoint.x), Float(endPoint.y) - Float(startPoint.y))
         
         var points = [CGPoint]()
-        self.getAxisAlignedArrowPoints(&points, forLength: CGFloat(length), tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
+        self.GetVectorAlignedPoints(&points, forLength: CGFloat(length), tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
         
-        var transform: CGAffineTransform = self.transformForStartPoint(startPoint, endPoint: endPoint, length:  CGFloat(length))
+        var transform: CGAffineTransform = self.MakeTransformForStartPoint(startPoint, endPoint: endPoint, length:  CGFloat(length))
         
         var cgPath: CGMutablePathRef = CGPathCreateMutable()
-        CGPathAddLines(cgPath, &transform, points, 7)
+        CGPathAddLines(cgPath, &transform, points, NUM_VECTOR_POINTS)
         CGPathCloseSubpath(cgPath)
         
         var uiPath: UIBezierPath = UIBezierPath(CGPath: cgPath)
