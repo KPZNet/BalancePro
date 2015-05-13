@@ -234,7 +234,7 @@ extension UIFont {
 
 
 func DrawArrow(viewControl _view:UIView, basePoint _basePoint:CGPoint, endPoint _endPoint:CGPoint,
-    stemWidth _stemWidth: CGFloat,
+    tailWidth _tailWidth: CGFloat,
     headWidth _headWidth: CGFloat,
     headLength _headLength:CGFloat,
     color _color:UIColor)
@@ -242,7 +242,7 @@ func DrawArrow(viewControl _view:UIView, basePoint _basePoint:CGPoint, endPoint 
     var path:UIBezierPath = UIBezierPath.bezierPathWithArrowFromPoint(
         _basePoint,
         endPoint: _endPoint,
-        tailWidth: _stemWidth,
+        tailWidth: _tailWidth,
         headWidth: _headWidth,
         headLength: _headLength)
     

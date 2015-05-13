@@ -126,14 +126,14 @@ class BalancePlaneView: UIView {
     }
     
     func DrawBCurve(basePoint _basePoint:CGPoint, endPoint _endPoint:CGPoint,
-        stemWidth _stemWidth: CGFloat,
+        tailWidth _tailWidth: CGFloat,
         headWidth _headWidth: CGFloat,
         headLength _headLength:CGFloat)
     {
         var path:UIBezierPath = UIBezierPath.bezierPathWithArrowFromPoint(
             _basePoint,
             endPoint: _endPoint,
-            tailWidth: _stemWidth,
+            tailWidth: _tailWidth,
             headWidth: _headWidth,
             headLength: _headLength)
         
@@ -307,7 +307,7 @@ class BalancePlaneView: UIView {
         DrawArrow(viewControl:self,
                 basePoint: CGPointApplyAffineTransform(vector.basePoint, pCartesianTrans),
                 endPoint: CGPointApplyAffineTransform(vector.endPoint, pCartesianTrans),
-                stemWidth: CGFloat(3),
+                tailWidth: CGFloat(3),
                 headWidth: CGFloat(7),
                 headLength: CGFloat(10.0),
                 color:vector.color)
