@@ -125,26 +125,7 @@ class BalancePlaneView: UIView {
         return radian
     }
     
-    func DrawBCurve(basePoint _basePoint:CGPoint, endPoint _endPoint:CGPoint,
-        tailWidth _tailWidth: CGFloat,
-        headWidth _headWidth: CGFloat,
-        headLength _headLength:CGFloat)
-    {
-        var path:UIBezierPath = UIBezierPath.GetBezierArrowPathFromPoint(
-            _basePoint,
-            endPoint: _endPoint,
-            tailWidth: _tailWidth,
-            headWidth: _headWidth,
-            headLength: _headLength)
-        
-        var shape : CAShapeLayer = CAShapeLayer()
-        shape.path = path.CGPath;
-        shape.fillColor = UIColor.blackColor().CGColor
-        
-        
-        self.layer.addSublayer(shape)
-        
-    }
+
     
     func DrawWeight( weight : BalanceWeight )
     {
