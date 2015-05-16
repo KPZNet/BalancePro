@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BalancePro/BalancePlaneView.swift"
-            timestampString = "453178080.524787"
+            timestampString = "453485211.825219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "410"
-            endingLineNumber = "410"
+            startingLineNumber = "443"
+            endingLineNumber = "443"
             landmarkName = "drawRect(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BalancePro/BalancePlaneView.swift"
-            timestampString = "453178080.524787"
+            timestampString = "453485211.825219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
             landmarkName = "drawRect(_:)"
             landmarkType = "5">
          </BreakpointContent>

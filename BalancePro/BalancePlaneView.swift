@@ -279,7 +279,39 @@ class BalancePlaneView: UIView {
         
     }
     
-    
+    func DrawVectorEndCir(vector:Vector)
+    {
+        PushToCartesianTransform()
+        
+        var fillColor : UIColor = UIColor(red: (160/255.0), green: (97/255.0), blue: (5/255.0), alpha: 0.2)
+        
+        var startAngle: Float = Float(2.0 * M_PI)
+        var endAngle: Float = 0.0
+        
+        // Get the context
+        let context = UIGraphicsGetCurrentContext()
+        
+        // Find the middle of the circle
+        let center = CGPointMake(0 , 0)
+        
+        // Draw the arc around the circle
+        CGContextAddArc(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd), CGFloat(2), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+        
+        // Set the fill color (if you are filling the circle)
+        CGContextSetFillColorWithColor(context, fillColor.CGColor)
+        
+        // Set the stroke color
+        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
+        
+        // Set the line width
+        CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
+        
+        // Draw the arc
+        CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        
+        PopToDefaultTransform()
+        
+    }
 
     func drawBVector(vector : Vector)
     {
@@ -296,6 +328,7 @@ class BalancePlaneView: UIView {
         PopToDefaultTransform()
         
         DrawVectorName(vector)
+        DrawVectorEndCir(vector)
         
     }
     
