@@ -11,7 +11,6 @@ import UIKit
 class InfluenceRunViewController: UIViewController {
 
     
-    
     @IBOutlet weak var vectorAmplitude: UITextField!
     @IBOutlet weak var vectorPhase: UITextField!
     
@@ -30,6 +29,18 @@ class InfluenceRunViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func AddVector(sender: AnyObject) {
+        
+        var ampString:NSString = vectorAmplitude.text
+        var amp = ampString.floatValue
+        
+        var phaseString:NSString = vectorPhase.text
+        var phase = phaseString.floatValue
+        
+        var vec0 = Vector(fromAmp: amp, fromPhaseInDegrees: phase, withRunType: BalanceRunType.initial)
+        balancePlane.AddVector(vec0)
+        
+    }
 
 }
 

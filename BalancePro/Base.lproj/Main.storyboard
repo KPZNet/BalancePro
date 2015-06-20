@@ -116,7 +116,7 @@
                                     <constraint firstAttribute="width" secondItem="KtM-4h-DT9" secondAttribute="height" multiplier="1:1" id="1x5-29-Od0"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bx-qB-kOq" userLabel="VectorAmplitude">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5.8" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bx-qB-kOq" userLabel="VectorAmplitude">
                                 <rect key="frame" x="16" y="340" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="3eE-eQ-Dkl"/>
@@ -125,7 +125,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gSM-jx-cS2" userLabel="VectorPhase">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gSM-jx-cS2" userLabel="VectorPhase">
                                 <rect key="frame" x="121" y="340" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="YDn-Oo-P72"/>
@@ -152,6 +152,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="AddVector:" destination="N3N-d8-JS7" eventType="touchUpInside" id="496-qz-GzO"/>
                                     <action selector="AddVector:" destination="9pv-A4-QxB" eventType="touchUpInside" id="bKR-Es-ryQ"/>
                                 </connections>
                             </button>
@@ -174,7 +175,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="balanceView" destination="KtM-4h-DT9" id="PBJ-zr-5gb"/>
+                        <outlet property="balancePlane" destination="KtM-4h-DT9" id="t3d-P3-tRv"/>
+                        <outlet property="vectorAmplitude" destination="9bx-qB-kOq" id="AUl-ht-SSr"/>
+                        <outlet property="vectorPhase" destination="gSM-jx-cS2" id="JVt-Hj-ULM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pDu-NZ-Wrf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -200,7 +203,7 @@
                                     <constraint firstAttribute="width" secondItem="sqj-Rg-RDf" secondAttribute="height" multiplier="1:1" id="i94-n2-3KS"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="os4-Ky-TeV" userLabel="VectorAmplitude">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="3.0" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="os4-Ky-TeV" userLabel="VectorAmplitude">
                                 <rect key="frame" x="16" y="393" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="KPw-GO-LKZ"/>
@@ -209,7 +212,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2p-dw-fMX" userLabel="VectorPhase">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="200" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2p-dw-fMX" userLabel="VectorPhase">
                                 <rect key="frame" x="121" y="393" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="czp-Em-4ui"/>
@@ -237,6 +240,7 @@
                                 </state>
                                 <connections>
                                     <action selector="AddVector:" destination="9pv-A4-QxB" eventType="touchUpInside" id="bIC-oa-g6B"/>
+                                    <action selector="AddVector:" destination="icA-Dz-5Cs" eventType="touchUpInside" id="q57-s0-8RB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -258,7 +262,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="balanceView" destination="sqj-Rg-RDf" id="WOJ-h7-Ouc"/>
+                        <outlet property="balancePlane" destination="sqj-Rg-RDf" id="YXu-rv-Z1B"/>
+                        <outlet property="vectorAmplitude" destination="os4-Ky-TeV" id="iLA-My-rud"/>
+                        <outlet property="vectorPhase" destination="z2p-dw-fMX" id="AsA-Hp-bo1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gZS-NR-N1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -297,7 +303,7 @@
             </objects>
             <point key="canvasLocation" x="2445" y="522"/>
         </scene>
-        <!--Item-->
+        <!--Saved Runs-->
         <scene sceneID="MNP-dp-sup">
             <objects>
                 <viewController id="kf0-sG-DFm" sceneMemberID="viewController">
@@ -310,7 +316,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="wfA-oD-ZYi"/>
+                    <tabBarItem key="tabBarItem" title="Saved Runs" id="wfA-oD-ZYi"/>
                     <navigationItem key="navigationItem" id="k79-Yy-214"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8L6-Dn-cCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -403,11 +409,11 @@
             </objects>
             <point key="canvasLocation" x="-617" y="66"/>
         </scene>
-        <!--Item-->
+        <!--Balance Run-->
         <scene sceneID="3WZ-fa-MeI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kCB-Za-Dxa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="2pa-7Q-9XT"/>
+                    <tabBarItem key="tabBarItem" title="Balance Run" id="2pa-7Q-9XT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aci-xz-4C0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

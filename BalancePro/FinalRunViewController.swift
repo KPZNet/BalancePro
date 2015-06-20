@@ -11,14 +11,17 @@ import UIKit
 class FinalRunViewController: UIViewController {
 
     
-    @IBOutlet weak var balanceView: BalancePlaneView!
+    @IBOutlet weak var vectorAmplitude: UITextField!
+    @IBOutlet weak var vectorPhase: UITextField!
+    
+    @IBOutlet weak var balancePlane: BalancePlaneView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        balanceView.layer.cornerRadius = 10.0
-        balanceView.layer.masksToBounds = true
+        balancePlane.layer.cornerRadius = 10.0
+        balancePlane.layer.masksToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,15 +29,17 @@ class FinalRunViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func AddVector(sender: AnyObject) {
+        
+        var ampString:NSString = vectorAmplitude.text
+        var amp = ampString.floatValue
+        
+        var phaseString:NSString = vectorPhase.text
+        var phase = phaseString.floatValue
+        
+        var vec0 = Vector(fromAmp: amp, fromPhaseInDegrees: phase, withRunType: BalanceRunType.initial)
+        balancePlane.AddVector(vec0)
     }
-    */
+
 
 }
