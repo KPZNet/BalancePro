@@ -146,7 +146,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGR-oi-sF3" userLabel="AddVector">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGR-oi-sF3" userLabel="AddVector">
                                 <rect key="frame" x="226" y="340" width="72" height="30"/>
                                 <state key="normal" title="Add">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -161,8 +161,11 @@
                         <constraints>
                             <constraint firstItem="KtM-4h-DT9" firstAttribute="top" secondItem="cfQ-6z-Fb9" secondAttribute="bottom" constant="10" id="6d6-Wn-DBH"/>
                             <constraint firstItem="0NM-8S-bdM" firstAttribute="leading" secondItem="9bx-qB-kOq" secondAttribute="leading" id="Ae9-qa-rdl"/>
+                            <constraint firstItem="gSM-jx-cS2" firstAttribute="top" secondItem="KtM-4h-DT9" secondAttribute="bottom" constant="5" id="DMx-I2-uit"/>
                             <constraint firstItem="q9a-Lz-vPk" firstAttribute="top" secondItem="gSM-jx-cS2" secondAttribute="bottom" constant="5" id="Qyl-BD-fa5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KtM-4h-DT9" secondAttribute="trailing" id="azD-ao-NsP"/>
+                            <constraint firstItem="OGR-oi-sF3" firstAttribute="top" secondItem="KtM-4h-DT9" secondAttribute="bottom" constant="5" id="cyv-Jy-RNg"/>
+                            <constraint firstItem="9bx-qB-kOq" firstAttribute="top" secondItem="KtM-4h-DT9" secondAttribute="bottom" constant="5" id="kGl-wN-dHd"/>
                             <constraint firstItem="KtM-4h-DT9" firstAttribute="leading" secondItem="uno-Gw-GcC" secondAttribute="leadingMargin" id="xCO-to-omu"/>
                             <constraint firstItem="0NM-8S-bdM" firstAttribute="top" secondItem="9bx-qB-kOq" secondAttribute="bottom" constant="5" id="yDy-Ak-q3z"/>
                         </constraints>
@@ -233,7 +236,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEl-ZN-1ql" userLabel="AddVector">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEl-ZN-1ql" userLabel="AddVector">
                                 <rect key="frame" x="226" y="393" width="72" height="30"/>
                                 <state key="normal" title="Add">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -247,8 +250,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="sqj-Rg-RDf" secondAttribute="trailing" id="BeU-jN-PPX"/>
+                            <constraint firstItem="mEl-ZN-1ql" firstAttribute="top" secondItem="sqj-Rg-RDf" secondAttribute="bottom" constant="5" id="XyX-yv-TvL"/>
                             <constraint firstItem="XAk-oN-f8k" firstAttribute="leading" secondItem="os4-Ky-TeV" secondAttribute="leading" id="b0a-va-scq"/>
+                            <constraint firstItem="z2p-dw-fMX" firstAttribute="top" secondItem="sqj-Rg-RDf" secondAttribute="bottom" constant="5" id="e9h-Ul-Qnu"/>
                             <constraint firstItem="XAk-oN-f8k" firstAttribute="top" secondItem="os4-Ky-TeV" secondAttribute="bottom" constant="5" id="lch-eK-cnt"/>
+                            <constraint firstItem="os4-Ky-TeV" firstAttribute="top" secondItem="sqj-Rg-RDf" secondAttribute="bottom" constant="5" id="ogM-HQ-ud5"/>
                             <constraint firstItem="sqj-Rg-RDf" firstAttribute="leading" secondItem="ACR-QI-oTC" secondAttribute="leadingMargin" id="s6m-pv-6uy"/>
                             <constraint firstItem="Ywx-vK-wNM" firstAttribute="top" secondItem="z2p-dw-fMX" secondAttribute="bottom" constant="5" id="zDh-EM-xPR"/>
                             <constraint firstItem="sqj-Rg-RDf" firstAttribute="top" secondItem="TrI-aW-Hcc" secondAttribute="bottom" constant="10" id="zL7-Mf-gsO"/>
