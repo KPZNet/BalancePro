@@ -20,6 +20,8 @@ class BalancePlaneView: UIView {
     }
     */
     
+    var vectorArray : [Vector] = [Vector]()
+    
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     var vibScale: Float = Float(10.0)
     var rotateRotor : Float = Float(0.0)
@@ -432,6 +434,12 @@ class BalancePlaneView: UIView {
     }
     
     
+    func AddVector(vect : Vector)
+    {
+        vectorArray.append(vect)
+        self.setNeedsDisplay()
+    }
+    
     
     override func drawRect(rect: CGRect)
     {
@@ -439,38 +447,16 @@ class BalancePlaneView: UIView {
         SetupScales(MaxVib: 10.0)
         
         DrawRotor()
-        
-        
         DrawRotorDegreeTics()
         DrawRotorDegreeTicLabels()
-        
         var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
         DrawWeight(weight)
         
-        var vec1 = Vector(fromAmp: 9, fromPhaseInDegrees: 9, withRunType: BalanceRunType.initial)
-        drawBVector(vec1)
         
-        var vec2 = Vector(fromAmp: 9, fromPhaseInDegrees: 120, withRunType: BalanceRunType.influence)
-        drawBVector(vec2)
-        
-        var vec3 = Vector(fromAmp: 7.5, fromPhaseInDegrees: 270)
-        drawBVector(vec3)
-        
-        var vec4 = Vector(fromAmp: 9, fromPhaseInDegrees: 290)
-        //drawVector(vec4)
-        
-        
-        var vec5 = vec2 - vec1
-        var vec6 = vec4 + vec1
-        
-        drawBVector(vec5)
-        //drawVector(vec6)
-        
-        //        var vec5 = vec4 + (-1.0 * vec1)
-        //        vec5.name = "vec5"
-        //        drawVector(vec5)
-        
-        
+        for vect in vectorArray
+        {
+            drawBVector(vect)
+        }
         
     }
     

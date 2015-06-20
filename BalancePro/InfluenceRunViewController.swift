@@ -11,14 +11,18 @@ import UIKit
 class InfluenceRunViewController: UIViewController {
 
     
-    @IBOutlet weak var balanceView: BalancePlaneView!
+    
+    @IBOutlet weak var vectorAmplitude: UITextField!
+    @IBOutlet weak var vectorPhase: UITextField!
+    
+    @IBOutlet weak var balancePlane: BalancePlaneView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        balanceView.layer.cornerRadius = 10.0
-        balanceView.layer.masksToBounds = true
+        balancePlane.layer.cornerRadius = 10.0
+        balancePlane.layer.masksToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
