@@ -211,7 +211,7 @@ class BalancePlaneView: UIView {
         let weightSlotRadius = vibScale * 0.07
         let strokeWidth = vibScaleLineWidth
         
-        var fillColor : UIColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.9)
+        var fillColor : UIColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.5)
         
         // Get the context
         var context = UIGraphicsGetCurrentContext()
@@ -334,7 +334,7 @@ class BalancePlaneView: UIView {
         label.textAlignment = NSTextAlignment.Center
         
         label.text = vector.name
-        label.backgroundColor = UIColor.grayColor()
+        label.backgroundColor = UIColor.lightGrayColor()
         label.layer.borderColor = UIColor.darkGrayColor().CGColor
         label.layer.borderWidth = 0.5
         label.layer.cornerRadius = 5
