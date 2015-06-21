@@ -81,8 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */,
-				71FA85A11A1BCA3500E69D40 /* InfluenceRunViewController.swift */,
 				71FA859F1A1BCA3500E69D40 /* InitialRunViewController.swift */,
+				71FA85A11A1BCA3500E69D40 /* InfluenceRunViewController.swift */,
 				63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */,
 				63DEA8201AF825590011FB4A /* RunConfigurationViewController.swift */,
 			);

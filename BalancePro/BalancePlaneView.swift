@@ -8,77 +8,11 @@
 
 import UIKit
 
-class BalancePlaneViewInitialVector : BalancePlaneView
-{
-    override func drawRect(rect: CGRect)
-    {
-        
-        SetupScales(MaxVib: 10.0)
-        
-        DrawRotor()
-        DrawRotorDegreeTics()
-        DrawRotorDegreeTicLabels()
-        
-        if let vect = GetAppDelegate().singlePlaneBalance.initialVector
-        {
-            drawBVector(vect)
-        }
-        
-    }
-    
-}
 
-class BalancePlaneViewInfluenceVector : BalancePlaneView
-{
-    override func drawRect(rect: CGRect)
-    {
-        
-        SetupScales(MaxVib: 10.0)
-        
-        DrawRotor()
-        DrawRotorDegreeTics()
-        DrawRotorDegreeTicLabels()
-        
-        if let initVect = GetAppDelegate().singlePlaneBalance.initialVector
-        {
-            drawBVector(initVect)
-            if let inflVect = GetAppDelegate().singlePlaneBalance.influenceVector
-            {
-                drawBVector(inflVect)
-                var T = inflVect - initVect
-                T.runType = BalanceRunType.influence
-                drawBVector(T)
-            }
-        }
-        
-        if let wP = GetAppDelegate().singlePlaneBalance.influenceBalanceWeight
-        {
-            DrawWeight(wP)
-        }
-        
-    }
-    
-}
 
-class BalancePlaneViewFinalVector : BalancePlaneView
-{
-    override func drawRect(rect: CGRect)
-    {
-        
-        SetupScales(MaxVib: 10.0)
-        
-        DrawRotor()
-        DrawRotorDegreeTics()
-        DrawRotorDegreeTicLabels()
-        
-        if let vect = GetAppDelegate().singlePlaneBalance.initialVector
-        {
-            drawBVector(vect)
-        }
-        
-    }
-    
-}
+
+
+
 
 class BalancePlaneView: UIView {
     
@@ -92,7 +26,7 @@ class BalancePlaneView: UIView {
     
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     var vibScale: Float = Float(10.0)
-    var rotateRotor : Float = Float(0.0)
+    var rotateRotor : Float = Float(0) // Float(M_PI_2)
     var vibScaleLineWidth : Float = Float(0.1)
     
     var vectorStrokeWidth : Float = 1.0

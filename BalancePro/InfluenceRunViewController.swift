@@ -8,6 +8,42 @@
 
 import UIKit
 
+class BalancePlaneViewInfluenceVector : BalancePlaneView
+{
+    override func drawRect(rect: CGRect)
+    {
+        
+        SetupScales(MaxVib: 10.0)
+        
+        DrawRotor()
+        DrawRotorDegreeTics()
+        DrawRotorDegreeTicLabels()
+        
+        if let initVect = GetAppDelegate().singlePlaneBalance.initialVector
+        {
+            drawBVector(initVect)
+            if let inflVect = GetAppDelegate().singlePlaneBalance.influenceVector
+            {
+                drawBVector(inflVect)
+                var T = inflVect - initVect
+                T.runType = BalanceRunType.influence
+                drawBVector(T)
+                
+                var TO = Vector(fromAmp: T.amp, fromPhaseInDegrees: T.phase, withRunType:BalanceRunType.influenceOrigin)
+                drawBVector(TO)
+            }
+        }
+        
+        if let wP = GetAppDelegate().singlePlaneBalance.influenceBalanceWeight
+        {
+            DrawWeight(wP)
+        }
+        
+    }
+    
+}
+
+
 class InfluenceRunViewController: UIViewController {
 
     

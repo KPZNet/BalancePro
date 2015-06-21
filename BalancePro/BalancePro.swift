@@ -11,7 +11,7 @@ import UIKit
 import QuartzCore
 
 enum RotationDirection {case cw, ccw}
-enum BalanceRunType {case initial, influence, trial, final, general}
+enum BalanceRunType {case initial, influence, influenceOrigin, trial, final, general}
 
 func GetAppDelegate() -> AppDelegate
 {
@@ -105,6 +105,10 @@ class Vector
                 returnName = "Influence"
                 break;
                 
+            case BalanceRunType.influenceOrigin:
+                returnName = "Influence"
+                break;
+                
             case BalanceRunType.trial:
                 returnName = "Trial"
                 break;
@@ -140,6 +144,10 @@ class Vector
                 
             case BalanceRunType.influence:
                 returnColor = UIColor.redColor()
+                break;
+                
+            case BalanceRunType.influenceOrigin:
+                returnColor =  UIColor(red: (255/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.3)
                 break;
                 
             case BalanceRunType.final:
