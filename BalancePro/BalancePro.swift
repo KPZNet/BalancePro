@@ -13,6 +13,26 @@ import QuartzCore
 enum RotationDirection {case cw, ccw}
 enum BalanceRunType {case initial, influence, final, general}
 
+func GetAppDelegate() -> AppDelegate
+{
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    return appDelegate
+}
+
+
+class SinglePlaneVectorBalance {
+    
+    var initialVector:Vector?
+    var influenceVector:Vector?
+    var finalVector:Vector?
+    var influenceBalanceWeight:BalanceWeight?
+    var balanceWeight:BalanceWeight?
+    
+    init(){
+        
+    }
+}
+
 func ClassName(forObject _forObject:Any) -> String
 {
     return _stdlib_getDemangledTypeName(_forObject).componentsSeparatedByString(".").last!
@@ -70,19 +90,19 @@ class Vector
             var returnName = "empty"
             switch (runType) {
             case BalanceRunType.general:
-                returnName = "general"
+                returnName = "General"
                 break;
                 
             case BalanceRunType.general:
-                returnName = "general"
+                returnName = "General"
                 break;
                 
             case BalanceRunType.initial:
-                returnName = "First"
+                returnName = "Initial"
                 break;
                 
             case BalanceRunType.influence:
-                returnName = "Infl"
+                returnName = "Influence"
                 break;
                 
             case BalanceRunType.final:
@@ -90,7 +110,7 @@ class Vector
                 break;
                 
             default:
-                returnName = "general"
+                returnName = "General"
                 break;
             }
             return returnName
@@ -226,14 +246,14 @@ func max(left:CGSize, right:CGSize) -> CGSize
 class BalanceWeight
 {
     var weight : Float
-    var location : Int
+    var location : Float
     
     init()
     {
         weight = 0.0
-        location = 0
+        location = 0.0
     }
-    init(fromWeight _weight : Float, fromLocation _location : Int)
+    init(fromWeight _weight : Float, fromLocation _location : Float)
     {
         weight = _weight
         location = _location

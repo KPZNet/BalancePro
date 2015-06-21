@@ -13,7 +13,6 @@ class InitialRunViewController: UIViewController {
     
     @IBOutlet weak var vectorAmplitude: UITextField!
     @IBOutlet weak var vectorPhase: UITextField!
-    
     @IBOutlet weak var balancePlane: BalancePlaneView!
     
     override func viewDidLoad() {
@@ -31,14 +30,6 @@ class InitialRunViewController: UIViewController {
     
     @IBAction func AddVector(sender: AnyObject) {
         
-//        var vec1 = Vector(fromAmp: 9, fromPhaseInDegrees: 9, withRunType: BalanceRunType.initial)
-//        balancePlane.AddVector(vec1)
-//        
-//        var vec2 = Vector(fromAmp: 9, fromPhaseInDegrees: 120, withRunType: BalanceRunType.influence)
-//        balancePlane.AddVector(vec2)
-//        
-//        var vec3 = Vector(fromAmp: 7.5, fromPhaseInDegrees: 270)
-//        balancePlane.AddVector(vec3)
         
         var ampString:NSString = vectorAmplitude.text
         var amp = ampString.floatValue
@@ -47,7 +38,9 @@ class InitialRunViewController: UIViewController {
         var phase = phaseString.floatValue
         
         var vec0 = Vector(fromAmp: amp, fromPhaseInDegrees: phase, withRunType: BalanceRunType.initial)
-        balancePlane.AddVector(vec0)
+        GetAppDelegate().singlePlaneBalance.initialVector = vec0
+        
+        balancePlane.setNeedsDisplay()
         
     }
 

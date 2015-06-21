@@ -14,6 +14,9 @@ class FinalRunViewController: UIViewController {
     @IBOutlet weak var vectorAmplitude: UITextField!
     @IBOutlet weak var vectorPhase: UITextField!
     
+    @IBOutlet weak var balaneWeightMeasure: UITextField!
+    @IBOutlet weak var balanceWeightPlacement: UITextField!
+    
     @IBOutlet weak var balancePlane: BalancePlaneView!
     
     override func viewDidLoad() {
@@ -37,8 +40,20 @@ class FinalRunViewController: UIViewController {
         var phaseString:NSString = vectorPhase.text
         var phase = phaseString.floatValue
         
+        var balanceMeasureString:NSString = balaneWeightMeasure.text
+        var balanceWM = balanceMeasureString.floatValue
+        
+        var balancePlacementString:NSString = balanceWeightPlacement.text
+        var balanceWP = balancePlacementString.floatValue
+        
         var vec0 = Vector(fromAmp: amp, fromPhaseInDegrees: phase, withRunType: BalanceRunType.initial)
-        balancePlane.AddVector(vec0)
+        var bW = BalanceWeight(fromWeight: balanceWM, fromLocation: balanceWP)
+        
+        GetAppDelegate().singlePlaneBalance.finalVector = vec0
+        GetAppDelegate().singlePlaneBalance.balanceWeight = bW
+        
+        balancePlane.setNeedsDisplay()
+
     }
 
 

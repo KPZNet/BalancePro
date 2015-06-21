@@ -8,7 +8,65 @@
 
 import UIKit
 
+class BalancePlaneViewInitialVector : BalancePlaneView
+{
+    override func drawRect(rect: CGRect)
+    {
+        
+        SetupScales(MaxVib: 10.0)
+        
+        DrawRotor()
+        DrawRotorDegreeTics()
+        DrawRotorDegreeTicLabels()
+        
+        if let vect = GetAppDelegate().singlePlaneBalance.initialVector
+        {
+            drawBVector(vect)
+        }
+        
+    }
+    
+}
 
+class BalancePlaneViewInfluenceVector : BalancePlaneView
+{
+    override func drawRect(rect: CGRect)
+    {
+        
+        SetupScales(MaxVib: 10.0)
+        
+        DrawRotor()
+        DrawRotorDegreeTics()
+        DrawRotorDegreeTicLabels()
+        
+        if let vect = GetAppDelegate().singlePlaneBalance.initialVector
+        {
+            drawBVector(vect)
+        }
+        
+    }
+    
+}
+
+class BalancePlaneViewFinalVector : BalancePlaneView
+{
+    override func drawRect(rect: CGRect)
+    {
+        
+        SetupScales(MaxVib: 10.0)
+        
+        DrawRotor()
+        DrawRotorDegreeTics()
+        DrawRotorDegreeTicLabels()
+        
+        if let vect = GetAppDelegate().singlePlaneBalance.initialVector
+        {
+            drawBVector(vect)
+        }
+        
+    }
+    
+}
 
 class BalancePlaneView: UIView {
     
@@ -19,8 +77,6 @@ class BalancePlaneView: UIView {
     // Drawing code
     }
     */
-    
-    var vectorArray : [Vector] = [Vector]()
     
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     var vibScale: Float = Float(10.0)
@@ -434,29 +490,10 @@ class BalancePlaneView: UIView {
     }
     
     
-    func AddVector(vect : Vector)
-    {
-        vectorArray.append(vect)
-        self.setNeedsDisplay()
-    }
-    
     
     override func drawRect(rect: CGRect)
     {
         
-        SetupScales(MaxVib: 10.0)
-        
-        DrawRotor()
-        DrawRotorDegreeTics()
-        DrawRotorDegreeTicLabels()
-        var weight : BalanceWeight = BalanceWeight(fromWeight : 5.0 , fromLocation : 44)
-        DrawWeight(weight)
-        
-        
-        for vect in vectorArray
-        {
-            drawBVector(vect)
-        }
         
     }
     
