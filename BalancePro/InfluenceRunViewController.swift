@@ -46,7 +46,7 @@ class InfluenceRunViewController: UIViewController {
         var balancePlacementString:NSString = balanceWeightPlacement.text
         var balanceWP = balancePlacementString.floatValue
         
-        var vec0 = Vector(fromAmp: amp, fromPhaseInDegrees: phase, withRunType: BalanceRunType.initial)
+        var vec0 = Vector(fromAmp: amp, fromPhaseInDegrees: phase, withRunType: BalanceRunType.trial)
         var bW = BalanceWeight(fromWeight: balanceWM, fromLocation: balanceWP)
         
         GetAppDelegate().singlePlaneBalance.influenceVector = vec0

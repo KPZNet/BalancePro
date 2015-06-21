@@ -39,9 +39,21 @@ class BalancePlaneViewInfluenceVector : BalancePlaneView
         DrawRotorDegreeTics()
         DrawRotorDegreeTicLabels()
         
-        if let vect = GetAppDelegate().singlePlaneBalance.initialVector
+        if let initVect = GetAppDelegate().singlePlaneBalance.initialVector
         {
-            drawBVector(vect)
+            drawBVector(initVect)
+            if let inflVect = GetAppDelegate().singlePlaneBalance.influenceVector
+            {
+                drawBVector(inflVect)
+                var T = inflVect - initVect
+                T.runType = BalanceRunType.influence
+                drawBVector(T)
+            }
+        }
+        
+        if let wP = GetAppDelegate().singlePlaneBalance.influenceBalanceWeight
+        {
+            DrawWeight(wP)
         }
         
     }
@@ -196,13 +208,15 @@ class BalancePlaneView: UIView {
         
         // Drawing code
         // Set the radius
-        let weightSlotRadius = vibScale * 0.1
+        let weightSlotRadius = vibScale * 0.07
         let strokeWidth = vibScaleLineWidth
+        
+        var fillColor : UIColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.9)
         
         // Get the context
         var context = UIGraphicsGetCurrentContext()
         
-        let weightSlotCenter = Float( vibScale ) - Float(weightSlotRadius)
+        let weightSlotCenter = Float( vibScale ) //- Float(weightSlotRadius)
         
         var radians = GetRadians( Float(weight.location) )
         x = weightSlotCenter * cos( radians )
@@ -219,7 +233,7 @@ class BalancePlaneView: UIView {
         CGContextSetLineWidth(context, CGFloat(strokeWidth))
         
         // Set the fill color (if you are filling the circle)
-        CGContextSetFillColorWithColor(context, UIColor.blackColor().CGColor)
+        CGContextSetFillColorWithColor(context, fillColor.CGColor)
         
         // Draw the arc around the circle
         CGContextAddArc(context, center.x, center.y, CGFloat(weightSlotRadius), CGFloat(0), CGFloat(2 * M_PI), 1)
@@ -386,7 +400,7 @@ class BalancePlaneView: UIView {
         PopToDefaultTransform()
         
         DrawVectorName(vector)
-        DrawVectorEndCir(vector)
+        //DrawVectorEndCir(vector)
         
     }
     
