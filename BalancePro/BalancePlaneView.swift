@@ -10,8 +10,16 @@ import UIKit
 
 
 
-
-
+struct CONSTANTS {
+    
+    static let DEFAULT_VIB_SCALES = 10
+    static let DEFAULT_LINE_STROKE_WIDTH = 0.1
+    static let DEFAULT_VECTOR_STROKE_WIDTH = 0.2
+    static let DEFAULT_WEIGHT_RADIUS = 0.7 //% OF VIB SCALE
+    static let DEFAULT_TIC_LENGTH = 4
+    static let  DEFAULT_ARROW_LENGTH = 0.5
+    
+}
 
 
 class BalancePlaneView: UIView {
@@ -26,7 +34,7 @@ class BalancePlaneView: UIView {
     
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     var vibScale: Float = Float(10.0)
-    var rotateRotor : Float = Float(0) // Float(M_PI_2)
+    var rotateRotor : Float =  Float(M_PI)
     var vibScaleLineWidth : Float = Float(0.1)
     
     var vectorStrokeWidth : Float = 1.0
@@ -74,7 +82,7 @@ class BalancePlaneView: UIView {
         pTempCartesianTransform = CGAffineTransformTranslate(pTempCartesianTransform, (self.frame.size.width / 2), (self.frame.size.height / 2));
         
         xScale =  Float((self.frame.size.width / 2) / CGFloat(viewScale))
-        yScale = Float(-1.0 * ( (self.frame.size.height / 2) / CGFloat(viewScale) ))
+        yScale = Float(1.0 * ( (self.frame.size.height / 2) / CGFloat(viewScale) ))
         
         pTempCartesianTransform = CGAffineTransformScale(pTempCartesianTransform, CGFloat(xScale), CGFloat(yScale));
         
@@ -129,7 +137,7 @@ class BalancePlaneView: UIView {
         return radian
     }
     
-
+    
     
     func DrawWeight( weight : BalanceWeight )
     {
@@ -211,7 +219,7 @@ class BalancePlaneView: UIView {
         
     }
     
-
+    
     func DrawRotor()
     {
         PushToCartesianTransform()
@@ -258,7 +266,7 @@ class BalancePlaneView: UIView {
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
         
         var  textSize = textFont.sizeOfString(vector.name + "XX")
-
+        
         let sRect:CGRect = CGRectMake(0, 0, textSize.width, textSize.height)
         var aPoint:CGPoint = CGPointApplyAffineTransform ( midPoint, pCartesianTrans );
         
@@ -318,18 +326,18 @@ class BalancePlaneView: UIView {
         PopToDefaultTransform()
         
     }
-
+    
     func drawBVector(vector : Vector)
     {
         PushToCartesianTransform()
-
+        
         DrawArrow(viewControl:self,
-                basePoint: CGPointApplyAffineTransform(vector.basePoint, pCartesianTrans),
-                endPoint: CGPointApplyAffineTransform(vector.endPoint, pCartesianTrans),
-                tailWidth: CGFloat(3),
-                headWidth: CGFloat(7),
-                headLength: CGFloat(10.0),
-                color:vector.color)
+            basePoint: CGPointApplyAffineTransform(vector.basePoint, pCartesianTrans),
+            endPoint: CGPointApplyAffineTransform(vector.endPoint, pCartesianTrans),
+            tailWidth: CGFloat(3),
+            headWidth: CGFloat(7),
+            headLength: CGFloat(10.0),
+            color:vector.color)
         
         PopToDefaultTransform()
         
@@ -338,7 +346,7 @@ class BalancePlaneView: UIView {
         
     }
     
-
+    
     
     func DrawTextLabel(At _point:CGPoint, Text _text:String)
     {

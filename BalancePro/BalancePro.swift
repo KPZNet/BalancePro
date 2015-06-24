@@ -24,6 +24,7 @@ class SinglePlaneVectorBalance {
     
     var initialVector:Vector?
     var influenceVector:Vector?
+    var trialVector:Vector?
     var finalVector:Vector?
     var influenceBalanceWeight:BalanceWeight?
     var balanceWeight:BalanceWeight?
