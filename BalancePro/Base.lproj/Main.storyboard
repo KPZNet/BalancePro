@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vpd-ah-fYN">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -119,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="939" y="-302"/>
+            <point key="canvasLocation" x="1783" y="-302"/>
         </scene>
         <!--Influence Run-->
         <scene sceneID="u9B-B8-IOO">
@@ -279,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pDu-NZ-Wrf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1686" y="-302"/>
+            <point key="canvasLocation" x="2455" y="-302"/>
         </scene>
         <!--Final Run-->
         <scene sceneID="UIF-Uc-bVx">
@@ -441,7 +440,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gZS-NR-N1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2445" y="-302"/>
+            <point key="canvasLocation" x="3190" y="-302"/>
         </scene>
         <!--Balance Report-->
         <scene sceneID="dMx-n6-kZi">
@@ -454,20 +453,7 @@
                     <view key="view" contentMode="scaleToFill" id="Mql-3b-7mF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UEb-fK-ZAw" userLabel="Balance Runs">
-                                <rect key="frame" x="396" y="114" width="188" height="171"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="UEb-fK-ZAw" secondAttribute="height" multiplier="1:1" id="kWQ-xi-pJO"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="UEb-fK-ZAw" firstAttribute="leading" secondItem="Mql-3b-7mF" secondAttribute="centerXWithinMargins" id="9CC-fe-BoY"/>
-                            <constraint firstItem="UEb-fK-ZAw" firstAttribute="trailing" secondItem="Mql-3b-7mF" secondAttribute="trailingMargin" id="WTO-7C-X9D"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Balance Report" id="25x-dP-qAD"/>
                 </viewController>
@@ -494,6 +480,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8L6-Dn-cCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="174" y="446"/>
+        </scene>
+        <!--Balance Pro-->
+        <scene sceneID="Q3Q-vH-10l">
+            <objects>
+                <viewController id="fpG-cS-5Xg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uCh-t7-JOl"/>
+                        <viewControllerLayoutGuide type="bottom" id="nz8-tf-9Uc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7pz-ab-7TV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Cz-CD-uMB">
+                                <rect key="frame" x="16" y="72" width="568" height="45"/>
+                                <color key="backgroundColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Single Plane Balance">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="9pv-A4-QxB" kind="show" id="OQW-pI-fv9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nz8-tf-9Uc" firstAttribute="top" secondItem="6Cz-CD-uMB" secondAttribute="bottom" constant="434" id="MbJ-su-gcu"/>
+                            <constraint firstItem="6Cz-CD-uMB" firstAttribute="leading" secondItem="7pz-ab-7TV" secondAttribute="leadingMargin" id="UqH-Ar-etC"/>
+                            <constraint firstItem="6Cz-CD-uMB" firstAttribute="trailing" secondItem="7pz-ab-7TV" secondAttribute="trailingMargin" id="jYl-ZM-skp"/>
+                            <constraint firstItem="6Cz-CD-uMB" firstAttribute="top" secondItem="uCh-t7-JOl" secondAttribute="bottom" constant="8" symbolic="YES" id="kxD-hV-UAq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Balance Pro" id="pdQ-tq-h2M">
+                        <barButtonItem key="rightBarButtonItem" title="Start" id="02a-VA-Dji">
+                            <connections>
+                                <segue destination="9pv-A4-QxB" kind="show" id="8dP-ya-F13"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1HI-ai-IUc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="958" y="-302"/>
         </scene>
         <!--Run Configuration-->
         <scene sceneID="plE-mg-QYK">
@@ -593,7 +622,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="94F-xv-lXy"/>
+                        <segue destination="fpG-cS-5Xg" kind="relationship" relationship="rootViewController" id="507-Ce-4OF"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v0z-Vg-ZsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -601,4 +630,7 @@
             <point key="canvasLocation" x="174" y="-302"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="OQW-pI-fv9"/>
+    </inferredMetricsTieBreakers>
 </document>
