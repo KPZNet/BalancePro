@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>0F5CA3A5-09BA-4F1D-9A9B-3AB52D2FDEBA</string>
 	<key>IDESourceControlProjectName</key>
-	<string>BalancePro</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A063EE0C188A7C6C65308EDF7B0BC9D6C63CB218</key>
 		<string>https://github.com/KPZNet/BalancePro.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>BalancePro.xcodeproj</string>
+	<string>BalancePro.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A063EE0C188A7C6C65308EDF7B0BC9D6C63CB218</key>

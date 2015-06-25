@@ -86,7 +86,6 @@ class BalancePlaneViewInfluenceVector : BalancePlaneView
             DrawWeight(wP)
         }
         
-        
     }
     
 }
@@ -140,9 +139,6 @@ class InfluenceRunViewController: UIViewController {
         
         var balanceWeight = CalcBalanceWeight()
         GetAppDelegate().singlePlaneBalance.balanceWeight = CalcBalanceWeight()
-        
-        balanceWeightPlacementFinal.text = balanceWeight.location.description
-        balaneWeightMeasureFinal.text = balanceWeight.weight.description
         
         balancePlane.clearsContextBeforeDrawing = true;
         balancePlane.setNeedsDisplay()

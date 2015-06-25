@@ -140,7 +140,7 @@ class BalancePlaneView: UIView {
     
     
     
-    func DrawWeight( weight : BalanceWeight )
+    func DrawWeight( weight : BalanceWeight, color:UIColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.5) )
     {
         PushToCartesianTransform()
         
@@ -154,7 +154,7 @@ class BalancePlaneView: UIView {
         let weightSlotRadius = vibScale * 0.07
         let strokeWidth = vibScaleLineWidth
         
-        var fillColor : UIColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.5)
+        var fillColor : UIColor = color
         
         // Get the context
         var context = UIGraphicsGetCurrentContext()

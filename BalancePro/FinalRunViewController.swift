@@ -33,18 +33,26 @@ class BalancePlaneViewFinalVector : BalancePlaneView
                     
                     var TO = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
                     drawBVector(TO)
+                    
+                    if let finalVect = GetAppDelegate().singlePlaneBalance.finalVector
+                    {
+                        drawBVector(finalVect)
+                    }
                 }
             }
         }
         
-        if let wP = GetAppDelegate().singlePlaneBalance.influenceBalanceWeight
+        if let balanceWeight = GetAppDelegate().singlePlaneBalance.balanceWeight
         {
-            DrawWeight(wP)
+            DrawWeight(balanceWeight, color:UIColor(red: (0/255.0), green: (255/255.0), blue: (0/255.0), alpha: 0.5))
         }
         
     }
     
 }
+
+
+
 
 class FinalRunViewController: UIViewController {
 
@@ -63,6 +71,12 @@ class FinalRunViewController: UIViewController {
         // Do any additional setup after loading the view.
         balancePlane.layer.cornerRadius = 10.0
         balancePlane.layer.masksToBounds = true
+        
+        if let wP = GetAppDelegate().singlePlaneBalance.balanceWeight
+        {
+            balanceWeightPlacement.text = wP.location.description
+            balaneWeightMeasure.text = wP.weight.description
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,24 +86,13 @@ class FinalRunViewController: UIViewController {
     
     @IBAction func AddVector(sender: AnyObject) {
         
-        var ampString:NSString = vectorAmplitude.text
-        var amp = ampString.floatValue
+        var vectAmp = (vectorAmplitude.text as NSString).floatValue
+        var vectPhase = (vectorPhase.text as NSString).floatValue
         
-        var phaseString:NSString = vectorPhase.text
-        var phase = phaseString.floatValue
+        var finalVect = Vector(fromAmp: vectAmp, fromPhaseInDegrees: vectPhase, withRunType: BalanceRunType.final)
         
-        var balanceMeasureString:NSString = balaneWeightMeasure.text
-        var balanceWM = balanceMeasureString.floatValue
-        
-        var balancePlacementString:NSString = balanceWeightPlacement.text
-        var balanceWP = balancePlacementString.floatValue
-        
-        var vec0 = Vector(fromAmp: amp, fromPhaseInDegrees: phase, withRunType: BalanceRunType.initial)
-        var bW = BalanceWeight(fromWeight: balanceWM, fromLocation: balanceWP)
-        
-        GetAppDelegate().singlePlaneBalance.finalVector = vec0
-        GetAppDelegate().singlePlaneBalance.balanceWeight = bW
-        
+        GetAppDelegate().singlePlaneBalance.finalVector = finalVect
+
         balancePlane.setNeedsDisplay()
 
     }

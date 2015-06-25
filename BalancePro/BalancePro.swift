@@ -29,13 +29,15 @@ class SinglePlaneVectorBalance {
     var influenceBalanceWeight:BalanceWeight?
     var balanceWeight:BalanceWeight?
     
+    var currentScale:Float = 1.0
+    
     init(){
         
     }
     
     func GetVectorScale() -> Float{
         
-        var maxScale:Float = 1.0
+        var maxScale:Float = 0.0
         
         if let _initVector = initialVector
         {
@@ -53,7 +55,8 @@ class SinglePlaneVectorBalance {
                 }
             }
         }
-        return maxScale
+        currentScale = max(currentScale,maxScale*Float(1.0))
+        return currentScale
     }
     
 }
