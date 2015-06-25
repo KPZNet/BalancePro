@@ -32,6 +32,30 @@ class SinglePlaneVectorBalance {
     init(){
         
     }
+    
+    func GetVectorScale() -> Float{
+        
+        var maxScale:Float = 1.0
+        
+        if let _initVector = initialVector
+        {
+            maxScale = max(maxScale, _initVector.amp)
+            if let _influenceVector = influenceVector
+            {
+                maxScale = max(maxScale, _influenceVector.amp)
+                if let _trialVector = trialVector
+                {
+                    maxScale = max(maxScale, _trialVector.amp)
+                    if let _finalVector = finalVector
+                    {
+                        maxScale = max(maxScale, _trialVector.amp)
+                    }
+                }
+            }
+        }
+        return maxScale
+    }
+    
 }
 
 func ClassName(forObject _forObject:Any) -> String
@@ -252,7 +276,7 @@ func -(left:Vector, right:Vector) -> Vector
 func max(left:CGSize, right:CGSize) -> CGSize
 {
     var newSize : CGSize = CGSize(width: max(left.width, right.width),
-                                  height: max(left.height, right.height) )
+        height: max(left.height, right.height) )
     return newSize
 }
 

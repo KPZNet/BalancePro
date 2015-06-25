@@ -55,10 +55,11 @@ func CalcBalanceWeight() -> BalanceWeight
 
 class BalancePlaneViewInfluenceVector : BalancePlaneView
 {
+    
     override func drawRect(rect: CGRect)
     {
         
-        SetupScales(MaxVib: 15.0)
+        SetupScales(MaxVib: GetAppDelegate().singlePlaneBalance.GetVectorScale() )
         
         DrawRotor()
         DrawRotorDegreeTics()
@@ -73,7 +74,7 @@ class BalancePlaneViewInfluenceVector : BalancePlaneView
                 if let inflVect = GetAppDelegate().singlePlaneBalance.influenceVector
                 {
                     drawBVector(inflVect)
-                
+                    
                     var TO = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
                     drawBVector(TO)
                 }
@@ -84,7 +85,7 @@ class BalancePlaneViewInfluenceVector : BalancePlaneView
         {
             DrawWeight(wP)
         }
-
+        
         
     }
     
@@ -92,7 +93,7 @@ class BalancePlaneViewInfluenceVector : BalancePlaneView
 
 
 class InfluenceRunViewController: UIViewController {
-
+    
     
     @IBOutlet weak var vectorAmplitude: UITextField!
     @IBOutlet weak var vectorPhase: UITextField!
@@ -103,7 +104,7 @@ class InfluenceRunViewController: UIViewController {
     @IBOutlet weak var balaneWeightMeasureFinal: UITextField!
     @IBOutlet weak var balanceWeightPlacementFinal: UITextField!
     
-    @IBOutlet weak var balancePlane: BalancePlaneView!
+    @IBOutlet weak var balancePlane: BalancePlaneViewInfluenceVector!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,27 +113,21 @@ class InfluenceRunViewController: UIViewController {
         balancePlane.layer.cornerRadius = 10.0
         balancePlane.layer.masksToBounds = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func AddVector(sender: AnyObject) {
         
-        var ampString:NSString = vectorAmplitude.text
-        var amp = ampString.floatValue
+        var influenceVectAmp = (vectorAmplitude.text as NSString).floatValue
+        var influenceVectPhase = (vectorPhase.text as NSString).floatValue
         
-        var phaseString:NSString = vectorPhase.text
-        var phase = phaseString.floatValue
+        var influenceBalanceWeight = (balaneWeightMeasure.text as NSString).floatValue
+        var influenceBalancePlacement = (balanceWeightPlacement.text as NSString).floatValue
         
-        var balanceMeasureString:NSString = balaneWeightMeasure.text
-        var balanceWM = balanceMeasureString.floatValue
-        
-        var balancePlacementString:NSString = balanceWeightPlacement.text
-        var balanceWP = balancePlacementString.floatValue
-        
-        var trialVect = Vector(fromAmp: amp, fromPhaseInDegrees: phase, withRunType: BalanceRunType.trial)
+        var trialVect = Vector(fromAmp: influenceVectAmp, fromPhaseInDegrees: influenceVectPhase, withRunType: BalanceRunType.trial)
         
         if let initVect = GetAppDelegate().singlePlaneBalance.initialVector
         {
@@ -140,19 +135,18 @@ class InfluenceRunViewController: UIViewController {
             inflVect.runType = BalanceRunType.influence
             GetAppDelegate().singlePlaneBalance.influenceVector = inflVect
         }
-        var iBW = BalanceWeight(fromWeight: balanceWM, fromLocation: balanceWP)
-        
+        GetAppDelegate().singlePlaneBalance.influenceBalanceWeight = BalanceWeight(fromWeight: influenceBalanceWeight, fromLocation: influenceBalancePlacement)
         GetAppDelegate().singlePlaneBalance.trialVector = trialVect
-        GetAppDelegate().singlePlaneBalance.influenceBalanceWeight = iBW
         
-        var bW = CalcBalanceWeight()
-        GetAppDelegate().singlePlaneBalance.balanceWeight = bW
+        var balanceWeight = CalcBalanceWeight()
+        GetAppDelegate().singlePlaneBalance.balanceWeight = CalcBalanceWeight()
         
-        balanceWeightPlacementFinal.text = bW.location.description
-        balaneWeightMeasureFinal.text = bW.weight.description
-
+        balanceWeightPlacementFinal.text = balanceWeight.location.description
+        balaneWeightMeasureFinal.text = balanceWeight.weight.description
+        
+        balancePlane.clearsContextBeforeDrawing = true;
         balancePlane.setNeedsDisplay()
     }
-
+    
 }
 

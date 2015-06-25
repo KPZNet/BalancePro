@@ -47,15 +47,14 @@ class BalancePlaneView: UIView {
     
     override init(frame aRect: CGRect)
     {
-        
         super.init(frame:aRect)
-        
+        clearsContextBeforeDrawing = true;
     }
     
     required init(coder aDecoder: NSCoder)
     {
         super.init(coder:aDecoder)
-        
+        clearsContextBeforeDrawing = true;
     }
     
     func InitalizeCartesianTransform()
@@ -75,6 +74,8 @@ class BalancePlaneView: UIView {
     }
     func GetCartisianTransform() -> CGAffineTransform
     {
+        clearsContextBeforeDrawing = true;
+        
         viewScale = vibScale * 1.2
         let context = UIGraphicsGetCurrentContext()
         var pTempCartesianTransform : CGAffineTransform = CGAffineTransformIdentity
