@@ -6,6 +6,7 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Initial Run-->
@@ -600,10 +601,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kcb-G9-SOD" userLabel="VectorBalanceMenuView">
-                                <rect key="frame" x="11" y="72" width="573" height="188"/>
+                                <rect key="frame" x="11" y="100" width="573" height="152"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Cz-CD-uMB">
-                                        <rect key="frame" x="8" y="46" width="557" height="64"/>
+                                        <rect key="frame" x="81" y="8" width="484" height="64"/>
                                         <color key="backgroundColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Single Plane Balance">
@@ -613,14 +614,8 @@
                                             <segue destination="9pv-A4-QxB" kind="show" id="OQW-pI-fv9"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Vector Balancing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6c-Gd-iIx" userLabel="VectorBalanceLabel">
-                                        <rect key="frame" x="8" y="8" width="557" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjT-7y-kHb">
-                                        <rect key="frame" x="8" y="113" width="557" height="64"/>
+                                        <rect key="frame" x="81" y="80" width="484" height="64"/>
                                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Multi Plane Balance">
@@ -630,61 +625,61 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="6Cz-CD-uMB" secondAttribute="centerX" id="Zof-V6-ZQ6"/>
-                                    <constraint firstAttribute="width" secondItem="r6c-Gd-iIx" secondAttribute="width" constant="-20" id="fz7-PK-3xr"/>
-                                    <constraint firstAttribute="centerX" secondItem="VjT-7y-kHb" secondAttribute="centerX" id="g8P-gG-DGc"/>
-                                    <constraint firstItem="6Cz-CD-uMB" firstAttribute="width" secondItem="Kcb-G9-SOD" secondAttribute="width" constant="-20" id="lC6-uP-bwC"/>
-                                    <constraint firstItem="VjT-7y-kHb" firstAttribute="width" secondItem="Kcb-G9-SOD" secondAttribute="width" constant="-20" id="r1u-MV-y3b"/>
-                                    <constraint firstAttribute="centerX" secondItem="r6c-Gd-iIx" secondAttribute="centerX" id="y46-0d-UvK"/>
+                                    <constraint firstItem="VjT-7y-kHb" firstAttribute="width" secondItem="Kcb-G9-SOD" secondAttribute="width" multiplier="0.9" id="G4Y-0D-fCB"/>
+                                    <constraint firstItem="6Cz-CD-uMB" firstAttribute="trailing" secondItem="Kcb-G9-SOD" secondAttribute="trailing" id="UCz-PQ-PcG"/>
+                                    <constraint firstAttribute="trailing" secondItem="VjT-7y-kHb" secondAttribute="trailing" id="e15-df-Xcf"/>
+                                    <constraint firstItem="6Cz-CD-uMB" firstAttribute="width" secondItem="Kcb-G9-SOD" secondAttribute="width" multiplier="0.9" id="k87-B3-94C"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qFv-Cc-9Aw" userLabel="NonVectorBalanceMenuView">
-                                <rect key="frame" x="11" y="268" width="573" height="186"/>
+                                <rect key="frame" x="6" y="296" width="573" height="152"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Direct Measure Balancing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vq3-yz-z6a" userLabel="NonVectorLabel">
-                                        <rect key="frame" x="8" y="8" width="557" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXN-EQ-UtN" userLabel="TwoMeasureBalance">
-                                        <rect key="frame" x="8" y="113" width="557" height="64"/>
-                                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="2 Plane Balance">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NW-nm-3HJ" userLabel="SixMeasureBalance">
-                                        <rect key="frame" x="8" y="46" width="557" height="64"/>
+                                        <rect key="frame" x="80" y="8" width="485" height="64"/>
                                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="4 Run Method">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXN-EQ-UtN" userLabel="TwoMeasureBalance">
+                                        <rect key="frame" x="80" y="80" width="485" height="64"/>
+                                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="2 Plane Balance">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="6NW-nm-3HJ" firstAttribute="width" secondItem="qFv-Cc-9Aw" secondAttribute="width" constant="-20" id="Bni-in-qBm"/>
-                                    <constraint firstItem="KXN-EQ-UtN" firstAttribute="width" secondItem="qFv-Cc-9Aw" secondAttribute="width" id="LjV-dV-IWU"/>
-                                    <constraint firstAttribute="width" secondItem="vq3-yz-z6a" secondAttribute="width" constant="-20" id="Pcc-dF-7op"/>
-                                    <constraint firstAttribute="centerX" secondItem="KXN-EQ-UtN" secondAttribute="centerX" id="YDo-im-bNo"/>
-                                    <constraint firstAttribute="centerX" secondItem="6NW-nm-3HJ" secondAttribute="centerX" id="ctF-rg-HJi"/>
-                                    <constraint firstItem="vq3-yz-z6a" firstAttribute="width" secondItem="qFv-Cc-9Aw" secondAttribute="width" constant="-20" id="eka-Tg-SQl"/>
-                                    <constraint firstAttribute="centerX" secondItem="vq3-yz-z6a" secondAttribute="centerX" id="fk3-Rt-ZmM"/>
-                                    <constraint firstItem="KXN-EQ-UtN" firstAttribute="width" secondItem="qFv-Cc-9Aw" secondAttribute="width" constant="-20" id="jNa-3E-nnq"/>
-                                    <constraint firstItem="6NW-nm-3HJ" firstAttribute="width" secondItem="qFv-Cc-9Aw" secondAttribute="width" constant="-20" id="oVS-3r-v5m"/>
+                                    <constraint firstItem="6NW-nm-3HJ" firstAttribute="width" secondItem="qFv-Cc-9Aw" secondAttribute="width" multiplier="0.9" id="7qK-9v-VoD"/>
+                                    <constraint firstItem="KXN-EQ-UtN" firstAttribute="trailing" secondItem="qFv-Cc-9Aw" secondAttribute="trailing" id="8Dl-Fb-xPk"/>
+                                    <constraint firstItem="6NW-nm-3HJ" firstAttribute="trailing" secondItem="qFv-Cc-9Aw" secondAttribute="trailing" id="I8w-IB-yyR"/>
+                                    <constraint firstItem="KXN-EQ-UtN" firstAttribute="width" secondItem="qFv-Cc-9Aw" secondAttribute="width" multiplier="0.9" id="ueM-as-xcw"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Vector Balancing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rc2-w6-CHV">
+                                <rect key="frame" x="349" y="71" width="130" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Direct Balancing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SyE-wK-cHz">
+                                <rect key="frame" x="349" y="273" width="126" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="Kcb-G9-SOD" secondAttribute="centerX" id="48x-Bo-GDz"/>
-                            <constraint firstItem="qFv-Cc-9Aw" firstAttribute="top" secondItem="Kcb-G9-SOD" secondAttribute="bottom" constant="5" id="5BP-7F-R1m"/>
-                            <constraint firstItem="Kcb-G9-SOD" firstAttribute="width" secondItem="7pz-ab-7TV" secondAttribute="width" constant="-20" id="5Ec-X1-aCp"/>
-                            <constraint firstAttribute="centerX" secondItem="qFv-Cc-9Aw" secondAttribute="centerX" id="BG2-v1-2eT"/>
-                            <constraint firstItem="qFv-Cc-9Aw" firstAttribute="width" secondItem="7pz-ab-7TV" secondAttribute="width" constant="-20" id="a7p-KQ-jPd"/>
+                            <constraint firstItem="qFv-Cc-9Aw" firstAttribute="trailing" secondItem="7pz-ab-7TV" secondAttribute="trailing" id="6rE-VJ-3i9"/>
+                            <constraint firstItem="qFv-Cc-9Aw" firstAttribute="width" secondItem="7pz-ab-7TV" secondAttribute="width" constant="-20" id="8tJ-Cv-Kxk"/>
+                            <constraint firstItem="SyE-wK-cHz" firstAttribute="centerX" secondItem="qFv-Cc-9Aw" secondAttribute="centerX" id="KiX-KN-1ec"/>
+                            <constraint firstItem="Kcb-G9-SOD" firstAttribute="trailing" secondItem="7pz-ab-7TV" secondAttribute="trailing" id="d4g-gX-bo5"/>
+                            <constraint firstItem="Kcb-G9-SOD" firstAttribute="width" secondItem="7pz-ab-7TV" secondAttribute="width" constant="-20" id="gOn-Gn-JF9"/>
+                            <constraint firstItem="Rc2-w6-CHV" firstAttribute="centerX" secondItem="Kcb-G9-SOD" secondAttribute="centerX" id="gSq-WX-lMl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Balance Pro" id="pdQ-tq-h2M"/>

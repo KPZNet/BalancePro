@@ -23,13 +23,16 @@ class BalanceProMainMenuViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        SetRoundedButton(forButton: singlePlaneVectorBalanceButton)
-        SetRoundedButton(forButton: multiPlaneVectorBalance)
-        SetRoundedViewBox(forView: vectorBalanceView)
+        //SetRoundedButton(forButton: singlePlaneVectorBalanceButton)
+        singlePlaneVectorBalanceButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        multiPlaneVectorBalance.roundCorners(.TopLeft | .BottomLeft, radius: 20)
         
-        SetRoundedButton(forButton: sixMeasureBalanceButton)
-        SetRoundedButton(forButton: twoMeasureBalanceButton)
-        SetRoundedViewBox(forView: nonVectorBalanceView)
+        sixMeasureBalanceButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        twoMeasureBalanceButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        
+        nonVectorBalanceView.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        vectorBalanceView.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        
     }
 
     override func didReceiveMemoryWarning() {
