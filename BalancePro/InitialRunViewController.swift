@@ -10,6 +10,7 @@ import UIKit
 
 class BalancePlaneViewInitialVector : BalancePlaneView
 {
+    
     override func drawRect(rect: CGRect)
     {
         
@@ -35,11 +36,15 @@ class InitialRunViewController: UIViewController {
     @IBOutlet weak var vectorPhase: UITextField!
     @IBOutlet weak var balancePlane: BalancePlaneView!
     
+    @IBOutlet weak var addVectorButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         balancePlane.layer.cornerRadius = 10.0
         balancePlane.layer.masksToBounds = true
+        
+        SetRoundedButton(forButton: addVectorButton)
     }
 
     override func didReceiveMemoryWarning() {

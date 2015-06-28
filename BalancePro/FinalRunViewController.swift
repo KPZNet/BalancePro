@@ -65,12 +65,16 @@ class FinalRunViewController: UIViewController {
     
     @IBOutlet weak var balancePlane: BalancePlaneView!
     
+    @IBOutlet weak var addVectorButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         balancePlane.layer.cornerRadius = 10.0
         balancePlane.layer.masksToBounds = true
+        
+        SetRoundedButton(forButton: addVectorButton)
         
         if let wP = GetAppDelegate().singlePlaneBalance.balanceWeight
         {

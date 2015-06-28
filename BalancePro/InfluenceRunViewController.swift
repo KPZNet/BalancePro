@@ -103,6 +103,8 @@ class InfluenceRunViewController: UIViewController {
     @IBOutlet weak var balaneWeightMeasureFinal: UITextField!
     @IBOutlet weak var balanceWeightPlacementFinal: UITextField!
     
+    @IBOutlet weak var addVectorButton: UIButton!
+    
     @IBOutlet weak var balancePlane: BalancePlaneViewInfluenceVector!
     
     override func viewDidLoad() {
@@ -111,6 +113,8 @@ class InfluenceRunViewController: UIViewController {
         
         balancePlane.layer.cornerRadius = 10.0
         balancePlane.layer.masksToBounds = true
+        
+        SetRoundedButton(forButton: addVectorButton)
     }
     
     override func didReceiveMemoryWarning() {
