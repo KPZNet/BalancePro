@@ -382,7 +382,14 @@ extension UIBezierPath {
 }
 
 
-
+extension Float {
+    func string(fractionDigits:Int) -> String {
+        let formatter = NSNumberFormatter()
+        formatter.minimumFractionDigits = fractionDigits
+        formatter.maximumFractionDigits = fractionDigits
+        return formatter.stringFromNumber(self) ?? "\(self)"
+    }
+}
 
 
 

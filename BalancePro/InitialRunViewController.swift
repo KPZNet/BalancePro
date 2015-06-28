@@ -45,6 +45,8 @@ class InitialRunViewController: UIViewController {
         balancePlane.layer.masksToBounds = true
         
         SetRoundedButton(forButton: addVectorButton)
+        
+        GetAppDelegate().singlePlaneBalance = SinglePlaneVectorBalance()
     }
 
     override func didReceiveMemoryWarning() {

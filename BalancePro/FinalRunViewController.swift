@@ -52,8 +52,6 @@ class BalancePlaneViewFinalVector : BalancePlaneView
 }
 
 
-
-
 class FinalRunViewController: UIViewController {
 
     
@@ -66,6 +64,7 @@ class FinalRunViewController: UIViewController {
     @IBOutlet weak var balancePlane: BalancePlaneView!
     
     @IBOutlet weak var addVectorButton: UIButton!
+    @IBOutlet weak var saveBalanceRunButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,11 +74,12 @@ class FinalRunViewController: UIViewController {
         balancePlane.layer.masksToBounds = true
         
         SetRoundedButton(forButton: addVectorButton)
+        SetRoundedButton(forButton: saveBalanceRunButton)
         
         if let wP = GetAppDelegate().singlePlaneBalance.balanceWeight
         {
-            balanceWeightPlacement.text = wP.location.description
-            balaneWeightMeasure.text = wP.weight.description
+            balanceWeightPlacement.text = wP.location.string(2)
+            balaneWeightMeasure.text = wP.weight.string(2)
         }
     }
 
