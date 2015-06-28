@@ -247,6 +247,12 @@ class Vector
         yEnd = _yEnd
         
     }
+    func string() -> String
+    {
+        var str:String = String("")
+        str = amp.string(2) + "@" + phase.string(0)
+        return str
+    }
 }
 
 func *(left:Float, right:Vector) -> Vector
@@ -297,6 +303,13 @@ class BalanceWeight
     {
         weight = _weight
         location = _location
+    }
+    
+    func string() -> String
+    {
+        var str:String = String("")
+        str = weight.string(2) + "@" + location.string(0)
+        return str
     }
 }
 
