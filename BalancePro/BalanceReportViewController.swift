@@ -9,43 +9,58 @@
 import UIKit
 
 class BalanceReportViewController: UIViewController {
-
+    
     @IBOutlet weak var reportView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-
+        
         SetRoundedViewBox(forView: reportView)
         
         var balResults = GetAppDelegate().singlePlaneBalance
-        
         var report:String = String("")
-        report = "Initial Unbalanced Vector = " + balResults.initialVector!.string() + "\n"
-        report += "Influence Vector = " + balResults.influenceVector!.string() + "\n"
-        report += "Trial Weight  = " + balResults.influenceBalanceWeight!.string() + "\n"
-        report += "Balance Weight  = " + balResults.balanceWeight!.string() + "\n"
+        
+        if let vect = balResults.initialVector
+        {
+            report = "Initial Unbalanced Vector = " + "\t" + vect.string() + "\n"
+        }
+        if let vect = balResults.influenceVector
+        {
+            report += "Influence Vector = " + "\t" + vect.string() + "\n"
+        }
+        if let weight = balResults.influenceBalanceWeight
+        {
+            report += "Trial Weight  = " + "\t" + weight.string() + "\n"
+        }
+        if let weight = balResults.balanceWeight
+        {
+            report += "Balance Weight  = " + "\t" + weight.string() + "\n"
+        }
         report += "\n"
-        report += "Resulting Vector  = " + balResults.finalVector!.string() + "\n"
+        if let vect = balResults.finalVector
+        {
+            report += "Resulting Vector  = " + "\t" + vect.string() + "\n"
+        }
         
         reportView.text = report
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
