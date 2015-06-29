@@ -114,7 +114,8 @@ class InfluenceRunViewController: UIViewController {
         balancePlane.layer.cornerRadius = 10.0
         balancePlane.layer.masksToBounds = true
         
-        SetRoundedButton(forButton: addVectorButton)
+        //SetRoundedButton(forButton: addVectorButton)
+        addVectorButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
     }
     
     override func didReceiveMemoryWarning() {

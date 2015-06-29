@@ -73,8 +73,11 @@ class FinalRunViewController: UIViewController {
         balancePlane.layer.cornerRadius = 10.0
         balancePlane.layer.masksToBounds = true
         
-        SetRoundedButton(forButton: addVectorButton)
-        SetRoundedButton(forButton: saveBalanceRunButton)
+        //SetRoundedButton(forButton: addVectorButton)
+        //SetRoundedButton(forButton: saveBalanceRunButton)
+        
+        addVectorButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        saveBalanceRunButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
         
         if let wP = GetAppDelegate().singlePlaneBalance.balanceWeight
         {

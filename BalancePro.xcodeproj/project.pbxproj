@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		635A8F3E1B3BD4A600A5D24E /* TurboImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 635A8F3D1B3BD4A600A5D24E /* TurboImage.jpeg */; };
 		63DEA81F1AF1CE1A0011FB4A /* FinalRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */; };
 		63DEA8211AF825590011FB4A /* RunConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEA8201AF825590011FB4A /* RunConfigurationViewController.swift */; };
 		712192D31AF85222002DEB60 /* BalancePro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712192D21AF85222002DEB60 /* BalancePro.swift */; };
 		71676AA31A5F75790049BF07 /* CodeHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71676AA21A5F75790049BF07 /* CodeHolder.swift */; };
-		716FCE8F1B3F792400D96CF9 /* ImBoltA.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 716FCE8E1B3F792400D96CF9 /* ImBoltA.jpeg */; };
 		716FCE931B3FB08400D96CF9 /* BalanceReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716FCE921B3FB08400D96CF9 /* BalanceReportViewController.swift */; };
 		71B448A81B3E5B59001764A3 /* BalanceProMainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B448A71B3E5B59001764A3 /* BalanceProMainMenuViewController.swift */; };
 		71BE483F1A1BFBFA0067CA2B /* BalancePlaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */; };
@@ -36,12 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		635A8F3D1B3BD4A600A5D24E /* TurboImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TurboImage.jpeg; sourceTree = "<group>"; };
 		63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalRunViewController.swift; sourceTree = "<group>"; };
 		63DEA8201AF825590011FB4A /* RunConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunConfigurationViewController.swift; sourceTree = "<group>"; };
 		712192D21AF85222002DEB60 /* BalancePro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancePro.swift; sourceTree = "<group>"; };
 		71676AA21A5F75790049BF07 /* CodeHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeHolder.swift; sourceTree = "<group>"; };
-		716FCE8E1B3F792400D96CF9 /* ImBoltA.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ImBoltA.jpeg; sourceTree = "<group>"; };
 		716FCE921B3FB08400D96CF9 /* BalanceReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceReportViewController.swift; sourceTree = "<group>"; };
 		71B448A71B3E5B59001764A3 /* BalanceProMainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceProMainMenuViewController.swift; sourceTree = "<group>"; };
 		71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancePlaneView.swift; sourceTree = "<group>"; };
@@ -76,15 +72,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		635A8F3C1B3BD49700A5D24E /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				716FCE8E1B3F792400D96CF9 /* ImBoltA.jpeg */,
-				635A8F3D1B3BD4A600A5D24E /* TurboImage.jpeg */,
-			);
-			name = Images;
-			sourceTree = "<group>";
-		};
 		713DE0EB1B368A7300C805F6 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +124,6 @@
 		71FA859A1A1BCA3500E69D40 /* BalancePro */ = {
 			isa = PBXGroup;
 			children = (
-				635A8F3C1B3BD49700A5D24E /* Images */,
 				713DE0ED1B368B8400C805F6 /* Code Snips */,
 				713DE0EC1B368A7800C805F6 /* Views and Controllers */,
 				713DE0EB1B368A7300C805F6 /* Storyboards */,
@@ -256,8 +242,6 @@
 			files = (
 				71FA85A51A1BCA3500E69D40 /* Main.storyboard in Resources */,
 				71FA85AA1A1BCA3500E69D40 /* LaunchScreen.xib in Resources */,
-				635A8F3E1B3BD4A600A5D24E /* TurboImage.jpeg in Resources */,
-				716FCE8F1B3F792400D96CF9 /* ImBoltA.jpeg in Resources */,
 				71FA85A71A1BCA3500E69D40 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

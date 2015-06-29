@@ -24,14 +24,14 @@ class BalanceProMainMenuViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         //SetRoundedButton(forButton: singlePlaneVectorBalanceButton)
-        singlePlaneVectorBalanceButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
-        multiPlaneVectorBalance.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        singlePlaneVectorBalanceButton.roundCorners(.TopLeft | .BottomLeft, radius: 40)
+        multiPlaneVectorBalance.roundCorners(.TopLeft | .BottomLeft, radius: 40)
         
-        sixMeasureBalanceButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
-        twoMeasureBalanceButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        sixMeasureBalanceButton.roundCorners(.TopLeft | .BottomLeft, radius: 40)
+        twoMeasureBalanceButton.roundCorners(.TopLeft | .BottomLeft, radius: 40)
         
-        nonVectorBalanceView.roundCorners(.TopLeft | .BottomLeft, radius: 20)
-        vectorBalanceView.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        nonVectorBalanceView.roundCorners(.TopLeft | .BottomLeft, radius: 40)
+        vectorBalanceView.roundCorners(.TopLeft | .BottomLeft, radius: 40)
         
     }
 

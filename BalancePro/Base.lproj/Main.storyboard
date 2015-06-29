@@ -601,7 +601,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kcb-G9-SOD" userLabel="VectorBalanceMenuView">
-                                <rect key="frame" x="11" y="100" width="573" height="152"/>
+                                <rect key="frame" x="11" y="100" width="573" height="145"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Cz-CD-uMB">
                                         <rect key="frame" x="81" y="8" width="484" height="64"/>
@@ -615,7 +615,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjT-7y-kHb">
-                                        <rect key="frame" x="81" y="80" width="484" height="64"/>
+                                        <rect key="frame" x="81" y="74" width="484" height="64"/>
                                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Multi Plane Balance">
@@ -632,7 +632,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qFv-Cc-9Aw" userLabel="NonVectorBalanceMenuView">
-                                <rect key="frame" x="6" y="296" width="573" height="152"/>
+                                <rect key="frame" x="6" y="279" width="573" height="146"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NW-nm-3HJ" userLabel="SixMeasureBalance">
                                         <rect key="frame" x="80" y="8" width="485" height="64"/>
@@ -643,7 +643,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXN-EQ-UtN" userLabel="TwoMeasureBalance">
-                                        <rect key="frame" x="80" y="80" width="485" height="64"/>
+                                        <rect key="frame" x="80" y="74" width="485" height="64"/>
                                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="2 Plane Balance">
@@ -662,23 +662,23 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Vector Balancing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rc2-w6-CHV">
                                 <rect key="frame" x="349" y="71" width="130" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Direct Balancing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SyE-wK-cHz">
-                                <rect key="frame" x="349" y="273" width="126" height="21"/>
+                                <rect key="frame" x="349" y="256" width="126" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="qFv-Cc-9Aw" firstAttribute="trailing" secondItem="7pz-ab-7TV" secondAttribute="trailing" id="6rE-VJ-3i9"/>
-                            <constraint firstItem="qFv-Cc-9Aw" firstAttribute="width" secondItem="7pz-ab-7TV" secondAttribute="width" constant="-20" id="8tJ-Cv-Kxk"/>
+                            <constraint firstItem="qFv-Cc-9Aw" firstAttribute="width" secondItem="7pz-ab-7TV" secondAttribute="width" constant="-10" id="8tJ-Cv-Kxk"/>
                             <constraint firstItem="SyE-wK-cHz" firstAttribute="centerX" secondItem="qFv-Cc-9Aw" secondAttribute="centerX" id="KiX-KN-1ec"/>
                             <constraint firstItem="Kcb-G9-SOD" firstAttribute="trailing" secondItem="7pz-ab-7TV" secondAttribute="trailing" id="d4g-gX-bo5"/>
-                            <constraint firstItem="Kcb-G9-SOD" firstAttribute="width" secondItem="7pz-ab-7TV" secondAttribute="width" constant="-20" id="gOn-Gn-JF9"/>
+                            <constraint firstItem="Kcb-G9-SOD" firstAttribute="width" secondItem="7pz-ab-7TV" secondAttribute="width" constant="-10" id="gOn-Gn-JF9"/>
                             <constraint firstItem="Rc2-w6-CHV" firstAttribute="centerX" secondItem="Kcb-G9-SOD" secondAttribute="centerX" id="gSq-WX-lMl"/>
                         </constraints>
                     </view>
