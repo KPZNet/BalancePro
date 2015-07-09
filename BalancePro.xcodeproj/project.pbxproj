@@ -12,6 +12,7 @@
 		712192D31AF85222002DEB60 /* BalancePro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712192D21AF85222002DEB60 /* BalancePro.swift */; };
 		71676AA31A5F75790049BF07 /* CodeHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71676AA21A5F75790049BF07 /* CodeHolder.swift */; };
 		716FCE931B3FB08400D96CF9 /* BalanceReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716FCE921B3FB08400D96CF9 /* BalanceReportViewController.swift */; };
+		71856C0D1B4E2B3E0049606E /* TrialWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71856C0C1B4E2B3E0049606E /* TrialWeightViewController.swift */; };
 		71B448A81B3E5B59001764A3 /* BalanceProMainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B448A71B3E5B59001764A3 /* BalanceProMainMenuViewController.swift */; };
 		71BE483F1A1BFBFA0067CA2B /* BalancePlaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */; };
 		71FA859E1A1BCA3500E69D40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FA859D1A1BCA3500E69D40 /* AppDelegate.swift */; };
@@ -39,6 +40,7 @@
 		712192D21AF85222002DEB60 /* BalancePro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancePro.swift; sourceTree = "<group>"; };
 		71676AA21A5F75790049BF07 /* CodeHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeHolder.swift; sourceTree = "<group>"; };
 		716FCE921B3FB08400D96CF9 /* BalanceReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceReportViewController.swift; sourceTree = "<group>"; };
+		71856C0C1B4E2B3E0049606E /* TrialWeightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrialWeightViewController.swift; sourceTree = "<group>"; };
 		71B448A71B3E5B59001764A3 /* BalanceProMainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceProMainMenuViewController.swift; sourceTree = "<group>"; };
 		71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancePlaneView.swift; sourceTree = "<group>"; };
 		71FA85981A1BCA3500E69D40 /* BalancePro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BalancePro.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,7 @@
 				71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */,
 				71B448A71B3E5B59001764A3 /* BalanceProMainMenuViewController.swift */,
 				71FA859F1A1BCA3500E69D40 /* InitialRunViewController.swift */,
+				71856C0C1B4E2B3E0049606E /* TrialWeightViewController.swift */,
 				71FA85A11A1BCA3500E69D40 /* InfluenceRunViewController.swift */,
 				63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */,
 				63DEA8201AF825590011FB4A /* RunConfigurationViewController.swift */,
@@ -266,6 +269,7 @@
 				71FA859E1A1BCA3500E69D40 /* AppDelegate.swift in Sources */,
 				712192D31AF85222002DEB60 /* BalancePro.swift in Sources */,
 				71B448A81B3E5B59001764A3 /* BalanceProMainMenuViewController.swift in Sources */,
+				71856C0D1B4E2B3E0049606E /* TrialWeightViewController.swift in Sources */,
 				63DEA81F1AF1CE1A0011FB4A /* FinalRunViewController.swift in Sources */,
 				716FCE931B3FB08400D96CF9 /* BalanceReportViewController.swift in Sources */,
 				71676AA31A5F75790049BF07 /* CodeHolder.swift in Sources */,
