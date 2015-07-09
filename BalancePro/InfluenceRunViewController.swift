@@ -128,8 +128,6 @@ class InfluenceRunViewController: UIViewController {
         var influenceVectAmp = (vectorAmplitude.text as NSString).floatValue
         var influenceVectPhase = (vectorPhase.text as NSString).floatValue
         
-        var influenceBalanceWeight = (balaneWeightMeasure.text as NSString).floatValue
-        var influenceBalancePlacement = (balanceWeightPlacement.text as NSString).floatValue
         
         var trialVect = Vector(fromAmp: influenceVectAmp, fromPhaseInDegrees: influenceVectPhase, withRunType: BalanceRunType.trial)
         
@@ -139,7 +137,7 @@ class InfluenceRunViewController: UIViewController {
             inflVect.runType = BalanceRunType.influence
             GetAppDelegate().singlePlaneBalance.influenceVector = inflVect
         }
-        GetAppDelegate().singlePlaneBalance.influenceBalanceWeight = BalanceWeight(fromWeight: influenceBalanceWeight, fromLocation: influenceBalancePlacement)
+
         GetAppDelegate().singlePlaneBalance.trialVector = trialVect
         
         var balanceWeight = CalcBalanceWeight()

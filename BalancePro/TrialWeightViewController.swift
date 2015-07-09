@@ -63,7 +63,10 @@ class TrialWeightViewController: UIViewController {
     
     @IBAction func AddTrialWeight(sender: AnyObject) {
         
-
+        var influenceBalanceWeight = (balaneWeightMeasure.text as NSString).floatValue
+        var influenceBalancePlacement = (balanceWeightPlacement.text as NSString).floatValue
+        
+        GetAppDelegate().singlePlaneBalance.influenceBalanceWeight = BalanceWeight(fromWeight: influenceBalanceWeight, fromLocation: influenceBalancePlacement)
         
         balancePlane.clearsContextBeforeDrawing = true;
         balancePlane.setNeedsDisplay()
