@@ -85,6 +85,11 @@ class BalancePlaneViewInfluenceVector : BalancePlaneView
         {
             DrawWeight(wP)
         }
+        if let wPF = GetAppDelegate().singlePlaneBalance.balanceWeight
+        {
+            DrawWeight(wPF, color:UIColor(red: (0/255.0), green: (255/255.0), blue: (0/255.0), alpha: 0.5))
+            
+        }
         
     }
     
@@ -94,16 +99,20 @@ class BalancePlaneViewInfluenceVector : BalancePlaneView
 class InfluenceRunViewController: UIViewController {
     
     
+    @IBOutlet weak var weightLabel: UILabel!
+    
+    @IBOutlet weak var weightMeasureLabel: UILabel!
+    
+    @IBOutlet weak var weightPlacementLabel: UILabel!
+    
     @IBOutlet weak var vectorAmplitude: UITextField!
     @IBOutlet weak var vectorPhase: UITextField!
-    
-    @IBOutlet weak var balaneWeightMeasure: UITextField!
-    @IBOutlet weak var balanceWeightPlacement: UITextField!
     
     @IBOutlet weak var balaneWeightMeasureFinal: UITextField!
     @IBOutlet weak var balanceWeightPlacementFinal: UITextField!
     
     @IBOutlet weak var addVectorButton: UIButton!
+    @IBOutlet weak var calculateButton: UIButton!
     
     @IBOutlet weak var balancePlane: BalancePlaneViewInfluenceVector!
     
@@ -116,6 +125,13 @@ class InfluenceRunViewController: UIViewController {
         
         //SetRoundedButton(forButton: addVectorButton)
         addVectorButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        calculateButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        
+        weightLabel.hidden = true
+        weightMeasureLabel.hidden = true
+        weightPlacementLabel.hidden = true
+        balaneWeightMeasureFinal.hidden = true
+        balanceWeightPlacementFinal.hidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,25 +139,42 @@ class InfluenceRunViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func CalculateBalanceWeight(sender: AnyObject) {
+        
+        
+        if let initVect = GetAppDelegate().singlePlaneBalance.initialVector
+        {
+            if let trialVect = GetAppDelegate().singlePlaneBalance.trialVector
+            {
+                var inflVect = trialVect - initVect
+                inflVect.runType = BalanceRunType.influence
+                GetAppDelegate().singlePlaneBalance.influenceVector = inflVect
+            }
+        }
+        
+        var balanceWeight = CalcBalanceWeight()
+        GetAppDelegate().singlePlaneBalance.balanceWeight = CalcBalanceWeight()
+        
+        weightLabel.hidden = false
+        weightMeasureLabel.hidden = false
+        weightPlacementLabel.hidden = false
+        balaneWeightMeasureFinal.hidden = false
+        balanceWeightPlacementFinal.hidden = false
+        
+        balancePlane.clearsContextBeforeDrawing = true;
+        balancePlane.setNeedsDisplay()
+    }
+    
     @IBAction func AddVector(sender: AnyObject) {
         
         var influenceVectAmp = (vectorAmplitude.text as NSString).floatValue
         var influenceVectPhase = (vectorPhase.text as NSString).floatValue
         
-        
         var trialVect = Vector(fromAmp: influenceVectAmp, fromPhaseInDegrees: influenceVectPhase, withRunType: BalanceRunType.trial)
-        
-        if let initVect = GetAppDelegate().singlePlaneBalance.initialVector
-        {
-            var inflVect = trialVect - initVect
-            inflVect.runType = BalanceRunType.influence
-            GetAppDelegate().singlePlaneBalance.influenceVector = inflVect
-        }
 
         GetAppDelegate().singlePlaneBalance.trialVector = trialVect
         
         var balanceWeight = CalcBalanceWeight()
-        GetAppDelegate().singlePlaneBalance.balanceWeight = CalcBalanceWeight()
         
         balancePlane.clearsContextBeforeDrawing = true;
         balancePlane.setNeedsDisplay()
