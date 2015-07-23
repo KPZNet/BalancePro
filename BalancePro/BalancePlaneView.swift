@@ -33,7 +33,7 @@ class BalancePlaneView: UIView {
     */
     
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
-    var vibScale: Float = Float(10.0)
+    var vibScale: Float = Float(1.0)
     var rotateRotor : Float =  Float(M_PI)
     var vibScaleLineWidth : Float = Float(0.1)
     
@@ -435,13 +435,13 @@ class BalancePlaneView: UIView {
     
     func SetupScales(MaxVib _maxVib : Float)
     {
-        //rotateRotor = Float(M_PI_2)
-        
-        vibScale = Float(_maxVib)
+        if(_maxVib > vibScale){
+            
+            vibScale = Float(_maxVib * 1.1)
+        }
         vibScaleLineWidth = (vibScale * 0.01)
         vectorStrokeWidth = (vibScale * 0.02)
         vectorArrowLength = (vibScale * Float(0.05))
-        
         
         InitalizeCartesianTransform()
     }

@@ -79,11 +79,6 @@ class FinalRunViewController: UIViewController {
         addVectorButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
         saveBalanceRunButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
         
-        if let wP = GetAppDelegate().singlePlaneBalance.balanceWeight
-        {
-            balanceWeightPlacement.text = wP.location.string(2)
-            balaneWeightMeasure.text = wP.weight.string(2)
-        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -23,7 +23,6 @@ class BalancePlaneViewTrialWeight : BalancePlaneView
         if let initVect = GetAppDelegate().singlePlaneBalance.initialVector
         {
             drawBVector(initVect)
-            
         }
         
         if let wP = GetAppDelegate().singlePlaneBalance.influenceBalanceWeight
