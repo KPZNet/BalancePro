@@ -328,7 +328,7 @@ class BalancePlaneView: UIView {
         
     }
     
-    func drawBVector(vector : Vector)
+    func drawBVector(vector : Vector, vectorColor: UIColor = UIColor.blackColor())
     {
         PushToCartesianTransform()
         
@@ -338,7 +338,7 @@ class BalancePlaneView: UIView {
             tailWidth: CGFloat(3),
             headWidth: CGFloat(7),
             headLength: CGFloat(10.0),
-            color:vector.color)
+            color:vectorColor)
         
         PopToDefaultTransform()
         

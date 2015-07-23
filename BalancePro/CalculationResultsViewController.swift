@@ -66,16 +66,16 @@ class BalancePlaneViewCalculationResults : BalancePlaneView
         
         if let initVect = GetAppDelegate().singlePlaneBalance.initialVector
         {
-            drawBVector(initVect)
+            drawBVector(initVect, vectorColor: initVect.color)
             if let trialVect = GetAppDelegate().singlePlaneBalance.trialVector
             {
-                drawBVector(trialVect)
+                drawBVector(trialVect, vectorColor: trialVect.color)
                 if let inflVect = GetAppDelegate().singlePlaneBalance.influenceVector
                 {
-                    drawBVector(inflVect)
+                    drawBVector(inflVect, vectorColor: inflVect.color)
                     
                     var TO = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
-                    drawBVector(TO)
+                    drawBVector(TO, vectorColor: TO.color)
                 }
             }
         }

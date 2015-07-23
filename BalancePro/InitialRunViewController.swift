@@ -22,7 +22,7 @@ class BalancePlaneViewInitialVector : BalancePlaneView
         
         if let vect = GetAppDelegate().singlePlaneBalance.initialVector
         {
-            drawBVector(vect)
+            drawBVector(vect, vectorColor:vect.color)
         }
         
     }
