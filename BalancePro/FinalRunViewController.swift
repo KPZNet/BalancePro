@@ -31,7 +31,7 @@ class BalancePlaneViewFinalVector : BalancePlaneView
                 {
                     drawBVector(inflVect, vectorColor: inflVect.color)
                     
-                    var TO = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
+                    let TO = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
                     drawBVector(TO, vectorColor: TO.color)
                     
                     if let finalVect = GetAppDelegate().singlePlaneBalance.finalVector
@@ -76,8 +76,8 @@ class FinalRunViewController: UIViewController {
         //SetRoundedButton(forButton: addVectorButton)
         //SetRoundedButton(forButton: saveBalanceRunButton)
         
-        addVectorButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
-        saveBalanceRunButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        addVectorButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
+        saveBalanceRunButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
         
     }
 

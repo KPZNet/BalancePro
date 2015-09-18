@@ -51,7 +51,7 @@ class BalancePlaneView: UIView {
         clearsContextBeforeDrawing = true;
     }
     
-    required init(coder aDecoder: NSCoder)
+    required init?(coder aDecoder: NSCoder)
     {
         super.init(coder:aDecoder)
         clearsContextBeforeDrawing = true;
@@ -120,10 +120,10 @@ class BalancePlaneView: UIView {
         let DegToRadConversion : Float = Float(M_PI) / Float(180)
         var radians : Float = 0.0
         radians = DegToRadConversion * Float(vector.phase)
-        var magnitude = vector.amp
+        let magnitude = vector.amp
         
-        var x = Float(  magnitude * cos( radians ))
-        var y = Float(  magnitude * sin( radians ))
+        let x = Float(  magnitude * cos( radians ))
+        let y = Float(  magnitude * sin( radians ))
         
         return (x, y)
     }
@@ -154,14 +154,14 @@ class BalancePlaneView: UIView {
         let weightSlotRadius = vibScale * 0.07
         let strokeWidth = vibScaleLineWidth
         
-        var fillColor : UIColor = color
+        let fillColor : UIColor = color
         
         // Get the context
-        var context = UIGraphicsGetCurrentContext()
+        let context = UIGraphicsGetCurrentContext()
         
         let weightSlotCenter = Float( vibScale ) //- Float(weightSlotRadius)
         
-        var radians = GetRadians( Float(weight.location) )
+        let radians = GetRadians( Float(weight.location) )
         x = weightSlotCenter * cos( radians )
         y = weightSlotCenter * sin( radians )
         
@@ -182,7 +182,7 @@ class BalancePlaneView: UIView {
         CGContextAddArc(context, center.x, center.y, CGFloat(weightSlotRadius), CGFloat(0), CGFloat(2 * M_PI), 1)
         
         // Draw the arc
-        CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
         PopToDefaultTransform()
     }
@@ -214,7 +214,7 @@ class BalancePlaneView: UIView {
         CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
         
         // Draw the arc
-        CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
         PopToDefaultTransform()
         
@@ -248,7 +248,7 @@ class BalancePlaneView: UIView {
         CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
         
         // Draw the arc
-        CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
         PopToDefaultTransform()
         
@@ -266,12 +266,12 @@ class BalancePlaneView: UIView {
         
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
         
-        var  textSize = textFont.sizeOfString(vector.name + "XX")
+        let  textSize = textFont.sizeOfString(vector.name + "XX")
         
         let sRect:CGRect = CGRectMake(0, 0, textSize.width, textSize.height)
-        var aPoint:CGPoint = CGPointApplyAffineTransform ( midPoint, pCartesianTrans );
+        let aPoint:CGPoint = CGPointApplyAffineTransform ( midPoint, pCartesianTrans );
         
-        var label = UILabel(frame: sRect)
+        let label = UILabel(frame: sRect)
         label.center = aPoint
         label.font = textFont
         label.textAlignment = NSTextAlignment.Center
@@ -298,7 +298,7 @@ class BalancePlaneView: UIView {
     {
         PushToCartesianTransform()
         
-        var fillColor : UIColor = UIColor(red: (160/255.0), green: (97/255.0), blue: (5/255.0), alpha: 0.2)
+        let fillColor : UIColor = UIColor(red: (160/255.0), green: (97/255.0), blue: (5/255.0), alpha: 0.2)
         
         var startAngle: Float = Float(2.0 * M_PI)
         var endAngle: Float = 0.0
@@ -322,7 +322,7 @@ class BalancePlaneView: UIView {
         CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
         
         // Draw the arc
-        CGContextDrawPath(context, kCGPathFillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
         PopToDefaultTransform()
         
@@ -355,9 +355,9 @@ class BalancePlaneView: UIView {
         
         let sPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y)
         let sRect:CGRect = CGRectMake(0, 0, 50, 10)
-        var aPoint:CGPoint = CGPointApplyAffineTransform ( sPoint, pCartesianTrans );
+        let aPoint:CGPoint = CGPointApplyAffineTransform ( sPoint, pCartesianTrans );
         
-        var label = UILabel(frame: sRect)
+        let label = UILabel(frame: sRect)
         label.center = aPoint
         label.font = textFont
         label.textAlignment = NSTextAlignment.Center
@@ -403,10 +403,10 @@ class BalancePlaneView: UIView {
         for var index = 0; index < 360; index+=15
         {
             
-            var xStart : Float = (vibScale - lineLength) * cos( GetRadians( Float(index) ) )
-            var yStart : Float = (vibScale - lineLength) * sin( GetRadians( Float(index) ) )
-            var xEnd   : Float = (vibScale) * cos( GetRadians( Float(index) ) )
-            var yEnd   : Float = (vibScale) * sin( GetRadians( Float(index) ) )
+            let xStart : Float = (vibScale - lineLength) * cos( GetRadians( Float(index) ) )
+            let yStart : Float = (vibScale - lineLength) * sin( GetRadians( Float(index) ) )
+            let xEnd   : Float = (vibScale) * cos( GetRadians( Float(index) ) )
+            let yEnd   : Float = (vibScale) * sin( GetRadians( Float(index) ) )
             
             CGContextMoveToPoint(context, CGFloat(xStart), CGFloat(yStart))
             CGContextAddLineToPoint(context, CGFloat(xEnd), CGFloat(yEnd))
@@ -423,10 +423,10 @@ class BalancePlaneView: UIView {
         for var index = 0; index < 360; index+=45
         {
             
-            var xEnd2   : Float = cos( GetRadians( Float(index) ) )
-            var yEnd2   : Float = sin( GetRadians( Float(index) ) )
-            var ratioPoint:CGPoint = CGPoint(x:CGFloat(xEnd2), y:CGFloat(yEnd2))
-            var textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2 * vibScale), y:CGFloat(yEnd2 * vibScale))
+            let xEnd2   : Float = cos( GetRadians( Float(index) ) )
+            let yEnd2   : Float = sin( GetRadians( Float(index) ) )
+            let ratioPoint:CGPoint = CGPoint(x:CGFloat(xEnd2), y:CGFloat(yEnd2))
+            let textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2 * vibScale), y:CGFloat(yEnd2 * vibScale))
             DrawDegreeLabel(At: textPoint, Ratio:ratioPoint, Degree:Float(index))
             
         }
@@ -449,7 +449,7 @@ class BalancePlaneView: UIView {
     
     func DrawBlankRect(){
         
-        var r = self.bounds
+        let r = self.bounds
         /* Create the path first. Just the path handle. */
         let path = CGPathCreateMutable()
         
@@ -482,7 +482,7 @@ class BalancePlaneView: UIView {
         //CGContextSetLineWidth(currentContext, 5)
         
         /* Stroke and fill the path on the context */
-        CGContextDrawPath(currentContext, kCGPathFillStroke)
+        CGContextDrawPath(currentContext, CGPathDrawingMode.FillStroke)
     }
     
     

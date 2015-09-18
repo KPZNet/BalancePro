@@ -213,6 +213,8 @@
 		71FA85901A1BCA3500E69D40 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = KenCeglia;
 				TargetAttributes = {

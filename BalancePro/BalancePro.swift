@@ -21,8 +21,8 @@ func GetAppDelegate() -> AppDelegate
 
 func CalcAngleDegreesBetweenVectors(_v1:Vector, _v2:Vector) -> Float
 {
-    var v1Phase = _v1.phase
-    var v2Phase = _v2.phase
+    let v1Phase = _v1.phase
+    let v2Phase = _v2.phase
     
     var deg = Float(v1Phase - v2Phase)
     if deg < 0.0 { deg += 360 }
@@ -50,7 +50,7 @@ func CalcBalanceWeight() -> BalanceWeight
                 var balanceWeightRatio:Float = wP.weight/influenceVectOrigAmp
                 var bW = balanceWeightRatio * initVectAmp
                 
-                let deg = CalcAngleDegreesBetweenVectors(initVectNeg, inflVectOrigin)
+                let deg = CalcAngleDegreesBetweenVectors(initVectNeg, _v2: inflVectOrigin)
                 let wL = (wP.location + deg) % 360
                 
                 var bWeight:BalanceWeight = BalanceWeight(fromWeight: bW, fromLocation: wL)
@@ -142,7 +142,7 @@ class Vector
     var basePoint:CGPoint
         {
         get{
-            var point:CGPoint = CGPointMake( CGFloat(xOrigin), CGFloat(yOrigin) )
+            let point:CGPoint = CGPointMake( CGFloat(xOrigin), CGFloat(yOrigin) )
             return point
         }
         
@@ -150,7 +150,7 @@ class Vector
     var endPoint:CGPoint
         {
         get{
-            var point:CGPoint = CGPointMake( CGFloat(xEnd), CGFloat(yEnd) )
+            let point:CGPoint = CGPointMake( CGFloat(xEnd), CGFloat(yEnd) )
             return point
         }
         
@@ -302,7 +302,7 @@ class Vector
 func *(left:Float, right:Vector) -> Vector
 {
     
-    var vecSub = Vector(xOrigin: 0,
+    let vecSub = Vector(xOrigin: 0,
         yOrigin: 0,
         xEnd: right.xEnd * left,
         yEnd: right.yEnd * left)
@@ -312,7 +312,7 @@ func *(left:Float, right:Vector) -> Vector
 func +(left:Vector, right:Vector) -> Vector
 {
     
-    var vecSub = Vector(xOrigin: right.xOrigin + left.xOrigin,
+    let vecSub = Vector(xOrigin: right.xOrigin + left.xOrigin,
         yOrigin: right.yOrigin + left.yOrigin,
         xEnd: right.xEnd + left.xEnd,
         yEnd: right.yEnd + left.yEnd)
@@ -321,14 +321,14 @@ func +(left:Vector, right:Vector) -> Vector
 }
 func -(left:Vector, right:Vector) -> Vector
 {
-    var vecSub = Vector(xOrigin: right.xEnd, yOrigin: right.yEnd, xEnd: left.xEnd, yEnd: left.yEnd)
+    let vecSub = Vector(xOrigin: right.xEnd, yOrigin: right.yEnd, xEnd: left.xEnd, yEnd: left.yEnd)
     
     return vecSub
 }
 
 func max(left:CGSize, right:CGSize) -> CGSize
 {
-    var newSize : CGSize = CGSize(width: max(left.width, right.width),
+    let newSize : CGSize = CGSize(width: max(left.width, right.width),
         height: max(left.height, right.height) )
     return newSize
 }
@@ -377,14 +377,14 @@ func DrawArrow(viewControl _view:UIView, basePoint _basePoint:CGPoint, endPoint 
     headLength _headLength:CGFloat,
     color _color:UIColor)
 {
-    var path:UIBezierPath = UIBezierPath.GetBezierArrowPathFromPoint(
+    let path:UIBezierPath = UIBezierPath.GetBezierArrowPathFromPoint(
         _basePoint,
         endPoint: _endPoint,
         tailWidth: _tailWidth,
         headWidth: _headWidth,
         headLength: _headLength)
     
-    var shape : CAShapeLayer = CAShapeLayer()
+    let shape : CAShapeLayer = CAShapeLayer()
     shape.path = path.CGPath;
     shape.fillColor = _color.CGColor
     
@@ -429,11 +429,11 @@ extension UIBezierPath {
         
         var transform: CGAffineTransform = self.MakeTransformForStartPoint(startPoint, endPoint: endPoint, length:  CGFloat(length))
         
-        var cgPath: CGMutablePathRef = CGPathCreateMutable()
+        let cgPath: CGMutablePathRef = CGPathCreateMutable()
         CGPathAddLines(cgPath, &transform, points, NUM_VECTOR_POINTS)
         CGPathCloseSubpath(cgPath)
         
-        var uiPath: UIBezierPath = UIBezierPath(CGPath: cgPath)
+        let uiPath: UIBezierPath = UIBezierPath(CGPath: cgPath)
         return uiPath
     }
 }

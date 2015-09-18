@@ -45,7 +45,7 @@ class InitialRunViewController: UIViewController {
         balancePlane.layer.masksToBounds = true
         
         //SetRoundedButton(forButton: addVectorButton)
-        addVectorButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        addVectorButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
         
         GetAppDelegate().singlePlaneBalance = SinglePlaneVectorBalance()
     }
@@ -59,13 +59,13 @@ class InitialRunViewController: UIViewController {
     @IBAction func AddVector(sender: AnyObject) {
         
         
-        var ampString:NSString = vectorAmplitude.text
-        var amp = ampString.floatValue
+        let ampString:NSString = vectorAmplitude.text
+        let amp = ampString.floatValue
         
-        var phaseString:NSString = vectorPhase.text
-        var phase = phaseString.floatValue
+        let phaseString:NSString = vectorPhase.text
+        let phase = phaseString.floatValue
         
-        var vec0 = Vector(fromAmp: amp, fromPhaseInDegrees: phase, withRunType: BalanceRunType.initial)
+        let vec0 = Vector(fromAmp: amp, fromPhaseInDegrees: phase, withRunType: BalanceRunType.initial)
         GetAppDelegate().singlePlaneBalance.initialVector = vec0
         
         balancePlane.setNeedsDisplay()

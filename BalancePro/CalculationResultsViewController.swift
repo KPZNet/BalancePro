@@ -32,7 +32,7 @@ class BalancePlaneViewCalculationResults : BalancePlaneView
                 {
                     drawBVector(inflVect, vectorColor: inflVect.color)
                     
-                    var TO = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
+                    let TO = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
                     drawBVector(TO, vectorColor: TO.color)
                 }
             }
@@ -90,13 +90,13 @@ class CalculationResultsViewController: UIViewController {
         {
             if let trialVect = GetAppDelegate().singlePlaneBalance.trialVector
             {
-                var inflVect = trialVect - initVect
+                let inflVect = trialVect - initVect
                 inflVect.runType = BalanceRunType.influence
                 GetAppDelegate().singlePlaneBalance.influenceVector = inflVect
             }
         }
         
-        var balanceWeight = CalcBalanceWeight()
+        let balanceWeight = CalcBalanceWeight()
         GetAppDelegate().singlePlaneBalance.balanceWeight = balanceWeight
         
         balaneWeightMeasureFinal.text = balanceWeight.weight.string(2)

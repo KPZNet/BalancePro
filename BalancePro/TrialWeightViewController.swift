@@ -52,7 +52,7 @@ class TrialWeightViewController: UIViewController {
         balancePlane.layer.masksToBounds = true
         
         //SetRoundedButton(forButton: addVectorButton)
-        addTrialWeightButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        addTrialWeightButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
     }
     
     override func didReceiveMemoryWarning() {

@@ -19,7 +19,7 @@ class BalanceReportViewController: UIViewController {
         
         SetRoundedViewBox(forView: reportView)
         
-        var balResults = GetAppDelegate().singlePlaneBalance
+        let balResults = GetAppDelegate().singlePlaneBalance
         var report:String = String("")
         
         if let vect = balResults.initialVector

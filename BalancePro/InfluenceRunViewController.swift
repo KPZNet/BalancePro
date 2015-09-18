@@ -32,7 +32,7 @@ class BalancePlaneViewInfluenceVector : BalancePlaneView
                 {
                     drawBVector(inflVect, vectorColor: inflVect.color)
                     
-                    var TO = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
+                    let TO = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
                     drawBVector(TO, vectorColor: TO.color)
                 }
             }
@@ -69,7 +69,7 @@ class InfluenceRunViewController: UIViewController {
         balancePlane.layer.masksToBounds = true
         
         //SetRoundedButton(forButton: addVectorButton)
-        addVectorButton.roundCorners(.TopLeft | .BottomLeft, radius: 20)
+        addVectorButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
 
     }
     
@@ -85,7 +85,7 @@ class InfluenceRunViewController: UIViewController {
         {
             if let trialVect = GetAppDelegate().singlePlaneBalance.trialVector
             {
-                var inflVect = trialVect - initVect
+                let inflVect = trialVect - initVect
                 inflVect.runType = BalanceRunType.influence
                 GetAppDelegate().singlePlaneBalance.influenceVector = inflVect
             }
