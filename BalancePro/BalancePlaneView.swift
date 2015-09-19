@@ -77,7 +77,7 @@ class BalancePlaneView: UIView {
         clearsContextBeforeDrawing = true;
         
         viewScale = vibScale * 1.2
-        let context = UIGraphicsGetCurrentContext()
+
         var pTempCartesianTransform : CGAffineTransform = CGAffineTransformIdentity
         
         pTempCartesianTransform = CGAffineTransformTranslate(pTempCartesianTransform, (self.frame.size.width / 2), (self.frame.size.height / 2));
@@ -95,8 +95,7 @@ class BalancePlaneView: UIView {
     func GetRotatedTextTransform(At _point:CGPoint, Rotate _rotate:Float) -> CGAffineTransform
     {
         let rotationAngle = _rotate
-        
-        let context = UIGraphicsGetCurrentContext()
+
         var pTempTransform : CGAffineTransform = CGAffineTransformIdentity
         
         pTempTransform = CGAffineTransformTranslate(pTempTransform, _point.x, _point.y)
@@ -147,8 +146,6 @@ class BalancePlaneView: UIView {
         var x : Float
         var y : Float
         
-        let margin = 0
-        
         // Drawing code
         // Set the radius
         let weightSlotRadius = vibScale * 0.07
@@ -191,10 +188,6 @@ class BalancePlaneView: UIView {
     {
         PushToCartesianTransform()
         
-        
-        var startAngle: Float = Float(2.0 * M_PI)
-        var endAngle: Float = 0.0
-        
         // Get the context
         let context = UIGraphicsGetCurrentContext()
         
@@ -224,10 +217,6 @@ class BalancePlaneView: UIView {
     func DrawRotor()
     {
         PushToCartesianTransform()
-        
-        
-        var startAngle: Float = Float(2.0 * M_PI)
-        var endAngle: Float = 0.0
         
         // Get the context
         let context = UIGraphicsGetCurrentContext()
@@ -300,14 +289,8 @@ class BalancePlaneView: UIView {
         
         let fillColor : UIColor = UIColor(red: (160/255.0), green: (97/255.0), blue: (5/255.0), alpha: 0.2)
         
-        var startAngle: Float = Float(2.0 * M_PI)
-        var endAngle: Float = 0.0
-        
         // Get the context
         let context = UIGraphicsGetCurrentContext()
-        
-        // Find the middle of the circle
-        let center = CGPointMake(0 , 0)
         
         // Draw the arc around the circle
         CGContextAddArc(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd), CGFloat(2), CGFloat(0), CGFloat(2.0 * M_PI), 1)

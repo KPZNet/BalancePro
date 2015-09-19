@@ -91,7 +91,6 @@ class InfluenceRunViewController: UIViewController {
             }
         }
         
-        var balanceWeight = CalcBalanceWeight()
         GetAppDelegate().singlePlaneBalance.balanceWeight = CalcBalanceWeight()
         
         balancePlane.clearsContextBeforeDrawing = true;
@@ -100,10 +99,10 @@ class InfluenceRunViewController: UIViewController {
     
     @IBAction func AddVector(sender: AnyObject) {
         
-        var influenceVectAmp = (vectorAmplitude.text as NSString).floatValue
-        var influenceVectPhase = (vectorPhase.text as NSString).floatValue
+        let influenceVectAmp = vectorAmplitude.text?.ToFloat()
+        let influenceVectPhase = vectorPhase.text?.ToFloat()
         
-        var trialVect = Vector(fromAmp: influenceVectAmp, fromPhaseInDegrees: influenceVectPhase, withRunType: BalanceRunType.trial)
+        let trialVect = Vector(fromAmp: influenceVectAmp!, fromPhaseInDegrees: influenceVectPhase!, withRunType: BalanceRunType.trial)
 
         GetAppDelegate().singlePlaneBalance.trialVector = trialVect
 

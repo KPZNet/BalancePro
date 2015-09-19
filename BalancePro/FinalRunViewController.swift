@@ -87,11 +87,11 @@ class FinalRunViewController: UIViewController {
     }
     
     @IBAction func AddVector(sender: AnyObject) {
+
+        let vectAmp = vectorAmplitude.text?.ToFloat()
+        let vectPhase = vectorPhase.text?.ToFloat()
         
-        var vectAmp = (vectorAmplitude.text as NSString).floatValue
-        var vectPhase = (vectorPhase.text as NSString).floatValue
-        
-        var finalVect = Vector(fromAmp: vectAmp, fromPhaseInDegrees: vectPhase, withRunType: BalanceRunType.final)
+        let finalVect = Vector(fromAmp: vectAmp!, fromPhaseInDegrees: vectPhase!, withRunType: BalanceRunType.final)
         
         GetAppDelegate().singlePlaneBalance.finalVector = finalVect
 

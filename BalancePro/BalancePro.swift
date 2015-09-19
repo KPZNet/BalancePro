@@ -40,20 +40,20 @@ func CalcBalanceWeight() -> BalanceWeight
         {
             if let wP = GetAppDelegate().singlePlaneBalance.influenceBalanceWeight
             {
-                var inflVectOrigin = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
+                let inflVectOrigin = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
                 
-                var initVectNeg = -1*initVect
+                let initVectNeg = -1*initVect
                 
-                var influenceVectOrigAmp = inflVectOrigin.amp
-                var initVectAmp = initVect.amp
+                let influenceVectOrigAmp = inflVectOrigin.amp
+                let initVectAmp = initVect.amp
                 
-                var balanceWeightRatio:Float = wP.weight/influenceVectOrigAmp
-                var bW = balanceWeightRatio * initVectAmp
+                let balanceWeightRatio:Float = wP.weight/influenceVectOrigAmp
+                let bW = balanceWeightRatio * initVectAmp
                 
                 let deg = CalcAngleDegreesBetweenVectors(initVectNeg, _v2: inflVectOrigin)
                 let wL = (wP.location + deg) % 360
                 
-                var bWeight:BalanceWeight = BalanceWeight(fromWeight: bW, fromLocation: wL)
+                let bWeight:BalanceWeight = BalanceWeight(fromWeight: bW, fromLocation: wL)
                 
                 balWeight = bWeight
             }
@@ -94,7 +94,7 @@ class SinglePlaneVectorBalance {
                     maxScale = max(maxScale, _trialVector.amp)
                     if let _finalVector = finalVector
                     {
-                        maxScale = max(maxScale, _trialVector.amp)
+                        maxScale = max(maxScale, _finalVector.amp)
                     }
                 }
             }
@@ -165,10 +165,6 @@ class Vector
                 returnName = "General"
                 break;
                 
-            case BalanceRunType.general:
-                returnName = "General"
-                break;
-                
             case BalanceRunType.initial:
                 returnName = "Initial"
                 break;
@@ -188,10 +184,7 @@ class Vector
             case BalanceRunType.final:
                 returnName = "Final"
                 break;
-                
-            default:
-                returnName = "General"
-                break;
+
             }
             return returnName
         }
@@ -202,10 +195,6 @@ class Vector
         get{
             var returnColor = UIColor.blueColor()
             switch (runType) {
-            case BalanceRunType.general:
-                returnColor = UIColor.blueColor()
-                break;
-                
             case BalanceRunType.general:
                 returnColor = UIColor.blueColor()
                 break;
@@ -242,9 +231,6 @@ class Vector
             let tempX :Float = xEnd - xOrigin
             let tempY :Float = yEnd - yOrigin
             
-            let radians = atan2( tempY , tempX )
-            
-            let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
             let amp = sqrt( (tempX * tempX) + (tempY * tempY) )
             return amp
         }
@@ -456,6 +442,17 @@ extension UIView {
         self.layer.mask = mask
     }
 }
+
+extension String {
+    func ToFloat() -> Float{
+        let numberFormatter = NSNumberFormatter()
+        let number = numberFormatter.numberFromString(self)
+        let numberFloatValue = number!.floatValue
+        return numberFloatValue
+    }
+}
+
+
 
 
 

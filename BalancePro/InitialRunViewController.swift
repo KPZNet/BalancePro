@@ -58,14 +58,10 @@ class InitialRunViewController: UIViewController {
     
     @IBAction func AddVector(sender: AnyObject) {
         
+        let amp = vectorAmplitude.text?.ToFloat()
+        let phase = vectorPhase.text?.ToFloat()
         
-        let ampString:NSString = vectorAmplitude.text
-        let amp = ampString.floatValue
-        
-        let phaseString:NSString = vectorPhase.text
-        let phase = phaseString.floatValue
-        
-        let vec0 = Vector(fromAmp: amp, fromPhaseInDegrees: phase, withRunType: BalanceRunType.initial)
+        let vec0 = Vector(fromAmp: amp!, fromPhaseInDegrees: phase!, withRunType: BalanceRunType.initial)
         GetAppDelegate().singlePlaneBalance.initialVector = vec0
         
         balancePlane.setNeedsDisplay()
