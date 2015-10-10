@@ -86,19 +86,22 @@ class SinglePlaneVectorBalance {
         if let _initVector = initialVector
         {
             maxScale = max(maxScale, _initVector.amp)
-            if let _influenceVector = influenceVector
-            {
-                maxScale = max(maxScale, _influenceVector.amp)
-                if let _trialVector = trialVector
-                {
-                    maxScale = max(maxScale, _trialVector.amp)
-                    if let _finalVector = finalVector
-                    {
-                        maxScale = max(maxScale, _finalVector.amp)
-                    }
-                }
-            }
         }
+        if let _influenceVector = influenceVector
+        {
+            maxScale = max(maxScale, _influenceVector.amp)
+        }
+        if let _trialVector = trialVector
+        {
+            maxScale = max(maxScale, _trialVector.amp)
+        }
+        
+        if let _finalVector = finalVector
+        {
+            maxScale = max(maxScale, _finalVector.amp)
+        }
+        
+        
         currentScale = max(currentScale,maxScale*Float(1.0))
         return currentScale
     }
@@ -184,7 +187,7 @@ class Vector
             case BalanceRunType.final:
                 returnName = "Final"
                 break;
-
+                
             }
             return returnName
         }

@@ -105,7 +105,6 @@ class InfluenceRunViewController: UIViewController {
         let trialVect = Vector(fromAmp: influenceVectAmp!, fromPhaseInDegrees: influenceVectPhase!, withRunType: BalanceRunType.trial)
 
         GetAppDelegate().singlePlaneBalance.trialVector = trialVect
-
         
         balancePlane.clearsContextBeforeDrawing = true;
         balancePlane.setNeedsDisplay()
