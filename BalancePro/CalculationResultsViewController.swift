@@ -15,7 +15,7 @@ class BalancePlaneViewCalculationResults : BalancePlaneView
     
     override func drawRect(rect: CGRect)
     {
-        SetupScales(MaxVib: GetAppDelegate().singlePlaneBalance.GetVectorScale() )
+        SetScales()
         
         DrawRotor()
         DrawRotorDegreeTics()

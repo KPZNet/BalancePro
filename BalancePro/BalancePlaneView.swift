@@ -414,6 +414,11 @@ class BalancePlaneView: UIView {
         
     }
     
+    func SetScales()
+    {
+        SetupScales(MaxVib: GetAppDelegate().singlePlaneBalance.GetVectorScale() )
+    }
+    
     func SetupScales(MaxVib _maxVib : Float)
     {
         if(_maxVib > vibScale){
