@@ -67,7 +67,6 @@ class TrialWeightViewController: UIViewController {
         
         GetAppDelegate().singlePlaneBalance.influenceBalanceWeight = BalanceWeight(fromWeight: influenceBalanceWeight!, fromLocation: influenceBalancePlacement!)
         
-        balancePlane.clearsContextBeforeDrawing = true;
         balancePlane.setNeedsDisplay()
     }
 

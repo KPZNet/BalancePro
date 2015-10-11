@@ -15,7 +15,6 @@ class BalancePlaneViewCalculationResults : BalancePlaneView
     
     override func drawRect(rect: CGRect)
     {
-        
         SetupScales(MaxVib: GetAppDelegate().singlePlaneBalance.GetVectorScale() )
         
         DrawRotor()
@@ -102,7 +101,6 @@ class CalculationResultsViewController: UIViewController {
         balaneWeightMeasureFinal.text = balanceWeight.weight.string(2)
         balanceWeightPlacementFinal.text = balanceWeight.location.string(0)
             
-        balancePlane.clearsContextBeforeDrawing = true;
         balancePlane.setNeedsDisplay()
     }
     

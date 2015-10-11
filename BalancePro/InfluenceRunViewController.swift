@@ -93,7 +93,6 @@ class InfluenceRunViewController: UIViewController {
         
         GetAppDelegate().singlePlaneBalance.balanceWeight = CalcBalanceWeight()
         
-        balancePlane.clearsContextBeforeDrawing = true;
         balancePlane.setNeedsDisplay()
     }
     
@@ -106,8 +105,8 @@ class InfluenceRunViewController: UIViewController {
 
         GetAppDelegate().singlePlaneBalance.trialVector = trialVect
         
-        balancePlane.clearsContextBeforeDrawing = true;
         balancePlane.setNeedsDisplay()
+
     }
     
 }
