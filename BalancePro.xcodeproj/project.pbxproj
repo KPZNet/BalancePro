@@ -92,14 +92,9 @@
 			children = (
 				71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */,
 				71B448A71B3E5B59001764A3 /* BalanceProMainMenuViewController.swift */,
-				71FA859F1A1BCA3500E69D40 /* InitialRunViewController.swift */,
-				71856C0C1B4E2B3E0049606E /* TrialWeightViewController.swift */,
-				71FA85A11A1BCA3500E69D40 /* InfluenceRunViewController.swift */,
-				7188AA511B60AF5B001ECB06 /* CalculationResultsViewController.swift */,
-				63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */,
 				63DEA8201AF825590011FB4A /* RunConfigurationViewController.swift */,
-				716FCE921B3FB08400D96CF9 /* BalanceReportViewController.swift */,
 				714AD77A1B588DEA00975E62 /* SavedRunsViewController.swift */,
+				71CA621B1BCDAD6D00F6B3F3 /* Single Plane Vector */,
 			);
 			name = "Views and Controllers";
 			sourceTree = "<group>";
@@ -110,6 +105,19 @@
 				71676AA21A5F75790049BF07 /* CodeHolder.swift */,
 			);
 			name = "Code Snips";
+			sourceTree = "<group>";
+		};
+		71CA621B1BCDAD6D00F6B3F3 /* Single Plane Vector */ = {
+			isa = PBXGroup;
+			children = (
+				71FA859F1A1BCA3500E69D40 /* InitialRunViewController.swift */,
+				71856C0C1B4E2B3E0049606E /* TrialWeightViewController.swift */,
+				71FA85A11A1BCA3500E69D40 /* InfluenceRunViewController.swift */,
+				7188AA511B60AF5B001ECB06 /* CalculationResultsViewController.swift */,
+				63DEA81E1AF1CE1A0011FB4A /* FinalRunViewController.swift */,
+				716FCE921B3FB08400D96CF9 /* BalanceReportViewController.swift */,
+			);
+			name = "Single Plane Vector";
 			sourceTree = "<group>";
 		};
 		71FA858F1A1BCA3500E69D40 = {
