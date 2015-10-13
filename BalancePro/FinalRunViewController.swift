@@ -15,7 +15,7 @@ class BalancePlaneViewFinalVector : BalancePlaneView
     override func drawRect(rect: CGRect)
     {
         SetScales()
-     
+        
         DrawRotor()
         DrawRotorDegreeTics()
         DrawRotorDegreeTicLabels()
@@ -45,7 +45,7 @@ class BalancePlaneViewFinalVector : BalancePlaneView
         {
             DrawWeight(balanceWeight, color:UIColor(red: (0/255.0), green: (255/255.0), blue: (0/255.0), alpha: 0.5))
         }
-        
+        ReleaseScales()
     }
     
 }

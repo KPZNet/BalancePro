@@ -15,7 +15,6 @@ class BalancePlaneViewInfluenceVector : BalancePlaneView
     
     override func drawRect(rect: CGRect)
     {
-        
         SetScales()
         
         DrawRotor()
@@ -42,6 +41,7 @@ class BalancePlaneViewInfluenceVector : BalancePlaneView
         {
             DrawWeight(wP)
         }
+        ReleaseScales()
         
     }
     

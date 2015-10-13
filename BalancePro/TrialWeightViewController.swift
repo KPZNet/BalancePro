@@ -13,7 +13,6 @@ class BalancePlaneViewTrialWeight : BalancePlaneView
     
     override func drawRect(rect: CGRect)
     {
-        
         SetScales()
         
         DrawRotor()
@@ -29,7 +28,7 @@ class BalancePlaneViewTrialWeight : BalancePlaneView
         {
             DrawWeight(wP)
         }
-        
+        ReleaseScales()
     }
     
 }

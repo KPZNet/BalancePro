@@ -23,7 +23,7 @@ class BalancePlaneViewInitialVector : BalancePlaneView
         {
             drawBVector(vect, vectorColor:vect.color)
         }
-        
+        ReleaseScales()
     }
     
 }

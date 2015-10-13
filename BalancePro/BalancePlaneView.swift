@@ -21,7 +21,6 @@ struct CONSTANTS {
     
 }
 
-
 class BalancePlaneView: UIView {
     
     /*
@@ -139,8 +138,6 @@ class BalancePlaneView: UIView {
     
     func DrawWeight( weight : BalanceWeight, color:UIColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.5) )
     {
-        PushToCartesianTransform()
-        
         var x : Float
         var y : Float
         
@@ -179,12 +176,10 @@ class BalancePlaneView: UIView {
         // Draw the arc
         CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
-        PopToDefaultTransform()
     }
     
     func DrawRotorCenterNob()
     {
-        PushToCartesianTransform()
         
         // Get the context
         let context = UIGraphicsGetCurrentContext()
@@ -206,16 +201,13 @@ class BalancePlaneView: UIView {
         
         // Draw the arc
         CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
-        
-        PopToDefaultTransform()
-        
+
     }
     
     
     func DrawRotor()
     {
-        PushToCartesianTransform()
-        
+     
         // Get the context
         let context = UIGraphicsGetCurrentContext()
         
@@ -236,8 +228,6 @@ class BalancePlaneView: UIView {
         
         // Draw the arc
         CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
-        
-        PopToDefaultTransform()
         
         DrawRotorCenterNob()
         
@@ -283,7 +273,6 @@ class BalancePlaneView: UIView {
     
     func DrawVectorEndCir(vector:Vector)
     {
-        PushToCartesianTransform()
         
         let fillColor : UIColor = UIColor(red: (160/255.0), green: (97/255.0), blue: (5/255.0), alpha: 0.2)
         
@@ -305,14 +294,11 @@ class BalancePlaneView: UIView {
         // Draw the arc
         CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
-        PopToDefaultTransform()
-        
     }
     
     func drawBVector(vector : Vector, vectorColor: UIColor = UIColor.blackColor())
     {
-        PushToCartesianTransform()
-        
+       
         DrawArrow(viewControl:self,
             basePoint: CGPointApplyAffineTransform(vector.basePoint, pCartesianTrans),
             endPoint: CGPointApplyAffineTransform(vector.endPoint, pCartesianTrans),
@@ -320,8 +306,6 @@ class BalancePlaneView: UIView {
             headWidth: CGFloat(7),
             headLength: CGFloat(10.0),
             color:vectorColor)
-        
-        PopToDefaultTransform()
         
         DrawVectorName(vector)
         //DrawVectorEndCir(vector)
@@ -380,7 +364,6 @@ class BalancePlaneView: UIView {
         // Set the line width
         CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
         
-        PushToCartesianTransform()
         for var index = 0; index < 360; index+=15
         {
             
@@ -394,7 +377,6 @@ class BalancePlaneView: UIView {
             CGContextStrokePath(context)
             
         }
-        PopToDefaultTransform()
         
     }
     
@@ -417,6 +399,11 @@ class BalancePlaneView: UIView {
     func SetScales()
     {
         SetupScales(MaxVib: GetAppDelegate().singlePlaneBalance.GetVectorScale() )
+        PushToCartesianTransform()
+    }
+    func ReleaseScales()
+    {
+        PopToDefaultTransform()
     }
     
     func SetupScales(MaxVib _maxVib : Float)
