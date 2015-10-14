@@ -14,7 +14,7 @@ class InitialRunViewController: UIViewController {
     
     @IBOutlet weak var vectorAmplitude: UITextField!
     @IBOutlet weak var vectorPhase: UITextField!
-    @IBOutlet weak var balancePlane: BalancePlaneView!
+    @IBOutlet weak var balancePlane: SinglePlaneVectorBalanceView!
     
     @IBOutlet weak var addVectorButton: UIButton!
     

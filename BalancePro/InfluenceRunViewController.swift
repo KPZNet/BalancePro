@@ -23,7 +23,7 @@ class InfluenceRunViewController: UIViewController {
     
     @IBOutlet weak var addVectorButton: UIButton!
     
-    @IBOutlet weak var balancePlane: BalancePlaneViewInfluenceVector!
+    @IBOutlet weak var balancePlane: SinglePlaneVectorBalanceView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

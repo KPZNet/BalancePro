@@ -21,7 +21,7 @@ class FinalRunViewController: UIViewController {
     @IBOutlet weak var balaneWeightMeasure: UITextField!
     @IBOutlet weak var balanceWeightPlacement: UITextField!
     
-    @IBOutlet weak var balancePlane: BalancePlaneView!
+    @IBOutlet weak var balancePlane: SinglePlaneVectorBalanceView!
     
     @IBOutlet weak var addVectorButton: UIButton!
     @IBOutlet weak var saveBalanceRunButton: UIButton!

@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFI-ID-baA" userLabel="BalancePlaneView" customClass="BalancePlaneViewInitialVector" customModule="BalancePro" customModuleProvider="target">
+                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFI-ID-baA" userLabel="BalancePlaneView" customClass="SinglePlaneVectorBalanceView" customModule="BalancePro" customModuleProvider="target">
                                 <rect key="frame" x="16" y="72" width="568" height="254"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -147,7 +147,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KtM-4h-DT9" userLabel="BalancePlaneView" customClass="BalancePlaneViewInfluenceVector" customModule="BalancePro" customModuleProvider="target">
+                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KtM-4h-DT9" userLabel="BalancePlaneView" customClass="SinglePlaneVectorBalanceView" customModule="BalancePro" customModuleProvider="target">
                                 <rect key="frame" x="16" y="72" width="568" height="260"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -269,7 +269,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lgu-im-hYt" userLabel="BalancePlaneView" customClass="BalancePlaneViewCalculationResults" customModule="BalancePro" customModuleProvider="target">
+                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lgu-im-hYt" userLabel="BalancePlaneView" customClass="SinglePlaneVectorBalanceView" customModule="BalancePro" customModuleProvider="target">
                                 <rect key="frame" x="16" y="72" width="568" height="261"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -368,7 +368,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLG-Q9-222" userLabel="BalancePlaneView" customClass="BalancePlaneViewTrialWeight" customModule="BalancePro" customModuleProvider="target">
+                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLG-Q9-222" userLabel="BalancePlaneView" customClass="SinglePlaneVectorBalanceView" customModule="BalancePro" customModuleProvider="target">
                                 <rect key="frame" x="16" y="72" width="568" height="260"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -481,10 +481,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqj-Rg-RDf" userLabel="BalancePlaneView" customClass="BalancePlaneViewFinalVector" customModule="BalancePro" customModuleProvider="target">
-                                <rect key="frame" x="16" y="72" width="568" height="268"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEl-ZN-1ql" userLabel="AddVector">
                                 <rect key="frame" x="512" y="348" width="72" height="30"/>
                                 <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -557,6 +553,10 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqj-Rg-RDf" userLabel="BalancePlaneView" customClass="SinglePlaneVectorBalanceView" customModule="BalancePro" customModuleProvider="target">
+                                <rect key="frame" x="16" y="72" width="568" height="268"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

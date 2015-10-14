@@ -26,7 +26,7 @@ class CalculationResultsViewController: UIViewController {
     @IBOutlet weak var balaneWeightMeasureFinal: UITextField!
     @IBOutlet weak var balanceWeightPlacementFinal: UITextField!
     
-    @IBOutlet weak var balancePlane: BalancePlaneViewCalculationResults!
+    @IBOutlet weak var balancePlane: SinglePlaneVectorBalanceView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
