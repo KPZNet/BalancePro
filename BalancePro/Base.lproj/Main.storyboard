@@ -674,7 +674,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="9pv-A4-QxB" kind="show" id="OQW-pI-fv9"/>
+                                            <segue destination="MWM-CJ-plU" kind="show" id="GLM-8A-o3u"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjT-7y-kHb">
@@ -771,7 +771,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-jA-TvG" userLabel="Balance Plane">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-jA-TvG" userLabel="Balance Plane" customClass="SinglePlaneVectorBalanceViewConfiguration" customModule="BalancePro" customModuleProvider="target">
                                 <rect key="frame" x="16" y="215" width="343" height="323"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -784,8 +784,11 @@
                                     <segment title="CW"/>
                                     <segment title="CCW"/>
                                 </segments>
+                                <connections>
+                                    <action selector="OnRotationDirectionChange:" destination="MWM-CJ-plU" eventType="valueChanged" id="GRA-8v-QqS"/>
+                                </connections>
                             </segmentedControl>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="pJ8-VZ-yWF">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="360" translatesAutoresizingMaskIntoConstraints="NO" id="pJ8-VZ-yWF">
                                 <rect key="frame" x="16" y="108" width="94" height="29"/>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shaft Rotation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cq7-U2-TVd">
@@ -811,6 +814,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="360" translatesAutoresizingMaskIntoConstraints="NO" id="1bI-OQ-kiQ">
+                                <rect key="frame" x="16" y="108" width="94" height="29"/>
+                                <connections>
+                                    <action selector="OnTDCChange:" destination="MWM-CJ-plU" eventType="valueChanged" id="51k-VE-VB3"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -819,12 +828,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Configuration" id="i9c-jr-sCO">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="biY-HD-Ds1"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="biY-HD-Ds1">
+                            <connections>
+                                <segue destination="9pv-A4-QxB" kind="show" id="nd7-A1-kT4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="BalancePlane" destination="cEt-jA-TvG" id="f77-jo-0wi"/>
+                        <outlet property="shaftRotation" destination="lns-7C-16c" id="LfI-J5-1td"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FhS-HT-Xjv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="958" y="391"/>
+            <point key="canvasLocation" x="1338" y="395"/>
         </scene>
         <!--Balance Pro-->
         <scene sceneID="OiF-Mb-fkK">

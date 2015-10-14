@@ -10,10 +10,19 @@ import UIKit
 
 class RunConfigurationViewController: UIViewController {
 
+    @IBOutlet weak var BalancePlane: SinglePlaneVectorBalanceViewConfiguration!
+    
+    @IBOutlet weak var shaftRotation: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if(BalancePlane.shaftRotation == ShaftRotationType.cw){
+            shaftRotation.selectedSegmentIndex = 0
+        }
+        else{
+            shaftRotation.selectedSegmentIndex = 1
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +30,20 @@ class RunConfigurationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func OnRotationDirectionChange(sender: AnyObject) {
+        if(shaftRotation.selectedSegmentIndex == 0){
+            BalancePlane.shaftRotation = ShaftRotationType.cw
+        }
+        else{
+            BalancePlane.shaftRotation = ShaftRotationType.ccw
+        }
+        BalancePlane.setNeedsDisplay()
+    }
 
+    @IBAction func OnTDCChange(sender: AnyObject) {
+        
+
+    }
     /*
     // MARK: - Navigation
 

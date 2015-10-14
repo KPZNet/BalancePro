@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import QuartzCore
 
-enum RotationDirection {case cw, ccw}
+enum ShaftRotationType {case cw, ccw}
 enum BalanceRunType {case initial, influence, influenceOrigin, trial, final, general}
 
 func GetAppDelegate() -> AppDelegate
