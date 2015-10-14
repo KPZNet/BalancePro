@@ -8,27 +8,6 @@
 
 import UIKit
 
-class BalancePlaneViewInitialVector : BalancePlaneView
-{
-    
-    override func drawRect(rect: CGRect)
-    {
-        SetScales()
-        
-        self.layer.sublayers = nil
-        
-        DrawRotor()
-        DrawRotorDegreeTics()
-        DrawRotorDegreeTicLabels()
-        
-        if let vect = GetAppDelegate().singlePlaneBalance.initialVector
-        {
-            drawBVector(vect, vectorColor:vect.color)
-        }
-        ReleaseScales()
-    }
-    
-}
 
 class InitialRunViewController: UIViewController {
 

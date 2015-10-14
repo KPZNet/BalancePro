@@ -8,30 +8,7 @@
 
 import UIKit
 
-class BalancePlaneViewTrialWeight : BalancePlaneView
-{
-    
-    override func drawRect(rect: CGRect)
-    {
-        SetScales()
-        self.layer.sublayers = nil
-        DrawRotor()
-        DrawRotorDegreeTics()
-        DrawRotorDegreeTicLabels()
-        
-        if let initVect = GetAppDelegate().singlePlaneBalance.initialVector
-        {
-            drawBVector(initVect,vectorColor:initVect.color)
-        }
-        
-        if let wP = GetAppDelegate().singlePlaneBalance.influenceBalanceWeight
-        {
-            DrawWeight(wP)
-        }
-        ReleaseScales()
-    }
-    
-}
+
 
 class TrialWeightViewController: UIViewController {
 

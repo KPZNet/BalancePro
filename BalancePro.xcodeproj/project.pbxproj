@@ -90,6 +90,7 @@
 		713DE0EC1B368A7800C805F6 /* Views and Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				712192D21AF85222002DEB60 /* BalancePro.swift */,
 				71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */,
 				71B448A71B3E5B59001764A3 /* BalanceProMainMenuViewController.swift */,
 				63DEA8201AF825590011FB4A /* RunConfigurationViewController.swift */,
@@ -145,7 +146,6 @@
 				713DE0EC1B368A7800C805F6 /* Views and Controllers */,
 				713DE0EB1B368A7300C805F6 /* Storyboards */,
 				71FA859D1A1BCA3500E69D40 /* AppDelegate.swift */,
-				712192D21AF85222002DEB60 /* BalancePro.swift */,
 				71FA85A61A1BCA3500E69D40 /* Images.xcassets */,
 				71FA859B1A1BCA3500E69D40 /* Supporting Files */,
 			);

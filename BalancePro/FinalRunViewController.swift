@@ -10,45 +10,6 @@ import UIKit
 
 
 
-class BalancePlaneViewFinalVector : BalancePlaneView
-{
-    override func drawRect(rect: CGRect)
-    {
-        SetScales()
-        self.layer.sublayers = nil
-        DrawRotor()
-        DrawRotorDegreeTics()
-        DrawRotorDegreeTicLabels()
-        
-        if let initVect = GetAppDelegate().singlePlaneBalance.initialVector
-        {
-            drawBVector(initVect, vectorColor: initVect.color)
-            if let trialVect = GetAppDelegate().singlePlaneBalance.trialVector
-            {
-                drawBVector(trialVect, vectorColor: trialVect.color)
-                if let inflVect = GetAppDelegate().singlePlaneBalance.influenceVector
-                {
-                    drawBVector(inflVect, vectorColor: inflVect.color)
-                    
-                    let TO = Vector(fromAmp: inflVect.amp, fromPhaseInDegrees: inflVect.phase, withRunType:BalanceRunType.influenceOrigin)
-                    drawBVector(TO, vectorColor: TO.color)
-                    
-                    if let finalVect = GetAppDelegate().singlePlaneBalance.finalVector
-                    {
-                        drawBVector(finalVect, vectorColor: finalVect.color)
-                    }
-                }
-            }
-        }
-        
-        if let balanceWeight = GetAppDelegate().singlePlaneBalance.balanceWeight
-        {
-            DrawWeight(balanceWeight, color:UIColor(red: (0/255.0), green: (255/255.0), blue: (0/255.0), alpha: 0.5))
-        }
-        ReleaseScales()
-    }
-    
-}
 
 
 class FinalRunViewController: UIViewController {
