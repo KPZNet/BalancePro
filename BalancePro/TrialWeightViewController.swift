@@ -14,7 +14,7 @@ class BalancePlaneViewTrialWeight : BalancePlaneView
     override func drawRect(rect: CGRect)
     {
         SetScales()
-        
+        self.layer.sublayers = nil
         DrawRotor()
         DrawRotorDegreeTics()
         DrawRotorDegreeTicLabels()

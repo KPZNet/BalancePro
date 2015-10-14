@@ -15,6 +15,8 @@ class BalancePlaneViewInitialVector : BalancePlaneView
     {
         SetScales()
         
+        self.layer.sublayers = nil
+        
         DrawRotor()
         DrawRotorDegreeTics()
         DrawRotorDegreeTicLabels()
