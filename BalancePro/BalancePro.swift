@@ -247,8 +247,7 @@ class Vector
             
             let radians = atan2( tempY , tempX )
             
-            let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
-            let phase = RadToDegreesConversion * Float(radians)
+            let phase = radians.RadiansToDegrees()
             return phase
         }
     }
@@ -261,9 +260,7 @@ class Vector
     {
         runType = _runType
         
-        let DegToRadConversion : Float = Float(M_PI) / Float(180)
-        var radians : Float = 0.0
-        radians = DegToRadConversion * Float(_phase)
+        let radians = _phase.DegreesToRadians()
         
         xEnd = Float(  _amp * cos( radians ))
         yEnd = Float(  _amp * sin( radians ))
