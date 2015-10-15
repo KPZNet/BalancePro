@@ -196,17 +196,6 @@ class BalancePlaneView: UIView {
         return (x, y)
     }
     
-    func GetRadians(deg : Float) -> Float
-    {
-        let DegToRadConversion : Float = Float(M_PI) / Float(180)
-        var radian : Float = 0.0
-        
-        radian = DegToRadConversion * Float(deg)
-        
-        return radian
-    }
-    
-    
     
     func DrawWeight( weight : BalanceWeight, color:UIColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.5) )
     {
@@ -225,7 +214,7 @@ class BalancePlaneView: UIView {
         
         let weightSlotCenter = Float( vibScale ) //- Float(weightSlotRadius)
         
-        let radians = GetRadians( Float(weight.location) )
+        let radians = Float(weight.location.DegreesToRadians())
         x = weightSlotCenter * cos( radians )
         y = weightSlotCenter * sin( radians )
         
@@ -334,7 +323,7 @@ class BalancePlaneView: UIView {
         
         if(_rotateText)
         {
-            var textRotation = CGFloat(GetRadians(vector.phase)) + CGFloat(rotateRotor)
+            var textRotation = CGFloat( vector.phase.DegreesToRadians() ) + CGFloat(rotateRotor)
             textRotation *= -1.0
             label.transform = CGAffineTransformMakeRotation( textRotation )
         }
@@ -439,17 +428,17 @@ class BalancePlaneView: UIView {
         for var index = 0; index < 360; index+=15
         {
             
-            let xStart : Float = (vibScale - lineLength) * cos( GetRadians( Float(index) ) )
-            let yStart : Float = (vibScale - lineLength) * sin( GetRadians( Float(index) ) )
-            let xEnd   : Float = (vibScale) * cos( GetRadians( Float(index) ) )
-            let yEnd   : Float = (vibScale) * sin( GetRadians( Float(index) ) )
+            let xStart : Float = (vibScale - lineLength) * cos( index.DegreesToRadians() )
+            let yStart : Float = (vibScale - lineLength) * sin( index.DegreesToRadians() )
+            let xEnd   : Float = (vibScale) * cos( index.DegreesToRadians())
+            let yEnd   : Float = (vibScale) * sin( index.DegreesToRadians())
             
             CGContextMoveToPoint(context, CGFloat(xStart), CGFloat(yStart))
             CGContextAddLineToPoint(context, CGFloat(xEnd), CGFloat(yEnd))
             CGContextStrokePath(context)
             
         }
-        
+    
     }
     
     func DrawRotorDegreeTicLabels()
@@ -458,8 +447,8 @@ class BalancePlaneView: UIView {
         for var index = 0; index < 360; index+=45
         {
             
-            let xEnd2   : Float = cos( GetRadians( Float(index) ) )
-            let yEnd2   : Float = sin( GetRadians( Float(index) ) )
+            let xEnd2   : Float = cos( index.DegreesToRadians())
+            let yEnd2   : Float = sin( index.DegreesToRadians())
             let ratioPoint:CGPoint = CGPoint(x:CGFloat(xEnd2), y:CGFloat(yEnd2))
             let textPoint:CGPoint = CGPoint(x:CGFloat(xEnd2 * vibScale), y:CGFloat(yEnd2 * vibScale))
             DrawDegreeLabel(At: textPoint, Ratio:ratioPoint, Degree:Float(index))

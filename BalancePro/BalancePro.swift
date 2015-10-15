@@ -438,33 +438,52 @@ extension Float {
     }
 }
 extension Float {
-    func DegreesToRadians(Degrees _deg : Float) -> Float{
+    func DegreesToRadians() -> Float{
         
         let DegreesToRad : Float = Float(M_PI) / Float(180)
-        return _deg * DegreesToRad
+        return self * DegreesToRad
     }
 }
 extension Float {
-    func RadiansToDegrees(Radians _rads : Float) -> Float{
+    func RadiansToDegrees() -> Float{
         
         let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
-        return _rads * RadToDegreesConversion
+        return self * RadToDegreesConversion
     }
 }
 extension CGFloat {
-    func DegreesToRadians(Degrees _deg : CGFloat) -> CGFloat{
+    func DegreesToRadians() -> CGFloat{
         
         let DegreesToRad : CGFloat = CGFloat(M_PI) / CGFloat(180)
-        return _deg * DegreesToRad
+        return self * DegreesToRad
     }
 }
 extension CGFloat {
-    func RadiansToDegrees(Radians _rads : CGFloat) -> CGFloat{
+    func RadiansToDegrees() -> CGFloat{
         
         let RadToDegreesConversion : CGFloat = CGFloat(180) / CGFloat(M_PI)
-        return _rads * RadToDegreesConversion
+        return self * RadToDegreesConversion
     }
 }
+
+extension Int {
+    func DegreesToRadians() -> Float{
+        
+        let DegreesToRad : Float = Float(M_PI) / Float(180)
+        let retValue : Float = Float( Float(self) * DegreesToRad)
+        return retValue
+    }
+}
+extension Int {
+    func RadiansToDegrees() -> Float{
+        
+        let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
+        let retValue : Float = Float( Float(self) * RadToDegreesConversion)
+        return retValue
+    }
+}
+
+
 extension UIView {
     func roundCorners(corners:UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
