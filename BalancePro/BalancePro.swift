@@ -169,23 +169,23 @@ class Vector
                 break;
                 
             case BalanceRunType.initial:
-                returnName = "Initial"
+                returnName = "Ini"
                 break;
                 
             case BalanceRunType.influence:
-                returnName = "Influence"
+                returnName = "Inf"
                 break;
                 
             case BalanceRunType.influenceOrigin:
-                returnName = "Influence"
+                returnName = "Inf"
                 break;
                 
             case BalanceRunType.trial:
-                returnName = "Trial"
+                returnName = "Tr"
                 break;
                 
             case BalanceRunType.final:
-                returnName = "Final"
+                returnName = "F"
                 break;
                 
             }
@@ -437,7 +437,34 @@ extension Float {
         return formatter.stringFromNumber(self) ?? "\(self)"
     }
 }
-
+extension Float {
+    func DegreesToRadians(Degrees _deg : Float) -> Float{
+        
+        let DegreesToRad : Float = Float(M_PI) / Float(180)
+        return _deg * DegreesToRad
+    }
+}
+extension Float {
+    func RadiansToDegrees(Radians _rads : Float) -> Float{
+        
+        let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
+        return _rads * RadToDegreesConversion
+    }
+}
+extension CGFloat {
+    func DegreesToRadians(Degrees _deg : CGFloat) -> CGFloat{
+        
+        let DegreesToRad : CGFloat = CGFloat(M_PI) / CGFloat(180)
+        return _deg * DegreesToRad
+    }
+}
+extension CGFloat {
+    func RadiansToDegrees(Radians _rads : CGFloat) -> CGFloat{
+        
+        let RadToDegreesConversion : CGFloat = CGFloat(180) / CGFloat(M_PI)
+        return _rads * RadToDegreesConversion
+    }
+}
 extension UIView {
     func roundCorners(corners:UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))

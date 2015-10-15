@@ -89,11 +89,9 @@ class BalancePlaneView: UIView {
     
     var shaftRotation : ShaftRotationType = ShaftRotationType.ccw
     
-
-    
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     var vibScale: Float = Float(1.0)
-    var rotateRotor : Float =  Float(M_PI)
+    var rotateRotor : Float =  Float(0)
     var vibScaleLineWidth : Float = Float(0.1)
     
     var vectorStrokeWidth : Float = 1.0

@@ -11,7 +11,6 @@ import UIKit
 class RunConfigurationViewController: UIViewController {
 
     @IBOutlet weak var BalancePlane: SinglePlaneVectorBalanceViewConfiguration!
-    
     @IBOutlet weak var shaftRotation: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -40,10 +39,7 @@ class RunConfigurationViewController: UIViewController {
         BalancePlane.setNeedsDisplay()
     }
 
-    @IBAction func OnTDCChange(sender: AnyObject) {
-        
 
-    }
     /*
     // MARK: - Navigation
 
