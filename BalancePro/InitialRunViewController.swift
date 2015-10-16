@@ -27,7 +27,16 @@ class InitialRunViewController: UIViewController {
         //SetRoundedButton(forButton: addVectorButton)
         addVectorButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
     }
-
+    
+    override func viewWillDisappear(_animated: Bool){
+        
+    }
+    
+    override func viewWillAppear(animated: Bool){
+        
+        balancePlane.setNeedsDisplay()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
