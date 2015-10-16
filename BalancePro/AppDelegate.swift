@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var balanceRunType : RUN_TYPE = RUN_TYPE.SINGLE_PLANE_VECTOR
     
     var singlePlaneBalance:SinglePlaneVectorBalance = SinglePlaneVectorBalance()
     

@@ -16,7 +16,7 @@ class RunConfigurationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if(BalancePlane.shaftRotation == ShaftRotationType.cw){
+        if(GetAppDelegate().singlePlaneBalance.shaftRotation == ShaftRotationType.cw){
             shaftRotation.selectedSegmentIndex = 0
         }
         else{
@@ -31,10 +31,10 @@ class RunConfigurationViewController: UIViewController {
     
     @IBAction func OnRotationDirectionChange(sender: AnyObject) {
         if(shaftRotation.selectedSegmentIndex == 0){
-            BalancePlane.shaftRotation = ShaftRotationType.cw
+            GetAppDelegate().singlePlaneBalance.shaftRotation = ShaftRotationType.cw
         }
         else{
-            BalancePlane.shaftRotation = ShaftRotationType.ccw
+            GetAppDelegate().singlePlaneBalance.shaftRotation = ShaftRotationType.ccw
         }
         BalancePlane.setNeedsDisplay()
     }

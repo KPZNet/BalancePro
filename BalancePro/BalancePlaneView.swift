@@ -87,8 +87,6 @@ class BalancePlaneView: UIView {
     }
     */
     
-    var shaftRotation : ShaftRotationType = ShaftRotationType.ccw
-    
     var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
     var vibScale: Float = Float(1.0)
     var rotateRotor : Float =  Float(0)
@@ -101,13 +99,6 @@ class BalancePlaneView: UIView {
     var yScale : Float = 0.0
     
     var viewScale: Float = 0.0
-    
-    func GShaftRotation() -> ShaftRotationType{
-        return shaftRotation
-    }
-    func SShaftRotation(ShaftDirection _rotation : ShaftRotationType){
-        shaftRotation = _rotation
-    }
     
     
     override init(frame aRect: CGRect)
@@ -142,7 +133,7 @@ class BalancePlaneView: UIView {
         viewScale = vibScale * 1.2
 
         var rotationScale:CGFloat = 1.0 //cw
-        if(shaftRotation == ShaftRotationType.ccw){
+        if(GetAppDelegate().singlePlaneBalance.shaftRotation == ShaftRotationType.ccw){
             rotationScale = -1.0
         }
         

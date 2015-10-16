@@ -26,8 +26,6 @@ class InitialRunViewController: UIViewController {
         
         //SetRoundedButton(forButton: addVectorButton)
         addVectorButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
-        
-        GetAppDelegate().singlePlaneBalance = SinglePlaneVectorBalance()
     }
 
     override func didReceiveMemoryWarning() {

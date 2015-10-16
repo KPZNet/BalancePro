@@ -12,6 +12,7 @@ import QuartzCore
 
 enum ShaftRotationType {case cw, ccw}
 enum BalanceRunType {case initial, influence, influenceOrigin, trial, final, general}
+enum RUN_TYPE { case SINGLE_PLANE_VECTOR, DOUBLE_PLANE_VECTOR, FOUR_RUN_SINGLE_PLANE, FOUR_RUN_DOUBLE_PLANE}
 
 func GetAppDelegate() -> AppDelegate
 {
@@ -63,8 +64,12 @@ func CalcBalanceWeight() -> BalanceWeight
     return balWeight
 }
 
+class Balance {
+    
+    var shaftRotation : ShaftRotationType = ShaftRotationType.ccw
+}
 
-class SinglePlaneVectorBalance {
+class SinglePlaneVectorBalance : Balance {
     
     var initialVector:Vector?
     var influenceVector:Vector?
@@ -75,7 +80,7 @@ class SinglePlaneVectorBalance {
     
     var currentScale:Float = 1.0
     
-    init(){
+    override init(){
         
     }
     
