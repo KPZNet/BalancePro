@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var balanceRunType : RUN_TYPE = RUN_TYPE.SINGLE_PLANE_VECTOR
     
+    var preferences : Preferences = Preferences()
+    
     var singlePlaneBalance:SinglePlaneVectorBalance = SinglePlaneVectorBalance()
     
 

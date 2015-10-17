@@ -12,6 +12,7 @@ class RunConfigurationViewController: UIViewController {
 
     @IBOutlet weak var BalancePlane: SinglePlaneVectorBalanceViewConfiguration!
     @IBOutlet weak var shaftRotation: UISegmentedControl!
+    @IBOutlet weak var ShowVectorName: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class RunConfigurationViewController: UIViewController {
         else{
             shaftRotation.selectedSegmentIndex = 1
         }
+        ShowVectorName.on = GetAppDelegate().preferences.showVectorLabel
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +41,10 @@ class RunConfigurationViewController: UIViewController {
         BalancePlane.setNeedsDisplay()
     }
 
+    @IBAction func OnShowVectorName(sender: AnyObject) {
+            GetAppDelegate().preferences.showVectorLabel = ShowVectorName.on
+            BalancePlane.setNeedsDisplay()
+    }
 
     /*
     // MARK: - Navigation

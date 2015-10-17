@@ -14,6 +14,10 @@ enum ShaftRotationType {case cw, ccw}
 enum BalanceRunType {case initial, influence, influenceOrigin, trial, final, general}
 enum RUN_TYPE { case SINGLE_PLANE_VECTOR, DOUBLE_PLANE_VECTOR, FOUR_RUN_SINGLE_PLANE, FOUR_RUN_DOUBLE_PLANE}
 
+class Preferences {
+    var showVectorLabel : Bool = true
+}
+
 func GetAppDelegate() -> AppDelegate
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -174,23 +178,23 @@ class Vector
                 break;
                 
             case BalanceRunType.initial:
-                returnName = "Ini"
+                returnName = "Initial"
                 break;
                 
             case BalanceRunType.influence:
-                returnName = "Inf"
+                returnName = "Influence"
                 break;
                 
             case BalanceRunType.influenceOrigin:
-                returnName = "Inf"
+                returnName = "Influence"
                 break;
                 
             case BalanceRunType.trial:
-                returnName = "Tr"
+                returnName = "Trial"
                 break;
                 
             case BalanceRunType.final:
-                returnName = "F"
+                returnName = "Final"
                 break;
                 
             }

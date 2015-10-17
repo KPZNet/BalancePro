@@ -30,6 +30,10 @@ class SinglePlaneVectorBalanceViewConfiguration : BalancePlaneView
         DrawRotor()
         DrawRotorDegreeTics()
         DrawRotorDegreeTicLabels()
+        
+        let vScale = GetCurrentScale() * (0.75)
+        let sampleVector = Vector(fromAmp: vScale, fromPhaseInDegrees: 45, withRunType:BalanceRunType.general)
+        drawBVector(sampleVector, vectorColor: UIColor.blackColor() )
         ReleaseScales()
     }
     
@@ -359,7 +363,10 @@ class BalancePlaneView: UIView {
             headLength: CGFloat(10.0),
             color:vectorColor)
         
-        DrawVectorName(vector)
+        if(GetAppDelegate().preferences.showVectorLabel) {
+            DrawVectorName(vector)
+        }
+        
         //DrawVectorEndCir(vector)
         
     }
@@ -446,6 +453,10 @@ class BalancePlaneView: UIView {
             
         }
         
+    }
+    
+    func GetCurrentScale() -> Float{
+        return GetAppDelegate().singlePlaneBalance.GetVectorScale()
     }
     
     func SetScales()
