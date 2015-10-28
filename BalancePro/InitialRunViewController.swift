@@ -45,6 +45,9 @@ class InitialRunViewController: UIViewController {
     
     @IBAction func AddVector(sender: AnyObject) {
         
+        var addVector = AddVectorViewController(forController: self)
+        addVector.ShowView()
+        
         let amp = vectorAmplitude.text?.ToFloat()
         let phase = vectorPhase.text?.ToFloat()
         
