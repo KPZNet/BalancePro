@@ -216,11 +216,11 @@ class Vector
                 break;
                 
             case BalanceRunType.influence:
-                returnColor = UIColor.redColor()
+                returnColor =  UIColor(red: (255/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.3)
                 break;
                 
             case BalanceRunType.influenceOrigin:
-                returnColor =  UIColor(red: (255/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.3)
+                returnColor = UIColor.redColor()
                 break;
                 
             case BalanceRunType.final:
