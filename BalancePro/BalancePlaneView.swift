@@ -358,9 +358,9 @@ class BalancePlaneView: UIView {
         DrawArrow(viewControl:self,
             basePoint: CGPointApplyAffineTransform(vector.basePoint, pCartesianTrans),
             endPoint: CGPointApplyAffineTransform(vector.endPoint, pCartesianTrans),
-            tailWidth: CGFloat(3),
-            headWidth: CGFloat(7),
-            headLength: CGFloat(10.0),
+            tailWidth: CGFloat(6),
+            headWidth: CGFloat(14),
+            headLength: CGFloat(20.0),
             color:vectorColor)
         
         if(GetAppDelegate().preferences.showVectorLabel) {
