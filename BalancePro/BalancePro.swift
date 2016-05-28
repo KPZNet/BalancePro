@@ -117,11 +117,6 @@ class SinglePlaneVectorBalance : Balance {
     
 }
 
-func ClassName(forObject _forObject:Any) -> String
-{
-    return _stdlib_getDemangledTypeName(_forObject).componentsSeparatedByString(".").last!
-}
-
 func SetRoundedViewBox(forView _forView:UIView)
 {
     _forView.layer.cornerRadius = 5.0
