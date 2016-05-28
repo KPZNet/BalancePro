@@ -26,6 +26,8 @@ class InitialRunViewController: UIViewController {
         
         //SetRoundedButton(forButton: addVectorButton)
         addVectorButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
+        
+        GetAppDelegate().ResetSinglePlaneRun();
     }
     
     override func viewWillDisappear(_animated: Bool){

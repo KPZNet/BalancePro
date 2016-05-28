@@ -19,6 +19,10 @@ struct CONSTANTS {
     static let DEFAULT_TIC_LENGTH = 4
     static let  DEFAULT_ARROW_LENGTH = 0.5
     
+    static let  VECTOR_TAIL_WIDTH = 2
+    static let  VECTOR_HEAD_WIDTH = 10
+    static let  VECTOR_HEAD_LENGTH = 10
+    
 }
 
 class SinglePlaneVectorBalanceViewConfiguration : BalancePlaneView
@@ -358,9 +362,9 @@ class BalancePlaneView: UIView {
         DrawArrow(viewControl:self,
             basePoint: CGPointApplyAffineTransform(vector.basePoint, pCartesianTrans),
             endPoint: CGPointApplyAffineTransform(vector.endPoint, pCartesianTrans),
-            tailWidth: CGFloat(6),
-            headWidth: CGFloat(14),
-            headLength: CGFloat(20.0),
+            tailWidth: CGFloat(CONSTANTS.VECTOR_TAIL_WIDTH),
+            headWidth: CGFloat(CONSTANTS.VECTOR_HEAD_WIDTH),
+            headLength: CGFloat(CONSTANTS.VECTOR_HEAD_LENGTH),
             color:vectorColor)
         
         if(GetAppDelegate().preferences.showVectorLabel) {

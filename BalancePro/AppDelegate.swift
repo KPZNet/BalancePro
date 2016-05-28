@@ -19,7 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var singlePlaneBalance:SinglePlaneVectorBalance = SinglePlaneVectorBalance()
     
-
+    func ResetSinglePlaneRun()
+    {
+        singlePlaneBalance = SinglePlaneVectorBalance()
+    }
     
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
