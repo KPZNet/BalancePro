@@ -23,7 +23,7 @@ class RunConfigurationViewController: UIViewController {
         else{
             shaftRotation.selectedSegmentIndex = 1
         }
-        ShowVectorName.on = GetAppDelegate().preferences.showVectorLabel
+        ShowVectorName.isOn = GetAppDelegate().preferences.showVectorLabel
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +31,7 @@ class RunConfigurationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func OnRotationDirectionChange(sender: AnyObject) {
+    @IBAction func OnRotationDirectionChange(_ sender: AnyObject) {
         if(shaftRotation.selectedSegmentIndex == 0){
             GetAppDelegate().singlePlaneBalance.shaftRotation = ShaftRotationType.cw
         }
@@ -41,8 +41,8 @@ class RunConfigurationViewController: UIViewController {
         BalancePlane.setNeedsDisplay()
     }
 
-    @IBAction func OnShowVectorName(sender: AnyObject) {
-            GetAppDelegate().preferences.showVectorLabel = ShowVectorName.on
+    @IBAction func OnShowVectorName(_ sender: AnyObject) {
+            GetAppDelegate().preferences.showVectorLabel = ShowVectorName.isOn
             BalancePlane.setNeedsDisplay()
     }
 

@@ -36,16 +36,16 @@ class FinalRunViewController: UIViewController {
         //SetRoundedButton(forButton: addVectorButton)
         //SetRoundedButton(forButton: saveBalanceRunButton)
         
-        addVectorButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
-        saveBalanceRunButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
+        addVectorButton.roundCorners([.topLeft, .bottomLeft], radius: 20)
+        saveBalanceRunButton.roundCorners([.topLeft, .bottomLeft], radius: 20)
         
     }
     
-    override func viewWillDisappear(_animated: Bool){
+    override func viewWillDisappear(_ _animated: Bool){
         
     }
     
-    override func viewWillAppear(animated: Bool){
+    override func viewWillAppear(_ animated: Bool){
         
         balancePlane.setNeedsDisplay()
     }
@@ -55,7 +55,7 @@ class FinalRunViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func AddVector(sender: AnyObject) {
+    @IBAction func AddVector(_ sender: AnyObject) {
 
         let vectAmp = vectorAmplitude.text?.ToFloat()
         let vectPhase = vectorPhase.text?.ToFloat()

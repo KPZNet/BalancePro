@@ -47,11 +47,11 @@ class BalanceReportViewController: UIViewController {
         reportView.text = report
     }
     
-    override func viewWillDisappear(_animated: Bool){
+    override func viewWillDisappear(_ _animated: Bool){
         
     }
     
-    override func viewWillAppear(animated: Bool){
+    override func viewWillAppear(_ animated: Bool){
         
     }
     

@@ -25,16 +25,16 @@ class InitialRunViewController: UIViewController {
         balancePlane.layer.masksToBounds = true
         
         //SetRoundedButton(forButton: addVectorButton)
-        addVectorButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
+        addVectorButton.roundCorners([.topLeft, .bottomLeft], radius: 20)
         
         GetAppDelegate().ResetSinglePlaneRun();
     }
     
-    override func viewWillDisappear(_animated: Bool){
+    override func viewWillDisappear(_ _animated: Bool){
         
     }
     
-    override func viewWillAppear(animated: Bool){
+    override func viewWillAppear(_ animated: Bool){
         
         balancePlane.setNeedsDisplay()
     }
@@ -45,7 +45,7 @@ class InitialRunViewController: UIViewController {
     }
 
     
-    @IBAction func AddVector(sender: AnyObject) {
+    @IBAction func AddVector(_ sender: AnyObject) {
         
 //        var addVector = AddVectorViewController(forController: self)
 //        addVector.ShowView()

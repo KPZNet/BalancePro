@@ -17,8 +17,8 @@
 		7188AA521B60AF5B001ECB06 /* CalculationResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7188AA511B60AF5B001ECB06 /* CalculationResultsViewController.swift */; };
 		71B448A81B3E5B59001764A3 /* BalanceProMainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B448A71B3E5B59001764A3 /* BalanceProMainMenuViewController.swift */; };
 		71BE483F1A1BFBFA0067CA2B /* BalancePlaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BE483E1A1BFBFA0067CA2B /* BalancePlaneView.swift */; };
-		71BEDABA1BDB1D9D00B58255 /* AddVectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BEDAB81BDB1D9D00B58255 /* AddVectorViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		71BEDABB1BDB1D9D00B58255 /* AddVectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71BEDAB91BDB1D9D00B58255 /* AddVectorViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		71BEDABA1BDB1D9D00B58255 /* AddVectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BEDAB81BDB1D9D00B58255 /* AddVectorViewController.swift */; };
+		71BEDABB1BDB1D9D00B58255 /* AddVectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71BEDAB91BDB1D9D00B58255 /* AddVectorViewController.xib */; };
 		71FA859E1A1BCA3500E69D40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FA859D1A1BCA3500E69D40 /* AppDelegate.swift */; };
 		71FA85A01A1BCA3500E69D40 /* InitialRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FA859F1A1BCA3500E69D40 /* InitialRunViewController.swift */; };
 		71FA85A21A1BCA3500E69D40 /* InfluenceRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FA85A11A1BCA3500E69D40 /* InfluenceRunViewController.swift */; };
@@ -234,9 +234,11 @@
 				TargetAttributes = {
 					71FA85971A1BCA3500E69D40 = {
 						CreatedOnToolsVersion = 6.1;
+						LastSwiftMigration = 0800;
 					};
 					71FA85AE1A1BCA3500E69D40 = {
 						CreatedOnToolsVersion = 6.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 71FA85971A1BCA3500E69D40;
 					};
 				};
@@ -429,6 +431,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "KWare.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -440,6 +443,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "KWare.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -459,6 +463,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "KWare.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BalancePro.app/BalancePro";
 			};
 			name = Debug;
@@ -475,6 +480,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "KWare.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BalancePro.app/BalancePro";
 			};
 			name = Release;

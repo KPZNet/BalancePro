@@ -12,7 +12,7 @@ import QuartzCore
 
 enum ShaftRotationType {case cw, ccw}
 enum BalanceRunType {case initial, influence, influenceOrigin, trial, final, general}
-enum RUN_TYPE { case SINGLE_PLANE_VECTOR, DOUBLE_PLANE_VECTOR, FOUR_RUN_SINGLE_PLANE, FOUR_RUN_DOUBLE_PLANE}
+enum RUN_TYPE { case single_PLANE_VECTOR, double_PLANE_VECTOR, four_RUN_SINGLE_PLANE, four_RUN_DOUBLE_PLANE}
 
 class Preferences {
     var showVectorLabel : Bool = true
@@ -20,11 +20,11 @@ class Preferences {
 
 func GetAppDelegate() -> AppDelegate
 {
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     return appDelegate
 }
 
-func CalcAngleDegreesBetweenVectors(_v1:Vector, _v2:Vector) -> Float
+func CalcAngleDegreesBetweenVectors(_ _v1:Vector, _v2:Vector) -> Float
 {
     let v1Phase = _v1.phase
     let v2Phase = _v2.phase
@@ -56,7 +56,7 @@ func CalcBalanceWeight() -> BalanceWeight
                 let bW = balanceWeightRatio * initVectAmp
                 
                 let deg = CalcAngleDegreesBetweenVectors(initVectNeg, _v2: inflVectOrigin)
-                let wL = (wP.location + deg) % 360
+                let wL = (wP.location + deg).truncatingRemainder(dividingBy: 360)
                 
                 let bWeight:BalanceWeight = BalanceWeight(fromWeight: bW, fromLocation: wL)
                 
@@ -122,7 +122,7 @@ func SetRoundedViewBox(forView _forView:UIView)
     _forView.layer.cornerRadius = 5.0
     _forView.layer.masksToBounds = true
     _forView.layer.borderWidth = 0.5
-    _forView.layer.borderColor = UIColor.blackColor().CGColor
+    _forView.layer.borderColor = UIColor.black.cgColor
 }
 
 func SetRoundedButton(forButton _forButton:UIButton)
@@ -130,7 +130,7 @@ func SetRoundedButton(forButton _forButton:UIButton)
     _forButton.layer.cornerRadius = 5.0
     _forButton.layer.masksToBounds = true
     _forButton.layer.borderWidth = 0.5
-    _forButton.layer.borderColor = UIColor.blackColor().CGColor
+    _forButton.layer.borderColor = UIColor.black.cgColor
 }
 
 class Vector
@@ -142,14 +142,14 @@ class Vector
     var yEnd : Float = 0.0
     
     var userName : String = "user"
-    var userColor : UIColor = UIColor.orangeColor()
+    var userColor : UIColor = UIColor.orange
     
     var runType :BalanceRunType = BalanceRunType.general
     
     var basePoint:CGPoint
         {
         get{
-            let point:CGPoint = CGPointMake( CGFloat(xOrigin), CGFloat(yOrigin) )
+            let point:CGPoint = CGPoint( x: CGFloat(xOrigin), y: CGFloat(yOrigin) )
             return point
         }
         
@@ -157,7 +157,7 @@ class Vector
     var endPoint:CGPoint
         {
         get{
-            let point:CGPoint = CGPointMake( CGFloat(xEnd), CGFloat(yEnd) )
+            let point:CGPoint = CGPoint( x: CGFloat(xEnd), y: CGFloat(yEnd) )
             return point
         }
         
@@ -200,14 +200,14 @@ class Vector
     var color: UIColor
         {
         get{
-            var returnColor = UIColor.blueColor()
+            var returnColor = UIColor.blue
             switch (runType) {
             case BalanceRunType.general:
-                returnColor = UIColor.blueColor()
+                returnColor = UIColor.blue
                 break;
                 
             case BalanceRunType.initial:
-                returnColor = UIColor.whiteColor()
+                returnColor = UIColor.white
                 break;
                 
             case BalanceRunType.influence:
@@ -215,15 +215,15 @@ class Vector
                 break;
                 
             case BalanceRunType.influenceOrigin:
-                returnColor = UIColor.redColor()
+                returnColor = UIColor.red
                 break;
                 
             case BalanceRunType.final:
-                returnColor = UIColor.orangeColor()
+                returnColor = UIColor.orange
                 break;
                 
             default:
-                returnColor = UIColor.blueColor()
+                returnColor = UIColor.blue
                 break;
             }
             return returnColor
@@ -293,9 +293,9 @@ func *(left:Float, right:Vector) -> Vector
 {
     
     let vecSub = Vector(xOrigin: 0,
-        yOrigin: 0,
-        xEnd: right.xEnd * left,
-        yEnd: right.yEnd * left)
+                        yOrigin: 0,
+                        xEnd: right.xEnd * left,
+                        yEnd: right.yEnd * left)
     
     return vecSub
 }
@@ -303,9 +303,9 @@ func +(left:Vector, right:Vector) -> Vector
 {
     
     let vecSub = Vector(xOrigin: right.xOrigin + left.xOrigin,
-        yOrigin: right.yOrigin + left.yOrigin,
-        xEnd: right.xEnd + left.xEnd,
-        yEnd: right.yEnd + left.yEnd)
+                        yOrigin: right.yOrigin + left.yOrigin,
+                        xEnd: right.xEnd + left.xEnd,
+                        yEnd: right.yEnd + left.yEnd)
     
     return vecSub
 }
@@ -316,10 +316,10 @@ func -(left:Vector, right:Vector) -> Vector
     return vecSub
 }
 
-func max(left:CGSize, right:CGSize) -> CGSize
+func max(_ left:CGSize, right:CGSize) -> CGSize
 {
     let newSize : CGSize = CGSize(width: max(left.width, right.width),
-        height: max(left.height, right.height) )
+                                  height: max(left.height, right.height) )
     return newSize
 }
 
@@ -350,22 +350,22 @@ class BalanceWeight
 
 
 extension UIFont {
-    func sizeOfString (string: NSString) -> CGSize
+    func sizeOfString (_ string: NSString) -> CGSize
     {
-        return string.boundingRectWithSize(CGSize(width: DBL_MAX, height: DBL_MAX),
-            options: NSStringDrawingOptions.UsesLineFragmentOrigin,
-            attributes: [NSFontAttributeName: self],
-            context: nil).size
+        return string.boundingRect(with: CGSize(width: DBL_MAX, height: DBL_MAX),
+                                   options: NSStringDrawingOptions.usesLineFragmentOrigin,
+                                   attributes: [NSFontAttributeName: self],
+                                   context: nil).size
     }
 }
 
 
 
 func DrawArrow(viewControl _view:UIView, basePoint _basePoint:CGPoint, endPoint _endPoint:CGPoint,
-    tailWidth _tailWidth: CGFloat,
-    headWidth _headWidth: CGFloat,
-    headLength _headLength:CGFloat,
-    color _color:UIColor)
+               tailWidth _tailWidth: CGFloat,
+               headWidth _headWidth: CGFloat,
+               headLength _headLength:CGFloat,
+               color _color:UIColor)
 {
     
     let path:UIBezierPath = UIBezierPath.GetBezierArrowPathFromPoint(
@@ -376,8 +376,8 @@ func DrawArrow(viewControl _view:UIView, basePoint _basePoint:CGPoint, endPoint 
         headLength: _headLength)
     
     let shape : CAShapeLayer = CAShapeLayer()
-    shape.path = path.CGPath;
-    shape.fillColor = _color.CGColor
+    shape.path = path.cgPath;
+    shape.fillColor = _color.cgColor
     
     _view.layer.addSublayer(shape)
 }
@@ -385,57 +385,58 @@ func DrawArrow(viewControl _view:UIView, basePoint _basePoint:CGPoint, endPoint 
 
 extension UIBezierPath {
     
-    class func GetVectorAlignedPoints(inout points: Array<CGPoint>, forLength: CGFloat, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat )
+    class func GetVectorAlignedPoints(_ points: inout Array<CGPoint>, forLength: CGFloat, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat )
     {
         
         let tailLength = forLength - headLength
-        points.append(CGPointMake(0, tailWidth/2))
-        points.append(CGPointMake(tailLength, tailWidth/2))
-        points.append(CGPointMake(tailLength, headWidth/2))
-        points.append(CGPointMake(forLength, 0))
-        points.append(CGPointMake(tailLength, -headWidth/2))
-        points.append(CGPointMake(tailLength, -tailWidth/2))
-        points.append(CGPointMake(0, -tailWidth/2))
+        points.append(CGPoint(x: 0, y: tailWidth/2))
+        points.append(CGPoint(x: tailLength, y: tailWidth/2))
+        points.append(CGPoint(x: tailLength, y: headWidth/2))
+        points.append(CGPoint(x: forLength, y: 0))
+        points.append(CGPoint(x: tailLength, y: -headWidth/2))
+        points.append(CGPoint(x: tailLength, y: -tailWidth/2))
+        points.append(CGPoint(x: 0, y: -tailWidth/2))
         
     }
     
     
-    class func MakeTransformForStartPoint(startPoint: CGPoint, endPoint: CGPoint, length: CGFloat) -> CGAffineTransform
+    class func MakeTransformForStartPoint(_ startPoint: CGPoint, endPoint: CGPoint, length: CGFloat) -> CGAffineTransform
     {
         let cosine: CGFloat = (endPoint.x - startPoint.x)/length
         let sine: CGFloat = (endPoint.y - startPoint.y)/length
         
-        return CGAffineTransformMake(cosine, sine, -sine, cosine, startPoint.x, startPoint.y)
+        return CGAffineTransform(a: cosine, b: sine, c: -sine, d: cosine, tx: startPoint.x, ty: startPoint.y)
     }
     
     
-    class func GetBezierArrowPathFromPoint(startPoint:CGPoint, endPoint: CGPoint, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat) -> UIBezierPath
+    class func GetBezierArrowPathFromPoint(_ startPoint:CGPoint, endPoint: CGPoint, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat) -> UIBezierPath
     {
-        let NUM_VECTOR_POINTS = 7
+        //let NUM_VECTOR_POINTS = 7
         
         let length = hypotf(Float(endPoint.x) - Float(startPoint.x), Float(endPoint.y) - Float(startPoint.y))
         
         var points = [CGPoint]()
         self.GetVectorAlignedPoints(&points, forLength: CGFloat(length), tailWidth: tailWidth, headWidth: headWidth, headLength: headLength)
         
-        var transform: CGAffineTransform = self.MakeTransformForStartPoint(startPoint, endPoint: endPoint, length:  CGFloat(length))
+        //var transform: CGAffineTransform = self.MakeTransformForStartPoint(startPoint, endPoint: endPoint, length:  CGFloat(length))
         
-        let cgPath: CGMutablePathRef = CGPathCreateMutable()
-        CGPathAddLines(cgPath, &transform, points, NUM_VECTOR_POINTS)
-        CGPathCloseSubpath(cgPath)
+        let cgPath: CGMutablePath = CGMutablePath()
+        cgPath.addLines(between: points)
+        //CGPathAddLines(cgPath, &transform, points, NUM_VECTOR_POINTS) kpc
+        cgPath.closeSubpath()
         
-        let uiPath: UIBezierPath = UIBezierPath(CGPath: cgPath)
+        let uiPath: UIBezierPath = UIBezierPath(cgPath: cgPath)
         return uiPath
     }
 }
 
 
 extension Float {
-    func string(fractionDigits:Int) -> String {
-        let formatter = NSNumberFormatter()
+    func string(_ fractionDigits:Int) -> String {
+        let formatter = NumberFormatter()
         formatter.minimumFractionDigits = fractionDigits
         formatter.maximumFractionDigits = fractionDigits
-        return formatter.stringFromNumber(self) ?? "\(self)"
+        return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
     }
 }
 extension Float {
@@ -486,18 +487,18 @@ extension Int {
 
 
 extension UIView {
-    func roundCorners(corners:UIRectCorner, radius: CGFloat) {
+    func roundCorners(_ corners:UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
-        mask.path = path.CGPath
+        mask.path = path.cgPath
         self.layer.mask = mask
     }
 }
 
 extension String {
     func ToFloat() -> Float{
-        let numberFormatter = NSNumberFormatter()
-        let number = numberFormatter.numberFromString(self)
+        let numberFormatter = NumberFormatter()
+        let number = numberFormatter.number(from: self)
         let numberFloatValue = number!.floatValue
         return numberFloatValue
     }

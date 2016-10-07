@@ -33,15 +33,15 @@ class InfluenceRunViewController: UIViewController {
         balancePlane.layer.masksToBounds = true
         
         //SetRoundedButton(forButton: addVectorButton)
-        addVectorButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
+        addVectorButton.roundCorners([.topLeft, .bottomLeft], radius: 20)
 
     }
     
-    override func viewWillDisappear(_animated: Bool){
+    override func viewWillDisappear(_ _animated: Bool){
         
     }
     
-    override func viewWillAppear(animated: Bool){
+    override func viewWillAppear(_ animated: Bool){
         
         balancePlane.setNeedsDisplay()
     }
@@ -51,7 +51,7 @@ class InfluenceRunViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func CalculateBalanceWeight(sender: AnyObject) {
+    @IBAction func CalculateBalanceWeight(_ sender: AnyObject) {
         
         
         if let initVect = GetAppDelegate().singlePlaneBalance.initialVector
@@ -69,7 +69,7 @@ class InfluenceRunViewController: UIViewController {
         balancePlane.setNeedsDisplay()
     }
     
-    @IBAction func AddVector(sender: AnyObject) {
+    @IBAction func AddVector(_ sender: AnyObject) {
         
         let influenceVectAmp = vectorAmplitude.text?.ToFloat()
         let influenceVectPhase = vectorPhase.text?.ToFloat()

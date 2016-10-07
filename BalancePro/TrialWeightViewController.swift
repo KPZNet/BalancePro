@@ -28,14 +28,14 @@ class TrialWeightViewController: UIViewController {
         balancePlane.layer.masksToBounds = true
         
         //SetRoundedButton(forButton: addVectorButton)
-        addTrialWeightButton.roundCorners([.TopLeft, .BottomLeft], radius: 20)
+        addTrialWeightButton.roundCorners([.topLeft, .bottomLeft], radius: 20)
     }
     
-    override func viewWillDisappear(_animated: Bool){
+    override func viewWillDisappear(_ _animated: Bool){
         
     }
     
-    override func viewWillAppear(animated: Bool){
+    override func viewWillAppear(_ animated: Bool){
         
         balancePlane.setNeedsDisplay()
     }
@@ -45,7 +45,7 @@ class TrialWeightViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func AddTrialWeight(sender: AnyObject) {
+    @IBAction func AddTrialWeight(_ sender: AnyObject) {
         
         let influenceBalanceWeight = balaneWeightMeasure.text?.ToFloat()
         let influenceBalancePlacement = balanceWeightPlacement.text?.ToFloat()

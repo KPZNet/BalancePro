@@ -27,7 +27,7 @@ struct CONSTANTS {
 
 class SinglePlaneVectorBalanceViewConfiguration : BalancePlaneView
 {
-    override func drawRect(rect: CGRect)
+    override func draw(_ rect: CGRect)
     {
         SetScales()
         self.layer.sublayers = nil
@@ -37,14 +37,14 @@ class SinglePlaneVectorBalanceViewConfiguration : BalancePlaneView
         
         let vScale = GetCurrentScale() * (0.75)
         let sampleVector = Vector(fromAmp: vScale, fromPhaseInDegrees: 45, withRunType:BalanceRunType.general)
-        drawBVector(sampleVector, vectorColor: UIColor.blackColor() )
+        drawBVector(sampleVector, vectorColor: UIColor.black )
         ReleaseScales()
     }
     
 }
 class SinglePlaneVectorBalanceView : BalancePlaneView
 {
-    override func drawRect(rect: CGRect)
+    override func draw(_ rect: CGRect)
     {
         SetScales()
         self.layer.sublayers = nil
@@ -88,14 +88,14 @@ class SinglePlaneVectorBalanceView : BalancePlaneView
 class BalancePlaneView: UIView {
     
     /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-    // Drawing code
-    }
-    */
+     // Only override drawRect: if you perform custom drawing.
+     // An empty implementation adversely affects performance during animation.
+     override func drawRect(rect: CGRect) {
+     // Drawing code
+     }
+     */
     
-    var pCartesianTrans : CGAffineTransform = CGAffineTransformIdentity
+    var pCartesianTrans : CGAffineTransform = CGAffineTransform.identity
     var vibScale: Float = Float(1.0)
     var rotateRotor : Float =  Float(0)
     var vibScaleLineWidth : Float = Float(0.1)
@@ -125,37 +125,37 @@ class BalancePlaneView: UIView {
     }
     func PushToCartesianTransform()
     {
-        CGContextSaveGState(UIGraphicsGetCurrentContext())
+        UIGraphicsGetCurrentContext()?.saveGState()
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextConcatCTM(context, pCartesianTrans);
+        context?.concatenate(pCartesianTrans);
         
     }
     func PopToDefaultTransform()
     {
-        CGContextRestoreGState(UIGraphicsGetCurrentContext())
+        UIGraphicsGetCurrentContext()?.restoreGState()
     }
     func GetCartisianTransform() -> CGAffineTransform
     {
         
         viewScale = vibScale * 1.2
-
+        
         var rotationScale:CGFloat = 1.0 //cw
         if(GetAppDelegate().singlePlaneBalance.shaftRotation == ShaftRotationType.ccw){
             rotationScale = -1.0
         }
         
-        var pTempCartesianTransform : CGAffineTransform = CGAffineTransformIdentity
+        var pTempCartesianTransform : CGAffineTransform = CGAffineTransform.identity
         
-        pTempCartesianTransform = CGAffineTransformTranslate(pTempCartesianTransform, (self.frame.size.width / 2), (self.frame.size.height / 2));
+        pTempCartesianTransform = pTempCartesianTransform.translatedBy(x: (self.frame.size.width / 2), y: (self.frame.size.height / 2));
         
         
         xScale =  Float(1.0 * (self.frame.size.width / 2) / CGFloat(viewScale))
         yScale =  Float(rotationScale * ( (self.frame.size.height / 2) / CGFloat(viewScale) ))
         
-        pTempCartesianTransform = CGAffineTransformScale(pTempCartesianTransform, CGFloat(xScale), CGFloat(yScale));
+        pTempCartesianTransform = pTempCartesianTransform.scaledBy(x: CGFloat(xScale), y: CGFloat(yScale));
         
-        pTempCartesianTransform =  CGAffineTransformRotate(pTempCartesianTransform, CGFloat(rotateRotor))
+        pTempCartesianTransform =  pTempCartesianTransform.rotated(by: CGFloat(rotateRotor))
         
         return pTempCartesianTransform
     }
@@ -163,26 +163,26 @@ class BalancePlaneView: UIView {
     func GetRotatedTextTransform(At _point:CGPoint, Rotate _rotate:Float) -> CGAffineTransform
     {
         let rotationAngle = _rotate
-
-        var pTempTransform : CGAffineTransform = CGAffineTransformIdentity
         
-        pTempTransform = CGAffineTransformTranslate(pTempTransform, _point.x, _point.y)
-        pTempTransform = CGAffineTransformRotate(pTempTransform, CGFloat(rotationAngle) * -1.0 );
+        var pTempTransform : CGAffineTransform = CGAffineTransform.identity
         
-        pTempTransform =  CGAffineTransformRotate(pTempTransform, CGFloat(rotateRotor))
+        pTempTransform = pTempTransform.translatedBy(x: _point.x, y: _point.y)
+        pTempTransform = pTempTransform.rotated(by: CGFloat(rotationAngle) * -1.0 );
+        
+        pTempTransform =  pTempTransform.rotated(by: CGFloat(rotateRotor))
         
         return pTempTransform
     }
     
     func PushToTextTransform(At _point:CGPoint, Rotate _rotate:Float)
     {
-        CGContextSaveGState(UIGraphicsGetCurrentContext())
+        UIGraphicsGetCurrentContext()?.saveGState()
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextConcatCTM(context, GetRotatedTextTransform(At:_point, Rotate:_rotate));
+        context?.concatenate(GetRotatedTextTransform(At:_point, Rotate:_rotate));
     }
     
-    func ConvertVectorToXY(vector : Vector) -> (x:Float, y:Float)
+    func ConvertVectorToXY(_ vector : Vector) -> (x:Float, y:Float)
     {
         let DegToRadConversion : Float = Float(M_PI) / Float(180)
         var radians : Float = 0.0
@@ -196,7 +196,7 @@ class BalancePlaneView: UIView {
     }
     
     
-    func DrawWeight( weight : BalanceWeight, color:UIColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.5) )
+    func DrawWeight( _ weight : BalanceWeight, color:UIColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 0.5) )
     {
         var x : Float
         var y : Float
@@ -219,22 +219,25 @@ class BalancePlaneView: UIView {
         
         
         // Find the middle of the circle
-        let center = CGPointMake( CGFloat(x), CGFloat(y) )
+        let center = CGPoint( x: CGFloat(x), y: CGFloat(y) )
         
         // Set the stroke color
-        CGContextSetStrokeColorWithColor(context, UIColor.blueColor().CGColor)
+        context?.setStrokeColor(UIColor.blue.cgColor)
         
         // Set the line width
-        CGContextSetLineWidth(context, CGFloat(strokeWidth))
+        context?.setLineWidth(CGFloat(strokeWidth))
         
         // Set the fill color (if you are filling the circle)
-        CGContextSetFillColorWithColor(context, fillColor.CGColor)
+        context?.setFillColor(fillColor.cgColor)
         
         // Draw the arc around the circle
-        CGContextAddArc(context, center.x, center.y, CGFloat(weightSlotRadius), CGFloat(0), CGFloat(2 * M_PI), 1)
+        //CGContextAddArc(context, center.x, center.y, CGFloat(weightSlotRadius), CGFloat(0), CGFloat(2 * M_PI), 1) kpc
+        
+        let startPoint = CGPoint(x: center.x, y: center.y)
+        context?.addArc(center: startPoint, radius: CGFloat(weightSlotRadius), startAngle: CGFloat(0), endAngle: CGFloat(2 * M_PI), clockwise: true)
         
         // Draw the arc
-        CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        context?.drawPath(using: CGPathDrawingMode.fillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
     }
     
@@ -245,55 +248,58 @@ class BalancePlaneView: UIView {
         let context = UIGraphicsGetCurrentContext()
         
         // Find the middle of the circle
-        let center = CGPointMake(0 , 0)
+        let center = CGPoint(x: 0 , y: 0)
         
         // Draw the arc around the circle
-        CGContextAddArc(context, center.x, center.y, CGFloat(vibScale * 0.04), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+        //CGContextAddArc(context, center.x, center.y, CGFloat(vibScale * 0.04), CGFloat(0), CGFloat(2.0 * M_PI), 1) kpc
+        context?.addArc(center: center, radius: CGFloat(vibScale * 0.04), startAngle: CGFloat(0), endAngle: CGFloat(2.0 * M_PI), clockwise: true)
         
         // Set the fill color (if you are filling the circle)
-        CGContextSetFillColorWithColor(context, UIColor.darkGrayColor().CGColor)
+        context?.setFillColor(UIColor.darkGray.cgColor)
         
         // Set the stroke color
-        CGContextSetStrokeColorWithColor(context, UIColor.darkGrayColor().CGColor)
+        context?.setStrokeColor(UIColor.darkGray.cgColor)
         
         // Set the line width
-        CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
+        context?.setLineWidth(CGFloat(vibScaleLineWidth))
         
         // Draw the arc
-        CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
-
+        context?.drawPath(using: CGPathDrawingMode.fillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        
     }
     
     
     func DrawRotor()
     {
-     
+        
         // Get the context
         let context = UIGraphicsGetCurrentContext()
         
         // Find the middle of the circle
-        let center = CGPointMake(0 , 0)
+        let center = CGPoint(x: 0 , y: 0)
         
         // Draw the arc around the circle
-        CGContextAddArc(context, center.x, center.y, CGFloat(vibScale), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+        //CGContextAddArc(context, center.x, center.y, CGFloat(vibScale), CGFloat(0), CGFloat(2.0 * M_PI), 1)  kpc
+        
+        context?.addArc(center: center, radius: CGFloat(vibScale), startAngle: CGFloat(0), endAngle: CGFloat(2.0 * M_PI), clockwise: true)
         
         // Set the fill color (if you are filling the circle)
-        CGContextSetFillColorWithColor(context, UIColor.grayColor().CGColor)
+        context?.setFillColor(UIColor.gray.cgColor)
         
         // Set the stroke color
-        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
+        context?.setStrokeColor(UIColor.black.cgColor)
         
         // Set the line width
-        CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
+        context?.setLineWidth(CGFloat(vibScaleLineWidth))
         
         // Draw the arc
-        CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        context?.drawPath(using: CGPathDrawingMode.fillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
         DrawRotorCenterNob()
         
     }
     
-    func DrawVectorName(vector:Vector, RotateText _rotateText:Bool = false)
+    func DrawVectorName(_ vector:Vector, RotateText _rotateText:Bool = false)
     {
         
         var midPoint : CGPoint = CGPoint(x:0, y:0)
@@ -303,19 +309,20 @@ class BalancePlaneView: UIView {
         
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
         
-        let  textSize = textFont.sizeOfString(vector.name + "XX")
+        //let  textSize = textFont.sizeOfString(vector.name + "XX") kpc
+        let  textSize = textFont.sizeOfString( NSString(string: vector.name) )
         
-        let sRect:CGRect = CGRectMake(0, 0, textSize.width, textSize.height)
-        let aPoint:CGPoint = CGPointApplyAffineTransform ( midPoint, pCartesianTrans );
+        let sRect:CGRect = CGRect(x: 0, y: 0, width: textSize.width, height: textSize.height)
+        let aPoint:CGPoint = midPoint.applying (pCartesianTrans );
         
         let label = UILabel(frame: sRect)
         label.center = aPoint
         label.font = textFont
-        label.textAlignment = NSTextAlignment.Center
+        label.textAlignment = NSTextAlignment.center
         
         label.text = vector.name
-        label.backgroundColor = UIColor.lightGrayColor()
-        label.layer.borderColor = UIColor.darkGrayColor().CGColor
+        label.backgroundColor = UIColor.lightGray
+        label.layer.borderColor = UIColor.darkGray.cgColor
         label.layer.borderWidth = 0.5
         label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
@@ -324,14 +331,14 @@ class BalancePlaneView: UIView {
         {
             var textRotation = CGFloat( vector.phase.DegreesToRadians() ) + CGFloat(rotateRotor)
             textRotation *= -1.0
-            label.transform = CGAffineTransformMakeRotation( textRotation )
+            label.transform = CGAffineTransform( rotationAngle: textRotation )
         }
         
         addSubview(label)
         
     }
     
-    func DrawVectorEndCir(vector:Vector)
+    func DrawVectorEndCir(_ vector:Vector)
     {
         
         let fillColor : UIColor = UIColor(red: (160/255.0), green: (97/255.0), blue: (5/255.0), alpha: 0.2)
@@ -340,32 +347,34 @@ class BalancePlaneView: UIView {
         let context = UIGraphicsGetCurrentContext()
         
         // Draw the arc around the circle
-        CGContextAddArc(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd), CGFloat(2), CGFloat(0), CGFloat(2.0 * M_PI), 1)
+        //CGContextAddArc(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd), CGFloat(2), CGFloat(0), CGFloat(2.0 * M_PI), 1)  kpc
+        
+        context?.addArc(center: center, radius: CGFloat(vibScale), startAngle: CGFloat(0), endAngle: CGFloat(2.0 * M_PI), clockwise: true)
         
         // Set the fill color (if you are filling the circle)
-        CGContextSetFillColorWithColor(context, fillColor.CGColor)
+        context?.setFillColor(fillColor.cgColor)
         
         // Set the stroke color
-        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
+        context?.setStrokeColor(UIColor.black.cgColor)
         
         // Set the line width
-        CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
+        context?.setLineWidth(CGFloat(vibScaleLineWidth))
         
         // Draw the arc
-        CGContextDrawPath(context, CGPathDrawingMode.FillStroke) // or kCGPathFillStroke to fill and stroke the circle
+        context?.drawPath(using: CGPathDrawingMode.fillStroke) // or kCGPathFillStroke to fill and stroke the circle
         
     }
     
-    func drawBVector(vector : Vector, vectorColor: UIColor = UIColor.blackColor())
+    func drawBVector(_ vector : Vector, vectorColor: UIColor = UIColor.black)
     {
-       
+        
         DrawArrow(viewControl:self,
-            basePoint: CGPointApplyAffineTransform(vector.basePoint, pCartesianTrans),
-            endPoint: CGPointApplyAffineTransform(vector.endPoint, pCartesianTrans),
-            tailWidth: CGFloat(CONSTANTS.VECTOR_TAIL_WIDTH),
-            headWidth: CGFloat(CONSTANTS.VECTOR_HEAD_WIDTH),
-            headLength: CGFloat(CONSTANTS.VECTOR_HEAD_LENGTH),
-            color:vectorColor)
+                  basePoint: vector.basePoint.applying(pCartesianTrans),
+                  endPoint: vector.endPoint.applying(pCartesianTrans),
+                  tailWidth: CGFloat(CONSTANTS.VECTOR_TAIL_WIDTH),
+                  headWidth: CGFloat(CONSTANTS.VECTOR_HEAD_WIDTH),
+                  headLength: CGFloat(CONSTANTS.VECTOR_HEAD_LENGTH),
+                  color:vectorColor)
         
         if(GetAppDelegate().preferences.showVectorLabel) {
             DrawVectorName(vector)
@@ -382,13 +391,13 @@ class BalancePlaneView: UIView {
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
         
         let sPoint:CGPoint = CGPoint(  x:_point.x, y: _point.y)
-        let sRect:CGRect = CGRectMake(0, 0, 50, 10)
-        let aPoint:CGPoint = CGPointApplyAffineTransform ( sPoint, pCartesianTrans );
+        let sRect:CGRect = CGRect(x: 0, y: 0, width: 50, height: 10)
+        let aPoint:CGPoint = sPoint.applying (pCartesianTrans );
         
         let label = UILabel(frame: sRect)
         label.center = aPoint
         label.font = textFont
-        label.textAlignment = NSTextAlignment.Center
+        label.textAlignment = NSTextAlignment.center
         label.text = _text
         //label.backgroundColor = UIColor.lightTextColor()
         //label.layer.cornerRadius = 5
@@ -407,7 +416,8 @@ class BalancePlaneView: UIView {
         let sPoint:CGPoint = CGPoint(  x:_point.x + xExtension, y: _point.y + yExtension)
         
         
-        let degTextInt:NSNumber = Int(_degree)
+        //let degTextInt:NSNumber = NSNumber(Int(_degree))  kpc
+        let degTextInt:NSNumber = NSNumber(value: _degree)
         let degText:String = degTextInt.stringValue
         
         DrawTextLabel(At: sPoint, Text: degText)
@@ -423,11 +433,12 @@ class BalancePlaneView: UIView {
         let lineLength = ( (vibScale * 0.04) )
         
         // Set the stroke color
-        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
+        context?.setStrokeColor(UIColor.black.cgColor)
         // Set the line width
-        CGContextSetLineWidth(context, CGFloat(vibScaleLineWidth))
+        context?.setLineWidth(CGFloat(vibScaleLineWidth))
         
-        for var index = 0; index < 360; index+=15
+        //for var index = 0; index < 360; index+=15
+        for index in stride(from: 0, to: 360, by: 15)
         {
             
             let xStart : Float = (vibScale - lineLength) * cos( index.DegreesToRadians() )
@@ -435,18 +446,19 @@ class BalancePlaneView: UIView {
             let xEnd   : Float = (vibScale) * cos( index.DegreesToRadians())
             let yEnd   : Float = (vibScale) * sin( index.DegreesToRadians())
             
-            CGContextMoveToPoint(context, CGFloat(xStart), CGFloat(yStart))
-            CGContextAddLineToPoint(context, CGFloat(xEnd), CGFloat(yEnd))
-            CGContextStrokePath(context)
+            context?.move(to: CGPoint(x: CGFloat(xStart), y: CGFloat(yStart)))
+            context?.addLine(to: CGPoint(x: CGFloat(xEnd), y: CGFloat(yEnd)))
+            context?.strokePath()
             
         }
-    
+        
     }
     
     func DrawRotorDegreeTicLabels()
     {
         
-        for var index = 0; index < 360; index+=45
+        //for var index = 0; index < 360; index+=45
+        for index in stride(from: 0, to: 360, by: 45)
         {
             
             let xEnd2   : Float = cos( index.DegreesToRadians())
@@ -487,51 +499,14 @@ class BalancePlaneView: UIView {
     }
     
     
-    func DrawBlankRect(){
-        
-        let r = self.bounds
-        /* Create the path first. Just the path handle. */
-        let path = CGPathCreateMutable()
-        
-        /* Here are our first rectangle boundaries */
-        let rectangle1 = r //CGRect(x: 10, y: 30, width: 200, height: 300)
-        
-        /* And the second rectangle */
-        let rectangle2 = r //CGRect(x: 40, y: 100, width: 90, height: 300)
-        
-        /* Put both rectangles into an array */
-        let rectangles = [rectangle1, rectangle2]
-        
-        /* Add the rectangles to the path */
-        CGPathAddRects(path, nil, rectangles, 2)
-        
-        /* Get the handle to the current context */
-        let currentContext = UIGraphicsGetCurrentContext()
-        
-        /* Add the path to the context */
-        CGContextAddPath(currentContext, path)
-        
-        /* Set the fill color to cornflower blue */
-        UIColor.grayColor().setFill()
-        //UIColor(red: 0.20, green: 0.60, blue: 0.80, alpha: 1.0).setFill()
-        
-        /* Set the stroke color to black */
-        //UIColor.blackColor().setStroke()
-        
-        /* Set the line width (for the stroke) to 5 */
-        //CGContextSetLineWidth(currentContext, 5)
-        
-        /* Stroke and fill the path on the context */
-        CGContextDrawPath(currentContext, CGPathDrawingMode.FillStroke)
-    }
     
     
-    override func drawRect(rect: CGRect)
+    override func draw(_ rect: CGRect)
     {
         
         
     }
     
-
+    
     
 }
