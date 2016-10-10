@@ -309,8 +309,7 @@ class BalancePlaneView: UIView {
         
         let textFont:UIFont = UIFont(name: "Helvetica", size: CGFloat(10))!
         
-        //let  textSize = textFont.sizeOfString(vector.name + "XX") kpc
-        let  textSize = textFont.sizeOfString( NSString(string: vector.name) )
+        let  textSize = textFont.sizeOfString( NSString(string: vector.name + "XX") )
         
         let sRect:CGRect = CGRect(x: 0, y: 0, width: textSize.width, height: textSize.height)
         let aPoint:CGPoint = midPoint.applying (pCartesianTrans );
@@ -375,6 +374,7 @@ class BalancePlaneView: UIView {
                   headWidth: CGFloat(CONSTANTS.VECTOR_HEAD_WIDTH),
                   headLength: CGFloat(CONSTANTS.VECTOR_HEAD_LENGTH),
                   color:vectorColor)
+        
         
         if(GetAppDelegate().preferences.showVectorLabel) {
             DrawVectorName(vector)
@@ -507,6 +507,8 @@ class BalancePlaneView: UIView {
         
     }
     
+    
+
     
     
 }
