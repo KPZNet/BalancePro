@@ -375,11 +375,6 @@ func DrawArrow(viewControl _view:UIView, basePoint _basePoint:CGPoint, endPoint 
         headWidth: _headWidth,
         headLength: _headLength)
     
-//    let path:UIBezierPath = UIBezierPath.withArrowFromPoint(startPoint: _basePoint,
-//                                                    endPoint: _endPoint,
-//                                                    tailWidth: _tailWidth,
-//                                                    headWidth: _headWidth,
-//                                                    headLength: _headLength)
     
     let shape : CAShapeLayer = CAShapeLayer()
     shape.path = path.cgPath;
