@@ -184,7 +184,7 @@ class BalancePlaneView: UIView {
     
     func ConvertVectorToXY(_ vector : Vector) -> (x:Float, y:Float)
     {
-        let DegToRadConversion : Float = Float(M_PI) / Float(180)
+        let DegToRadConversion : Float = Float(Double.pi) / Float(180)
         var radians : Float = 0.0
         radians = DegToRadConversion * Float(vector.phase)
         let magnitude = vector.amp
@@ -234,7 +234,7 @@ class BalancePlaneView: UIView {
         //CGContextAddArc(context, center.x, center.y, CGFloat(weightSlotRadius), CGFloat(0), CGFloat(2 * M_PI), 1) kpc
         
         let startPoint = CGPoint(x: center.x, y: center.y)
-        context?.addArc(center: startPoint, radius: CGFloat(weightSlotRadius), startAngle: CGFloat(0), endAngle: CGFloat(2 * M_PI), clockwise: true)
+        context?.addArc(center: startPoint, radius: CGFloat(weightSlotRadius), startAngle: CGFloat(0), endAngle: CGFloat(2 * Double.pi), clockwise: true)
         
         // Draw the arc
         context?.drawPath(using: CGPathDrawingMode.fillStroke) // or kCGPathFillStroke to fill and stroke the circle
@@ -252,7 +252,7 @@ class BalancePlaneView: UIView {
         
         // Draw the arc around the circle
         //CGContextAddArc(context, center.x, center.y, CGFloat(vibScale * 0.04), CGFloat(0), CGFloat(2.0 * M_PI), 1) kpc
-        context?.addArc(center: center, radius: CGFloat(vibScale * 0.04), startAngle: CGFloat(0), endAngle: CGFloat(2.0 * M_PI), clockwise: true)
+        context?.addArc(center: center, radius: CGFloat(vibScale * 0.04), startAngle: CGFloat(0), endAngle: CGFloat(2.0 * Double.pi), clockwise: true)
         
         // Set the fill color (if you are filling the circle)
         context?.setFillColor(UIColor.darkGray.cgColor)
@@ -281,7 +281,7 @@ class BalancePlaneView: UIView {
         // Draw the arc around the circle
         //CGContextAddArc(context, center.x, center.y, CGFloat(vibScale), CGFloat(0), CGFloat(2.0 * M_PI), 1)  kpc
         
-        context?.addArc(center: center, radius: CGFloat(vibScale), startAngle: CGFloat(0), endAngle: CGFloat(2.0 * M_PI), clockwise: true)
+        context?.addArc(center: center, radius: CGFloat(vibScale), startAngle: CGFloat(0), endAngle: CGFloat(2.0 * Double.pi), clockwise: true)
         
         // Set the fill color (if you are filling the circle)
         context?.setFillColor(UIColor.gray.cgColor)
@@ -348,7 +348,7 @@ class BalancePlaneView: UIView {
         // Draw the arc around the circle
         //CGContextAddArc(context, CGFloat(vector.xEnd), CGFloat(vector.yEnd), CGFloat(2), CGFloat(0), CGFloat(2.0 * M_PI), 1)  kpc
         
-        context?.addArc(center: center, radius: CGFloat(vibScale), startAngle: CGFloat(0), endAngle: CGFloat(2.0 * M_PI), clockwise: true)
+        context?.addArc(center: center, radius: CGFloat(vibScale), startAngle: CGFloat(0), endAngle: CGFloat(2.0 * Double.pi), clockwise: true)
         
         // Set the fill color (if you are filling the circle)
         context?.setFillColor(fillColor.cgColor)

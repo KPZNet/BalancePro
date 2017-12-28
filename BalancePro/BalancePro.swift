@@ -352,9 +352,9 @@ class BalanceWeight
 extension UIFont {
     func sizeOfString (_ string: NSString) -> CGSize
     {
-        return string.boundingRect(with: CGSize(width: DBL_MAX, height: DBL_MAX),
+        return string.boundingRect(with: CGSize(width: Double.greatestFiniteMagnitude, height: Double.greatestFiniteMagnitude),
                                    options: NSStringDrawingOptions.usesLineFragmentOrigin,
-                                   attributes: [NSFontAttributeName: self],
+                                   attributes: [NSAttributedStringKey.font: self],
                                    context: nil).size
     }
 }
@@ -398,28 +398,28 @@ extension Float {
 extension Float {
     func DegreesToRadians() -> Float{
         
-        let DegreesToRad : Float = Float(M_PI) / Float(180)
+        let DegreesToRad : Float = Float(Double.pi) / Float(180)
         return self * DegreesToRad
     }
 }
 extension Float {
     func RadiansToDegrees() -> Float{
         
-        let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
+        let RadToDegreesConversion : Float = Float(180) / Float(Double.pi)
         return self * RadToDegreesConversion
     }
 }
 extension CGFloat {
     func DegreesToRadians() -> CGFloat{
         
-        let DegreesToRad : CGFloat = CGFloat(M_PI) / CGFloat(180)
+        let DegreesToRad : CGFloat = CGFloat(Double.pi) / CGFloat(180)
         return self * DegreesToRad
     }
 }
 extension CGFloat {
     func RadiansToDegrees() -> CGFloat{
         
-        let RadToDegreesConversion : CGFloat = CGFloat(180) / CGFloat(M_PI)
+        let RadToDegreesConversion : CGFloat = CGFloat(180) / CGFloat(Double.pi)
         return self * RadToDegreesConversion
     }
 }
@@ -427,7 +427,7 @@ extension CGFloat {
 extension Int {
     func DegreesToRadians() -> Float{
         
-        let DegreesToRad : Float = Float(M_PI) / Float(180)
+        let DegreesToRad : Float = Float(Double.pi) / Float(180)
         let retValue : Float = Float( Float(self) * DegreesToRad)
         return retValue
     }
@@ -435,7 +435,7 @@ extension Int {
 extension Int {
     func RadiansToDegrees() -> Float{
         
-        let RadToDegreesConversion : Float = Float(180) / Float(M_PI)
+        let RadToDegreesConversion : Float = Float(180) / Float(Double.pi)
         let retValue : Float = Float( Float(self) * RadToDegreesConversion)
         return retValue
     }
