@@ -354,7 +354,7 @@ extension UIFont {
     {
         return string.boundingRect(with: CGSize(width: Double.greatestFiniteMagnitude, height: Double.greatestFiniteMagnitude),
                                    options: NSStringDrawingOptions.usesLineFragmentOrigin,
-                                   attributes: [NSAttributedStringKey.font: self],
+                                   attributes: [NSAttributedString.Key.font: self],
                                    context: nil).size
     }
 }
